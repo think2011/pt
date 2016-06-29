@@ -21,9 +21,8 @@
       </component>
     </div>
 
-    <div class="properties">
-      <input type="text" v-model="currentModule.time">
-    </div>
+    <property-editor :module-instance="currentModule">
+    </property-editor>
   </div>
 </template>
 
@@ -83,12 +82,15 @@
 
 <script type="text/ecmascript-6">
   import modules from './modules'
+  import propertyEditor from './components/property-editor.vue'
 
   let components = {}
   modules.forEach((item) => components[item.type] = item.module)
 
   export default {
-    components: components,
+    components: _.merge(components, {
+      propertyEditor
+    }),
 
     ready() {
       let mock = [{"type": "goods.poster", "data": {"time": 1467208634898}}, {

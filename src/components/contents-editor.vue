@@ -22,9 +22,6 @@
     props: ['items'],
 
     methods: {
-      test(...args) {
-        console.log(args)
-      },
       edit(item){
         this.$dispatch('current-module', item.module)
       }

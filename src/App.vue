@@ -7,6 +7,7 @@
   <div class="container">
     <ul class="toolbar">
       <li
+        @mousedown="test"
         v-for="item in modules">
         <button>{{item.alias}}</button>
       </li>
@@ -88,6 +89,9 @@
     },
 
     methods: {
+      test(test) {
+        console.log(test)
+      },
 
       add({type, data = {}}) {
         let item = _.chain(this.modules).find({type}).cloneDeep().merge({data}).value()

@@ -3,17 +3,17 @@
     <div class="title">T</div>
     <button @click="save">save</button>
   </header>
-
   <div class="container">
     <ul class="toolbar">
       <li
-        @mousedown="test"
+        @mousedown="drag(item)"
         v-for="item in modules">
         <button>{{item.alias}}</button>
       </li>
     </ul>
 
-    <goods-poster></goods-poster>
+    <drag-module
+      :drag-module.sync="dragModule"></drag-module>
 
     <contents-editor
       :items="stage"
@@ -71,17 +71,16 @@
 </style>
 
 <script type="text/ecmascript-6">
-  import modules from './modules'
+  import {components, modules} from './modules'
   import contentsEditor from './components/contents-editor.vue'
   import propertyEditor from './components/property-editor.vue'
-
-  let components = {}
-  modules.forEach((item) => components[item.type] = item.component)
+  import dragModule from './components/module-drag.vue'
 
   export default {
     components: _.merge(components, {
       propertyEditor,
-      contentsEditor
+      contentsEditor,
+      dragModule
     }),
 
     ready() {
@@ -91,14 +90,8 @@
     },
 
     methods: {
-      test(test) {
-        console.log(components)
-      },
-
-      add({type, data = {}}) {
-        let item = _.chain(this.modules).find({type}).cloneDeep().merge({data}).value()
-
-        this.stage.push(item)
+      drag(item) {
+        this.dragModule = item
       },
 
       setCurrentModule(module){
@@ -117,8 +110,10 @@
 
     data() {
       return {
+        showDrag     : false,
         stage        : [],
         modules      : modules,
+        dragModule   : '',
         currentModule: ''
       }
     }

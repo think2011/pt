@@ -1,6 +1,7 @@
 <template>
-  <div class="stage">
+  <div drag-tag="stage" class="stage">
     <component
+      drag-tag="stage-item"
       @click="edit(item)"
       :module-instance="item"
       v-for="item in items"
@@ -20,6 +21,10 @@
 <script type="text/ecmascript-6">
   export default{
     props: ['items'],
+
+    ready () {
+
+    },
 
     methods: {
       edit(item){

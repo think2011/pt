@@ -113,7 +113,7 @@
         showDrag     : false,
         stage        : [],
         modules      : modules,
-        dragModule   : '',
+        dragModule   : {},
         currentModule: ''
       }
     }

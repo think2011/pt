@@ -13,6 +13,8 @@
       </li>
     </ul>
 
+    <goods-poster></goods-poster>
+
     <contents-editor
       :items="stage"
       @current-module="setCurrentModule">
@@ -74,7 +76,7 @@
   import propertyEditor from './components/property-editor.vue'
 
   let components = {}
-  modules.forEach((item) => components[item.type] = item.module)
+  modules.forEach((item) => components[item.type] = item.component)
 
   export default {
     components: _.merge(components, {
@@ -83,14 +85,14 @@
     }),
 
     ready() {
-      let mock = [{"type": "goods.poster", "data": {"time": 1467208634898}}]
+      let mock = [{"type": "goods-poster", "data": {"time": 1467208634898}}]
 
       _.each(mock, this.add)
     },
 
     methods: {
       test(test) {
-        console.log(test)
+        console.log(components)
       },
 
       add({type, data = {}}) {

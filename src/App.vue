@@ -94,6 +94,12 @@
         this.dragModule = item
       },
 
+      add({type, data = {}}) {
+        let item = _.chain(this.modules).find({type}).cloneDeep().merge({data}).value()
+
+        this.stage.push(item)
+      },
+
       setCurrentModule(module){
         this.currentModule = module
       },

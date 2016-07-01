@@ -1,7 +1,10 @@
 <template>
   <div drag-tag="stage" class="stage">
+    <slot></slot>
+
     <component
-      drag-tag="stage-item"
+      drag-tag="stage"
+      index="{{$index}}"
       @click="edit(item)"
       :module-instance="item"
       v-for="item in items"

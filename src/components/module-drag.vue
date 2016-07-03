@@ -6,7 +6,7 @@
 
 <style lang="scss" rel="stylesheet/scss">
   .drag-module {
-    width: 200px;
+    width: 300px;
     background: seagreen;
     display: inline-block;
     position: fixed;
@@ -21,6 +21,7 @@
 
 <script type="text/ecmascript-6">
   import {components, modules} from '../modules'
+  import {addRenderItem} from '../vuex/actions'
 
   export default{
     props: {
@@ -32,6 +33,12 @@
     },
 
     components: components,
+
+    vuex: {
+      actions: {
+        addRenderItem
+      }
+    },
 
     ready() {
       this.$watch('dragModule', (newVal) => {
@@ -65,6 +72,7 @@
         setTimeout(() => {
           let target = _.find(event.path, (item) => item.getAttribute && item.getAttribute('drag-tag'))
 
+          this.addRenderItem(this.dragModule.type, {time: 11111})
           this.dragModule = {}
         })
       }

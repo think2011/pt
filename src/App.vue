@@ -3,26 +3,13 @@
     <div class="title">T</div>
     <button @click="save">save</button>
   </header>
+
   <div class="container">
-    <ul class="toolbar">
-      <li
-        @mousedown="drag(item)"
-        v-for="item in modules">
-        <button>{{item.alias}}</button>
-      </li>
-    </ul>
+    <module-box></module-box>
 
-    <drag-module
-      :drag-module.sync="dragModule"></drag-module>
+    <render></render>
 
-    <contents-editor
-      :items="stage"
-      @current-module="setCurrentModule">
-    </contents-editor>
-
-    <property-editor
-      :module-instance="currentModule">
-    </property-editor>
+    <property-editor></property-editor>
   </div>
 </template>
 
@@ -50,41 +37,29 @@
   .container {
     display: flex;
     height: 100vh;
-    padding-top: 38px;
-
-    .toolbar {
-      flex: 0 0 300px;
-      display: flex;
-      flex-flow: wrap;
-      align-content: flex-start;
-      text-align: center;
-      padding: 20px 0 0 0;
-      background: #E9E9E9;
-      border-right: 1px solid #B0B0B0;
-
-      li {
-        margin: 3px 0;
-        flex: 0 0 33%;
-      }
-    }
+    padding-top: 32px;
   }
 </style>
 
 <script type="text/ecmascript-6">
-  import {components, modules} from './modules'
-  import contentsEditor from './components/contents-editor.vue'
-  import propertyEditor from './components/property-editor.vue'
-  import dragModule from './components/module-drag.vue'
+  import store from './vuex/store'
+  import moduleBox from './components/Module-box.vue'
+  import render from './components/Render.vue'
+  import propertyEditor from './components/Property-editor.vue'
 
   export default {
-    components: _.merge(components, {
+    store,
+
+    components: {
       propertyEditor,
-      contentsEditor,
-      dragModule
-    }),
+      moduleBox,
+      render
+    },
 
     ready() {
-      let mock = [{"type": "goods-poster", "data": {"time": 1467208634898}}]
+      let mock = [
+        {"type": "goods-poster", "data": {"time": 1467208634898}}
+      ]
 
       _.each(mock, this.add)
     },
@@ -118,7 +93,6 @@
       return {
         showDrag     : false,
         stage        : [],
-        modules      : modules,
         dragModule   : {},
         currentModule: ''
       }

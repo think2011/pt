@@ -1,6 +1,8 @@
 <template>
   <div class="properties">
-    <input type="text" v-model="moduleInstance.time">
+    <div v-for="(key,value) in moduleData">
+      <input type="text" v-model="moduleData[key]">
+    </div>
   </div>
 </template>
 
@@ -14,12 +16,10 @@
 
 <script type="text/ecmascript-6">
   export default{
-    props: [
-      'moduleInstance'
-    ],
-
-    data(){
-      return {}
+    vuex: {
+      getters: {
+        moduleData: ({render}) => render.current.data
+      }
     }
   }
 </script>

@@ -1,4 +1,4 @@
-export let modules = [
+export const modules = [
   {
     alias    : '热卖宝贝',
     type     : 'goods-poster',
@@ -6,5 +6,8 @@ export let modules = [
   }
 ]
 
-export let components = {}
-modules.forEach((item) => components[item.type] = item.component)
+export const components = _.reduce(modules, (obj, item) => {
+  obj[item.type] = item.component
+  return obj
+}, {})
+

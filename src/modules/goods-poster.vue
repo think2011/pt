@@ -1,10 +1,10 @@
 <template>
   <div>
-    test!! {{time}}
+    test!! {{componentData.time}}
 
     <swipe class="my-swipe">
       <swipe-item class="slide1">123</swipe-item>
-      <swipe-item class="slide2">{{time}}</swipe-item>
+      <swipe-item class="slide2">{{componentData.time}}</swipe-item>
       <swipe-item class="slide3">444</swipe-item>
     </swipe>
   </div>
@@ -35,16 +35,24 @@
 </style>
 
 <script type="text/ecmascript-6">
-  import {initModue} from '../components/mixins'
   import {Swipe, SwipeItem} from 'vue-swipe'
   import 'vue-swipe/dist/vue-swipe.css'
 
   export default {
-    mixins: [initModue],
+    props: ['componentData'],
 
     components: {
       Swipe,
       SwipeItem
+    },
+
+    ready (){
+
+
+      this.componentData = {
+        time: 1000
+      }
+
     },
 
     data() {

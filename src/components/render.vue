@@ -1,41 +1,45 @@
 <template>
-  <div drag-tag="stage" class="stage">
-    <!--  <component
-        drag-tag="stage"
-        index="{{$index}}"
-        v-for="item in items"
-        track-by="$index"
-        :is="item.component">
-      </component>-->
-
-    {{modules}}
+  <div drag-tag="modules" class="render-container">
+    <component
+      drag-tag="module-{{$index}}"
+      @click="editRenderItem(item)"
+      index="{{$index}}"
+      v-for="item in items"
+      track-by="$index"
+      :component-data.sync="item.data"
+      :is="components[item.type]">
+    </component>
   </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-  .stage {
-    flex: 1;
-    padding: 0 50px;
-  }
+<style lang="scss" rel="stylesheet/scss">
+  @import "../assets/lib/hotcss";
 </style>
 
 <script type="text/ecmascript-6">
-  import modules from '../modules'
-
-  //  let components = _.map(modules, (item) => ({[item.type]: item.component}))
-
-  console.log(modules)
+  import {components, modules} from '../modules'
+  import {editRenderItem} from '../vuex/actions'
 
   export default{
     components,
 
     vuex: {
       getters: {
-        modules: ({render}) => {
-          console.log(render)
+        items: ({render}) => {
+          return render.items
         }
+      },
+
+      actions: {
+        editRenderItem
+      }
+    },
+
+    data: () => {
+      return {
+        modules,
+        components
       }
     }
-
   }
 </script>

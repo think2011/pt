@@ -1,14 +1,14 @@
 <template>
   <div drag-tag="stage" class="stage">
-    <component
-      drag-tag="stage"
-      @click="editRenderItem(item)"
-      index="{{$index}}"
-      v-for="item in items"
-      track-by="$index"
-      :component-data.sync="item.data"
-      :is="components[item.type]">
-    </component>
+    <!--  <component
+        drag-tag="stage"
+        index="{{$index}}"
+        v-for="item in items"
+        track-by="$index"
+        :is="item.component">
+      </component>-->
+
+    {{modules}}
   </div>
 </template>
 
@@ -20,29 +20,22 @@
 </style>
 
 <script type="text/ecmascript-6">
-  import {components, modules} from '../modules'
-  import {editRenderItem} from '../vuex/actions'
+  import modules from '../modules'
+
+  //  let components = _.map(modules, (item) => ({[item.type]: item.component}))
+
+  console.log(modules)
 
   export default{
     components,
 
     vuex: {
       getters: {
-        items: ({render}) => {
-          return render.items
+        modules: ({render}) => {
+          console.log(render)
         }
-      },
-
-      actions: {
-        editRenderItem
-      }
-    },
-
-    data: () => {
-      return {
-        modules,
-        components
       }
     }
+
   }
 </script>

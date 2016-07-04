@@ -72,6 +72,8 @@
         setTimeout(() => {
           let target = _.find(event.path, (item) => item.getAttribute && item.getAttribute('drag-tag'))
 
+          console.log(target)
+
           this.addRenderItem(this.dragModule.type)
           this.dragModule = {}
         })

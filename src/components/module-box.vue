@@ -12,22 +12,8 @@
   </module-drag>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-  .module-box {
-    flex: 0 0 300px;
-    display: flex;
-    flex-flow: wrap;
-    align-content: flex-start;
-    text-align: center;
-    padding: 20px 0 0 0;
-    background: #E9E9E9;
-    border-right: 1px solid #B0B0B0;
+<style lang="scss" rel="stylesheet/scss">
 
-    li {
-      margin: 3px 0;
-      flex: 0 0 33%;
-    }
-  }
 </style>
 
 <script type="text/ecmascript-6">

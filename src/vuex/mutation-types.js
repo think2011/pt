@@ -1,3 +1,2 @@
 export const ADD_RENDER_ITEM    = 'ADD_RENDER_ITEM'
-export const EDIT_RENDER_ITEM    = 'EDIT_RENDER_ITEM'
 export const ACTIVE_RENDER_ITEM = 'ACTIVE_RENDER_ITEM'

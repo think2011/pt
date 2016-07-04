@@ -2,11 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import _ from 'lodash'
 
-Vue.use(require('vue-resource'))
-
+import 'font-awesome/css/font-awesome.css'
 import './assets/css/styles.scss'
 
-/* eslint-disable no-new */
+Vue.use(require('vue-resource'))
+
 new Vue({
   el        : 'body',
   components: {App}

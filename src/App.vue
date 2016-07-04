@@ -5,23 +5,11 @@
   </header>
 
   <div class="container">
-    <ul class="toolbar">
-      <li
-        @mousedown="drag(item)"
-        v-for="item in modules">
-        <button>{{item.alias}}</button>
-      </li>
-    </ul>
-
-    <drag-module
-      :drag-module.sync="dragModule">
-    </drag-module>
+    <module-box></module-box>
 
     <render></render>
 
-    <property-editor
-      :module-instance="currentModule">
-    </property-editor>
+    <property-editor></property-editor>
   </div>
 </template>
 
@@ -30,6 +18,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
+    font-size: 20px;
   }
 
   header {
@@ -48,81 +37,55 @@
 
   .container {
     display: flex;
-    height: 100vh;
+    height: 100%;
     padding-top: 38px;
 
-    .toolbar {
-      flex: 0 0 300px;
-      display: flex;
-      flex-flow: wrap;
-      align-content: flex-start;
-      text-align: center;
-      padding: 20px 0 0 0;
+    .module-box {
+      flex: 1;
       background: #E9E9E9;
       border-right: 1px solid #B0B0B0;
 
       li {
-        margin: 3px 0;
-        flex: 0 0 33%;
+        margin: 30px;
       }
+    }
+
+    .render-container {
+      flex: 0 0 500px;
+    }
+
+    .properties {
+      flex: 1;
+      background: #E9E9E9;
+      border-left: 1px solid #B0B0B0;
     }
   }
 </style>
 
 <script type="text/ecmascript-6">
   import store from './vuex/store'
-  import render from './components/render.vue'
-  import propertyEditor from './components/property-editor.vue'
-  import dragModule from './components/module-drag.vue'
+  import moduleBox from './components/Module-box.vue'
+  import render from './components/Render.vue'
+  import propertyEditor from './components/Property-editor.vue'
 
   export default {
     store,
 
     components: {
       propertyEditor,
-      render,
-      dragModule
+      moduleBox,
+      render
     },
 
-    ready() {
-      let mock = [
-        {"type": "goods-poster", "data": {"time": 1467208634898}}
-      ]
-
-      _.each(mock, this.add)
-    },
-
-    methods: {
-      drag(item) {
-        this.dragModule = item
-      },
-
-      add({type, data = {}}) {
-        let item = _.chain(this.modules).find({type}).cloneDeep().merge({data}).value()
-
-        this.stage.push(item)
-      },
-
-      setCurrentModule(module){
-        this.currentModule = module
-      },
-
-      save() {
-        let modules = _.cloneDeep(this.stage).map((item) => {
-          return {type: item.type, data: item.module.$data}
-        })
-
-        console.log(modules)
-        console.log(JSON.stringify(modules))
+    vuex: {
+      getters: {
+        renderData: ({render}) => render.items
       }
     },
 
-    data() {
-      return {
-        showDrag     : false,
-        stage        : [],
-        dragModule   : {},
-        currentModule: ''
+    methods: {
+      save() {
+        console.log(JSON.stringify(this.renderData))
       }
     }
   }

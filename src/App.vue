@@ -36,8 +36,8 @@
 
   .container {
     display: flex;
-    height: 100vh;
-    padding-top: 32px;
+    min-height: 100vh;
+    padding-top: 38px;
   }
 </style>
 
@@ -56,45 +56,15 @@
       render
     },
 
-    ready() {
-      let mock = [
-        {"type": "goods-poster", "data": {"time": 1467208634898}}
-      ]
-
-      _.each(mock, this.add)
-    },
-
-    methods: {
-      drag(item) {
-        this.dragModule = item
-      },
-
-      add({type, data = {}}) {
-        let item = _.chain(this.modules).find({type}).cloneDeep().merge({data}).value()
-
-        this.stage.push(item)
-      },
-
-      setCurrentModule(module){
-        this.currentModule = module
-      },
-
-      save() {
-        let modules = _.cloneDeep(this.stage).map((item) => {
-          return {type: item.type, data: item.module.$data}
-        })
-
-        console.log(modules)
-        console.log(JSON.stringify(modules))
+    vuex: {
+      getters: {
+        renderData: ({render}) => render.items
       }
     },
 
-    data() {
-      return {
-        showDrag     : false,
-        stage        : [],
-        dragModule   : {},
-        currentModule: ''
+    methods: {
+      save() {
+        console.log(JSON.stringify(this.renderData))
       }
     }
   }

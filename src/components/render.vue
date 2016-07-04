@@ -29,8 +29,6 @@
     vuex: {
       getters: {
         items: ({render}) => {
-          console.log(render.items)
-
           return render.items
         }
       },

@@ -41,24 +41,21 @@
   export default {
     props: ['componentData'],
 
+    created() {
+      let defaults = {
+        time: 'okoko'
+      }
+
+      if (_.isEmpty(this.componentData)) this.componentData = defaults
+    },
+
     components: {
       Swipe,
       SwipeItem
     },
 
-    ready (){
-
-
-      this.componentData = {
-        time: 1000
-      }
-
-    },
-
     data() {
-      return {
-        time: Date.now()
-      }
+      return {}
     }
   }
 </script>

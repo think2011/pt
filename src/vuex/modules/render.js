@@ -14,8 +14,8 @@ const state = {
 }
 
 const mutations = {
-  [ADD_RENDER_ITEM](state, type, data = {}) {
-    let newItem = _.chain(modules).find({type}).cloneDeep().merge({data}).value()
+  [ADD_RENDER_ITEM](state, type, data) {
+    let newItem = _.chain(modules).find({type}).pick(['type', 'data']).cloneDeep().merge({data}).value()
 
     state.items.push(newItem)
   },

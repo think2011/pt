@@ -18,7 +18,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    font-size: 20px;
+    font-size: 23.4375px; // 相当于iphone6 375的尺寸
   }
 
   header {
@@ -41,8 +41,8 @@
     padding-top: 38px;
 
     .module-box {
-      flex: 1;
-      background: #E9E9E9;
+      flex: 0 0 240px;
+      background: #959595;
       border-right: 1px solid #B0B0B0;
 
       li {
@@ -51,12 +51,13 @@
     }
 
     .render-container {
-      flex: 0 0 500px;
+      flex: 1;
+      background: #E5E5E5;
     }
 
     .properties {
-      flex: 1;
-      background: #E9E9E9;
+      flex: 0 0 520px;
+      background: #959595;
       border-left: 1px solid #B0B0B0;
     }
   }

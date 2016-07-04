@@ -6,16 +6,17 @@
 
 <style lang="scss" rel="stylesheet/scss">
   .drag-module {
-    width: 300px;
-    background: seagreen;
+    width: 329px;
     display: inline-block;
     position: fixed;
     left: 0;
     top: 0;
     z-index: 9999;
     cursor: pointer;
-    opacity: 0.5;
-    margin-top: 120px;
+    opacity: 0.9;
+    margin-top: 10px;
+    background: #F1F1F2;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
   }
 </style>
 
@@ -64,7 +65,7 @@
           event  = event || window.event
 
           el.style.left = `${event.clientX - el.clientWidth / 2}px`
-          el.style.top  = `${event.clientY - el.clientHeight / 2}px`
+          el.style.top  = `${event.clientY}px`
         }
       },
 

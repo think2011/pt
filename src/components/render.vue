@@ -7,17 +7,27 @@
       <div drag-tag="modules"
            :class="{active: activeModules}"
            class="body">
-        <component
+        <div
           transition="zoom"
-          drag-tag="module-{{$index}}"
-          @click="editRenderItem(item)"
-          index="{{$index}}"
-          class="component animated"
-          :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
-          v-for="item in items"
-          :component-data.sync="item.data"
-          :is="components[item.type]">
-        </component>
+          stagger="1000"
+          class="animated"
+          v-for="item in items">
+          <component
+            drag-tag="module-{{$index}}"
+            @click="editRenderItem(item)"
+            index="{{$index}}"
+            class="component"
+            :class="[
+          {
+           active: activeModule.dragTag === 'module-' + $index,
+           'is-current': currentModule === item
+          },
+           activeModule.position
+          ]"
+            :component-data.sync="item.data"
+            :is="components[item.type]">
+          </component>
+        </div>
       </div>
       <div class="footer"></div>
     </div>
@@ -47,6 +57,8 @@
         background: url("../assets/img/phone-middle.png") repeat-y;
 
         .component {
+          transition: .3s;
+
           &.active.top {
             &:before {
               width: 98%;
@@ -99,7 +111,8 @@
         },
         activeModule : ({render}) => {
           return render.dragInfo
-        }
+        },
+        currentModule: ({render}) => render.current
       },
 
       actions: {

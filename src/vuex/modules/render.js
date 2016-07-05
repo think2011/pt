@@ -8,7 +8,10 @@ import {modules} from '../../modules'
 
 
 const state = {
-  items   : [],
+  items   : [
+    {"alias": "热卖单品模块", "type": "goods-hot-sale", "data": {"time": 1467208634898}},
+    {"alias": "热卖单品模块", "type": "goods-hot-sale", "data": {"time": 1467208634898}}
+  ],
   current : {},
   dragInfo: {}
 }

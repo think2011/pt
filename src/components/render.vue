@@ -8,11 +8,13 @@
            :class="{active: activeModules}"
            class="body">
         <component
+          transition="zoom"
           drag-tag="module-{{$index}}"
           @click="editRenderItem(item)"
           index="{{$index}}"
+          class="component animated"
+          :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
           v-for="item in items"
-          track-by="$index"
           :component-data.sync="item.data"
           :is="components[item.type]">
         </component>
@@ -43,6 +45,26 @@
         min-height: 667px;
         padding: 0 14px;
         background: url("../assets/img/phone-middle.png") repeat-y;
+
+        .component {
+          &.active.top {
+            &:before {
+              width: 98%;
+              height: 20px;
+              margin: 0 auto;
+              font-size: 14px;
+              text-align: center;
+              display: block;
+              content: '放在这';
+              border: 2px dashed #b5b5b5;
+            }
+          }
+          &.active.bottom {
+            &:after {
+              @extend .component.active.top:before
+            }
+          }
+        }
       }
 
       .footer {
@@ -55,21 +77,27 @@
 </style>
 
 <script type="text/ecmascript-6">
+  import Vue from 'vue'
   import {components, modules} from '../modules'
   import {editRenderItem} from '../vuex/actions'
+
+  Vue.transition('zoom', {
+    enterClass: 'bounceIn',
+    leaveClass: 'fadeOutDown'
+  })
 
   export default{
     components,
 
     vuex: {
       getters: {
-        items          : ({render}) => {
+        items        : ({render}) => {
           return render.items
         },
-        activeModules  : ({render}) => {
+        activeModules: ({render}) => {
           return render.dragInfo.dragTag === 'modules'
         },
-        activeModuleTag: ({render}) => {
+        activeModule : ({render}) => {
           return render.dragInfo
         }
       },

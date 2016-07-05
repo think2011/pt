@@ -13,9 +13,11 @@
     top: 0;
     z-index: 9999;
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 0.7;
     margin-top: 10px;
     background: #F1F1F2;
+    transform-origin: top;
+    transform: scale(0.5);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
   }
 </style>
@@ -78,8 +80,7 @@
 
       stopDrag (event) {
         setTimeout(() => {
-          this.dropRenderItem(event)
-          this.addRenderItem(this.dragModule.type)
+          this.dropRenderItem(event, this.dragModule)
           this.dragModule = {}
         })
       }

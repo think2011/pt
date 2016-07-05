@@ -10,8 +10,17 @@ export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
 export const activeRenderItem = ({dispatch}, event) => {
   dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
 }
-export const dropRenderItem   = ({dispatch}, event) => {
-  dispatch(DROP_RENDER_ITEM, getDragInfo(event))
+export const dropRenderItem   = ({dispatch}, event, module) => {
+  let {dragTag, position} = getDragInfo(event)
+
+  if (dragTag) {
+    if (dragTag === 'modules') {
+      dispatch(ADD_RENDER_ITEM, module.type)
+    } else {
+      let index = +(dragTag.split('-')[1])
+      dispatch(ADD_RENDER_ITEM, module.type, {}, position === 'bottom' ? ++index : index)
+    }
+  }
 }
 
 

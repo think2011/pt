@@ -3,6 +3,7 @@ import App from './App'
 import _ from 'lodash'
 
 import 'font-awesome/css/font-awesome.css'
+import 'animate.css/animate.css'
 import './assets/css/styles.scss'
 
 Vue.use(require('vue-resource'))

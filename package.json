@@ -11,6 +11,7 @@
     "test": "npm run unit"
   },
   "dependencies": {
+    "animate.css": "^3.5.1",
     "babel-runtime": "^6.0.0",
     "font-awesome": "^4.6.3",
     "lodash": "^4.13.1",

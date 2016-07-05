@@ -111,7 +111,6 @@
         background: url("../assets/img/phone-footer.png") no-repeat 0 0;
       }
     }
-
   }
 </style>
 

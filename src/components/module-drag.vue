@@ -14,7 +14,7 @@
     z-index: 9999;
     cursor: pointer;
     opacity: 0.7;
-    margin-top: 10px;
+    margin-top: 15px;
     background: #F1F1F2;
     transform-origin: top;
     transform: scale(0.5);

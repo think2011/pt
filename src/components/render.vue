@@ -18,7 +18,6 @@
           <div class="actions">
             <button @click="del(item)">x</button>
           </div>
-
           <component
             drag-tag="module-{{$index}}"
             @click="editRenderItem(item)"
@@ -65,7 +64,7 @@
         .item {
           cursor: pointer;
           position: relative;
-          animation-duration: .3s;
+          animation-duration: .4s;
 
           &.current {
             outline: 2px solid seagreen;
@@ -84,8 +83,6 @@
         }
 
         .component {
-          transition: .7s;
-
           &.active.top {
             &:before {
               width: 98%;
@@ -111,6 +108,7 @@
         background: url("../assets/img/phone-footer.png") no-repeat 0 0;
       }
     }
+
   }
 </style>
 

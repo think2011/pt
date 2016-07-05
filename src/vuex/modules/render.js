@@ -7,10 +7,24 @@ import {modules} from '../../modules'
 
 
 const state = {
-  items   : [
-    {"alias": "热卖单品模块", "type": "goods-hot-sale", "data": {"time": 1467208634898}},
-    {"alias": "热卖单品模块", "type": "goods-hot-sale", "data": {"time": 1467208634898}}
-  ],
+  items   : [{
+    "type" : "goods-hot-sale",
+    "alias": "热卖单品模块",
+    "data" : {
+      "color"    : {
+        "type"   : "color",
+        "title"  : "颜色",
+        "value"  : "#FF5A50",
+        "options": ["#FF5A50", "#44B791", "#F39F23"]
+      },
+      "goods"    : {"type": "selectGoods", "title": "选择宝贝", "value": null},
+      "countdown": {
+        "type" : "countdown",
+        "title": "活动时间",
+        "value": {"start": "2016-07-04 15:47:45", "end": "2016-07-05 15:47:45"}
+      }
+    }
+  }],
   current : {},
   dragInfo: {}
 }

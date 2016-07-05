@@ -1,13 +1,73 @@
 import {
-ADD_RENDER_ITEM,
+  ADD_RENDER_ITEM,
   ACTIVE_RENDER_ITEM,
+  DROP_RENDER_ITEM,
   EDIT_RENDER_ITEM
 } from './mutation-types'
 
-export const addRenderItem = markAction(ADD_RENDER_ITEM)
-export const activeRenderItem = markAction(ACTIVE_RENDER_ITEM)
+export const addRenderItem    = markAction(ADD_RENDER_ITEM)
 export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
+export const activeRenderItem = ({dispatch}, event) => {
+  dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
+}
+export const dropRenderItem   = ({dispatch}, event) => {
+  dispatch(DROP_RENDER_ITEM, getDragInfo(event))
+}
 
+
+/**
+ * 通用的dispatch
+ * @param type
+ * @returns {function(): *}
+ */
 function markAction(type) {
   return ({dispatch}, ...args) => dispatch(type, ...args)
+}
+
+
+/**
+ * 获得拖拽元素标签和应该出现的位置
+ * @param event
+ * @returns {{dragTag: string, position: string}}
+ */
+function getDragInfo(event) {
+  let dragTarget = getDragTarget(event.target)
+  let dragTag    = dragTarget && dragTarget.getAttribute('drag-tag')
+  let position   = getDragPosition(event, dragTarget)
+
+  return {
+    dragTag, position
+  }
+}
+
+/**
+ * 获得拖拽元素的标签名
+ * @param target
+ * @returns {string}
+ */
+function getDragTarget(target) {
+  let currentNode = target
+
+  while (currentNode) {
+    if (currentNode.getAttribute && currentNode.getAttribute('drag-tag')) {
+      return currentNode
+    }
+
+    currentNode = currentNode.parentNode
+  }
+}
+
+/**
+ * 判断拖拽元素应该出现的位置
+ * @param event
+ * @param dragTarget
+ * @returns {string}
+ */
+function getDragPosition(event, dragTarget) {
+  if (dragTarget) {
+    let rect       = dragTarget.getBoundingClientRect()
+    let halfHeight = rect.height / 2
+
+    return halfHeight > event.y - rect.top ? 'top' : 'bottom'
+  }
 }

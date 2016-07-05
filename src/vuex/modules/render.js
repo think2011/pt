@@ -1,16 +1,18 @@
 import {
   ACTIVE_RENDER_ITEM,
   EDIT_RENDER_ITEM,
-  ADD_RENDER_ITEM
+  ADD_RENDER_ITEM,
+  DROP_RENDER_ITEM
 } from '../mutation-types'
 import {modules} from '../../modules'
 
 
 const state = {
-  items  : [
+  items   : [
     {"alias": "热卖单品模块", "type": "goods-hot-sale", "data": {"time": 1467208634898}}
   ],
-  current: {}
+  current : {},
+  dragInfo: {}
 }
 
 const mutations = {
@@ -19,8 +21,17 @@ const mutations = {
 
     state.items.push(newItem)
   },
+
   [EDIT_RENDER_ITEM](state, item) {
     state.current = item
+  },
+
+  [ACTIVE_RENDER_ITEM](state, dragInfo) {
+    state.dragInfo = dragInfo
+  },
+
+  [DROP_RENDER_ITEM](state, dragInfo) {
+    state.dragInfo = {}
   }
 }
 

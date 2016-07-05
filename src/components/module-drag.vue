@@ -16,13 +16,17 @@
     opacity: 0.9;
     margin-top: 10px;
     background: #F1F1F2;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
   }
 </style>
 
 <script type="text/ecmascript-6">
   import {components, modules} from '../modules'
-  import {addRenderItem} from '../vuex/actions'
+  import {
+    addRenderItem,
+    activeRenderItem,
+    dropRenderItem
+  } from '../vuex/actions'
 
   export default{
     props: {
@@ -37,7 +41,9 @@
 
     vuex: {
       actions: {
-        addRenderItem
+        addRenderItem,
+        activeRenderItem,
+        dropRenderItem
       }
     },
 
@@ -51,7 +57,6 @@
       startDrag () {
         let that = this
 
-
         window.addEventListener('mousemove', onMove)
         window.addEventListener('mouseup', function upEvent(event) {
           window.removeEventListener('mousemove', onMove)
@@ -64,6 +69,8 @@
           let el = that.$el
           event  = event || window.event
 
+          that.activeRenderItem(event)
+
           el.style.left = `${event.clientX - el.clientWidth / 2}px`
           el.style.top  = `${event.clientY}px`
         }
@@ -71,10 +78,7 @@
 
       stopDrag (event) {
         setTimeout(() => {
-          let target = _.find(event.path, (item) => item.getAttribute && item.getAttribute('drag-tag'))
-
-          console.log(target)
-
+          this.dropRenderItem(event)
           this.addRenderItem(this.dragModule.type)
           this.dragModule = {}
         })

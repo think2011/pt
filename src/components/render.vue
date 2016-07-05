@@ -1,9 +1,12 @@
 <template>
-  <div drag-tag="modules" class="render-container">
+  <div class="render-container">
 
-    <div class="phone">
+    <div
+      class="phone">
       <div class="head"></div>
-      <div class="body">
+      <div drag-tag="modules"
+           :class="{active: activeModules}"
+           class="body">
         <component
           drag-tag="module-{{$index}}"
           @click="editRenderItem(item)"
@@ -26,14 +29,17 @@
     overflow-y: auto;
     .phone {
       width: 363px;
-      margin:20px auto;
-
+      margin: 20px auto;
       .head {
         height: 78px;
         background: url("../assets/img/phone-head.png") no-repeat 0 0;
       }
 
       .body {
+        &.active {
+          outline: 2px solid seagreen;
+        }
+
         min-height: 667px;
         padding: 0 14px;
         background: url("../assets/img/phone-middle.png") repeat-y;
@@ -57,8 +63,14 @@
 
     vuex: {
       getters: {
-        items: ({render}) => {
+        items          : ({render}) => {
           return render.items
+        },
+        activeModules  : ({render}) => {
+          return render.dragInfo.dragTag === 'modules'
+        },
+        activeModuleTag: ({render}) => {
+          return render.dragInfo
         }
       },
 

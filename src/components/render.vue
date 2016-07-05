@@ -10,8 +10,15 @@
         <div
           transition="zoom"
           stagger="1000"
-          class="animated"
+          class="animated item"
+          :class="{
+           'current': currentModule === item
+          }"
           v-for="item in items">
+          <div class="actions">
+            <button @click="del(item)">x</button>
+          </div>
+
           <component
             drag-tag="module-{{$index}}"
             @click="editRenderItem(item)"
@@ -19,8 +26,7 @@
             class="component"
             :class="[
           {
-           active: activeModule.dragTag === 'module-' + $index,
-           'is-current': currentModule === item
+           active: activeModule.dragTag === 'module-' + $index
           },
            activeModule.position
           ]"
@@ -56,8 +62,29 @@
         padding: 0 14px;
         background: url("../assets/img/phone-middle.png") repeat-y;
 
+        .item {
+          cursor: pointer;
+          position: relative;
+          animation-duration: .3s;
+
+          &.current {
+            outline: 2px solid seagreen;
+
+            .actions {
+              position: absolute;
+              right: -30px;
+              top: 0;
+              display: block;
+            }
+          }
+
+          .actions {
+            display: none;
+          }
+        }
+
         .component {
-          transition: .3s;
+          transition: .7s;
 
           &.active.top {
             &:before {
@@ -94,8 +121,8 @@
   import {editRenderItem} from '../vuex/actions'
 
   Vue.transition('zoom', {
-    enterClass: 'bounceIn',
-    leaveClass: 'fadeOutDown'
+    enterClass: 'fadeInLeft',
+    leaveClass: 'fadeOutLeft'
   })
 
   export default{
@@ -117,6 +144,12 @@
 
       actions: {
         editRenderItem
+      }
+    },
+
+    methods: {
+      del(item) {
+        this.items.$remove(item)
       }
     },
 

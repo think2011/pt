@@ -1,7 +1,6 @@
 import {
   ADD_RENDER_ITEM,
   ACTIVE_RENDER_ITEM,
-  DROP_RENDER_ITEM,
   EDIT_RENDER_ITEM
 } from './mutation-types'
 

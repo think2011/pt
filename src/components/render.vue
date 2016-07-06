@@ -151,7 +151,10 @@
       },
 
       actions: {
-        editRenderItem
+        editRenderItem: (store, item) => {
+          window.event.preventDefault()
+          editRenderItem(store, item)
+        }
       }
     },
 

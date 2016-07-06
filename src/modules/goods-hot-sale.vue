@@ -1,38 +1,30 @@
 <template>
   <div>
-    test!! {{componentData.time}}
+    <div class="pic-container">
+      <swipe class="swipe">
+        <swipe-item
+          v-for="item in componentData.goods.value.picUrl"
+          track-by="$index"
+          class="swipe-item">
+          <a :href="componentData.goods.value.url"
+             :style="{'background-image': 'url('+ item +'_300x300.jpg)'}"
+             class="a-img"
+          ></a>
+        </swipe-item>
+      </swipe>
+    </div>
 
-    <swipe class="my-swipe">
-      <swipe-item class="slide1">123</swipe-item>
-      <swipe-item class="slide2">{{componentData.time}}</swipe-item>
-      <swipe-item class="slide3">444</swipe-item>
-    </swipe>
+    <div class="price-container"></div>
+    <div class="title-container"></div>
+
   </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" rel="stylesheet/scss" scoped>
   @import "../assets/lib/hotcss.scss";
 
-  .my-swipe {
-    height: px2rem(200);
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-  }
-
-  .slide1 {
-    background-color: #0089dc;
-    color: #fff;
-  }
-
-  .slide2 {
-    background-color: #ffd705;
-    color: #000;
-  }
-
-  .slide3 {
-    background-color: #ff2d4b;
-    color: #fff;
+  .swipe {
+    height: px2rem(300);
   }
 </style>
 
@@ -59,7 +51,18 @@
         goods: {
           type : 'selectGoods',
           title: '选择宝贝',
-          value: null
+          value: {
+            title       : "【促销宝】新手快速入门必看教程秘籍",
+            picUrl      : [
+              'https://img.alicdn.com/bao/uploaded/i2/TB1Eu1uKXXXXXa.XVXXXXXXXXXX_!!2-item_pic.png',
+              'https://gd1.alicdn.com/bao/uploaded/i1/TB1LeBQKXXXXXaSXXXXXXXXXXXX_!!2-item_pic.png'
+            ],
+            price       : "39988.00",
+            soldQuantity: 300,
+            promoPrice  : "10000.00",
+            itemId      : 523274601679,
+            url         : "http://item.taobao.com/item.htm?id=523274601679"
+          }
         },
 
         countdown: {

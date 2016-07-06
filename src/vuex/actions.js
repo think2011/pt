@@ -22,7 +22,6 @@ export const dropRenderItem   = ({dispatch}, event, module) => {
   }
 }
 
-
 /**
  * 通用的dispatch
  * @param type

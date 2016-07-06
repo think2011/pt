@@ -126,15 +126,6 @@
   export default{
     components,
 
-    ready () {
-      setFontSize()
-      window.addEventListener("resize", setFontSize)
-
-      function setFontSize() {
-        document.documentElement.style.fontSize = `${(document.querySelector('[drag-tag="modules"]').clientWidth - 28) * 20 / 320}px`
-      }
-    },
-
     vuex: {
       getters: {
         title        : ({render}) => render.title,
@@ -169,4 +160,3 @@
     }
   }
 </script>
-

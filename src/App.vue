@@ -18,7 +18,6 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    font-size: 23.4375px; // 相当于iphone6 375的尺寸
   }
 
   header {
@@ -51,6 +50,7 @@
     }
 
     .render-container {
+      min-width: 335px;
       flex: 1;
       background: #E5E5E5;
     }

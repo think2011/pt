@@ -1,7 +1,8 @@
 <template>
   <div class="properties">
-    <div v-for="(key,value) in moduleData">
-      <input type="text" v-model="moduleData[key]">
+    <h2>{{current.alias}}</h2>
+    <div v-for="(key,value) in current.data">
+      {{value.title}}<input type="text" v-model="value.value">
     </div>
   </div>
 </template>
@@ -13,7 +14,7 @@
   export default{
     vuex: {
       getters: {
-        moduleData: ({render}) => render.current.data
+        current: ({render}) => render.current
       }
     }
   }

@@ -45,6 +45,7 @@
 
   .render-container {
     overflow-y: auto;
+
     .phone {
       width: 363px;
       margin: 20px auto;

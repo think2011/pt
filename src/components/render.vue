@@ -1,5 +1,5 @@
 <template>
-  <div class="render-container">
+  <div @click="blurRenderItem" class="render-container">
     <input type="text" v-model="title">
 
     <div
@@ -39,7 +39,9 @@
 
     .phone {
       width: 363px;
-      margin: 20px auto;
+      margin: 20px auto 50px auto;
+      user-select: none;
+
       .head {
         height: 78px;
         background: url("../assets/img/phone-head.png") no-repeat 0 0;
@@ -107,7 +109,10 @@
 <script type="text/ecmascript-6">
   import Vue from 'vue'
   import {components, modules} from '../modules'
-  import {editRenderItem} from '../vuex/actions'
+  import {
+    editRenderItem,
+    blurRenderItem
+  } from '../vuex/actions'
 
   Vue.transition('fadeIn', {
     enterClass: 'fadeInLeft',
@@ -118,6 +123,7 @@
     components,
 
     ready () {
+      // 模拟移动端rem大小环境
       setFontSize()
       window.addEventListener("resize", setFontSize)
 
@@ -129,23 +135,19 @@
     vuex: {
       getters: {
         title        : ({render}) => render.title,
-        items        : ({render}) => {
-          return render.items
-        },
-        activeModules: ({render}) => {
-          return render.dragInfo.dragTag === 'modules'
-        },
-        activeModule : ({render}) => {
-          return render.dragInfo
-        },
+        items        : ({render}) => render.items,
+        activeModules: ({render}) => render.dragInfo.dragTag === 'modules',
+        activeModule : ({render}) => render.dragInfo,
         currentModule: ({render}) => render.current
       },
 
       actions: {
         editRenderItem: (store, item) => {
           window.event.preventDefault()
+          window.event.stopPropagation()
           editRenderItem(store, item)
-        }
+        },
+        blurRenderItem
       }
     },
 

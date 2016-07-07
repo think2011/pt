@@ -1,7 +1,8 @@
 import {
   ACTIVE_RENDER_ITEM,
   EDIT_RENDER_ITEM,
-  ADD_RENDER_ITEM
+  ADD_RENDER_ITEM,
+  BLUR_RENDER_ITEM
 } from '../mutation-types'
 import {modules} from '../../modules'
 
@@ -28,6 +29,10 @@ const mutations = {
 
   [ACTIVE_RENDER_ITEM](state, dragInfo) {
     state.dragInfo = dragInfo
+  },
+
+  [BLUR_RENDER_ITEM](state) {
+    state.current = {}
   }
 }
 

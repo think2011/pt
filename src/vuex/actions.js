@@ -1,11 +1,13 @@
 import {
   ADD_RENDER_ITEM,
   ACTIVE_RENDER_ITEM,
-  EDIT_RENDER_ITEM
+  EDIT_RENDER_ITEM,
+  BLUR_RENDER_ITEM
 } from './mutation-types'
 
 export const addRenderItem    = markAction(ADD_RENDER_ITEM)
 export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
+export const blurRenderItem   = markAction(BLUR_RENDER_ITEM)
 export const activeRenderItem = ({dispatch}, event) => {
   dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
 }

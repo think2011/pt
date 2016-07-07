@@ -1,5 +1,5 @@
 export let goods = {
-  title       : "测试宝贝标题测试宝贝标题测试宝贝标题测试宝贝",
+  title       : "测试宝贝标题测试宝贝标题测试宝贝标题测试宝贝标题",
   picUrl      : 'https://img.alicdn.com/bao/uploaded/i3/TB1Pg.AJVXXXXbQXVXXXXXXXXXX_!!0-item_pic.jpg',
   price       : "3998.00",
   soldQuantity: 300,

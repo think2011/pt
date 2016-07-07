@@ -2,38 +2,7 @@
   <div>
     <div
       v-for="item in componentData.goods.value"
-      class="goods-item">
-      <a :href="item.url"
-         :style="{'background-image': 'url('+ item.picUrl +'_300x300.jpg)'}"
-         class="img"
-      ></a>
-
-      <div class="desc">
-        <div class="titles">
-          <h4>
-            {{item.title}}
-          </h4>
-          <h5>
-            {{item.subTitle}}
-          </h5>
-        </div>
-
-        <div class="actions">
-          <div>
-            <div class="promo-price">￥{{item.promoPrice}}
-              <span class="price">￥{{item.price}} </span>
-            </div>
-            <div class="sold">
-              已售出{{item.soldQuantity}}件
-            </div>
-          </div>
-
-          <a :href="item.url" class="btn btn-red">马上抢 &gt;</a>
-        </div>
-      </div>
-    </div>
-    <div
-      v-for="item in componentData.goods.value"
+      track-by="$index"
       class="goods-item">
       <a :href="item.url"
          :style="{'background-image': 'url('+ item.picUrl +'_300x300.jpg)'}"
@@ -96,7 +65,7 @@
         goods: {
           type : 'selectGoods',
           title: '选择宝贝',
-          value: [goods]
+          value: [goods, goods]
         }
       }
 

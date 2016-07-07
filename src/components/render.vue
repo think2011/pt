@@ -2,8 +2,7 @@
   <div @click="blurRenderItem" class="render-container">
     <input type="text" v-model="render.title">
 
-    <div class="phone">
-      <div class="head"></div>
+    <div>
       <div drag-tag="modules"
            :class="{active: activeModules}"
            class="body">
@@ -27,79 +26,65 @@
           </component>
         </div>
       </div>
-      <div class="footer"></div>
     </div>
   </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" rel="stylesheet/scss" scoped>
   .render-container {
     overflow-y: auto;
 
-    .phone {
-      width: 363px;
+    .body {
+      width: 403px;
+      min-height: 200px;
+      background: #fff;
       margin: 20px auto 30px auto;
       user-select: none;
 
-      .head {
-        height: 78px;
-        background: url("../assets/img/phone-head.png") no-repeat 0 0;
+      &.active {
+        outline: 2px solid seagreen;
       }
 
-      .body {
-        &.active {
+      .item {
+        cursor: pointer;
+        position: relative;
+        animation-duration: .4s;
+
+        &.current {
           outline: 2px solid seagreen;
-        }
-
-        min-height: 667px;
-        padding: 0 14px;
-        background: url("../assets/img/phone-middle.png") repeat-y;
-
-        .item {
-          cursor: pointer;
-          position: relative;
-          animation-duration: .4s;
-
-          &.current {
-            outline: 2px solid seagreen;
-
-            .actions {
-              position: absolute;
-              right: -30px;
-              top: 0;
-              display: block;
-            }
-          }
+          z-index: 999999;
 
           .actions {
-            display: none;
+            position: absolute;
+            right: -30px;
+            top: 0;
+            display: block;
           }
         }
 
-        .component {
-          &.active.top {
-            &:before {
-              width: 98%;
-              height: 20px;
-              margin: 0 auto;
-              font-size: 14px;
-              text-align: center;
-              display: block;
-              content: '放在这';
-              border: 2px dashed #b5b5b5;
-            }
-          }
-          &.active.bottom {
-            &:after {
-              @extend .component.active.top:before
-            }
-          }
+        .actions {
+          display: none;
         }
       }
 
-      .footer {
-        height: 86px;
-        background: url("../assets/img/phone-footer.png") no-repeat 0 0;
+      .component {
+        &.active.top {
+          &:before {
+            width: 98%;
+            height: 20px;
+            margin: 0 auto;
+            font-size: 14px;
+            text-align: center;
+            display: block;
+            content: '放在这';
+            border: 2px dashed #b5b5b5;
+          }
+        }
+        &.active.bottom {
+          &:after {
+            @extend .component.active.top:before
+          }
+        }
       }
     }
   }

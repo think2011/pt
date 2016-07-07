@@ -18,7 +18,7 @@
     background: #F1F1F2;
     transform-origin: top;
     transform: scale(0.5);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
   }
 </style>
 

@@ -13,15 +13,15 @@
         </swipe-item>
       </swipe>
     </div>
-
     <div class="price-container"></div>
     <div class="title-container"></div>
-
   </div>
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  /* !!因为移动端,必须使用rem单位!! */
+  /* !!因为移动端,必须使用 rem 单位!! */
+  /* !!因为移动端,必须使用 rem 单位!! */
+  /* !!因为移动端,必须使用 rem 单位!! */
   @import "../assets/lib/hotcss.scss";
 
   .swipe {

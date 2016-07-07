@@ -23,11 +23,14 @@
   export default{
     components,
 
+    ready () {
+      document.title = this.title
+    },
+
     vuex: {
       getters: {
-        items: ({render}) => {
-          return render.items
-        }
+        title: ({render}) => render.title,
+        items: ({render}) => render.items
       }
     },
 

@@ -12,9 +12,7 @@
           transition="fadeIn"
           stagger="1000"
           class="animated item"
-          :class="{
-           'current': currentModule === item
-          }"
+          :class="{'current': currentModule === item}"
           v-for="item in items">
           <div class="actions">
             <button @click="del(item)">x</button>
@@ -24,12 +22,7 @@
             @click="editRenderItem(item)"
             index="{{$index}}"
             class="component"
-            :class="[
-          {
-           active: activeModule.dragTag === 'module-' + $index
-          },
-           activeModule.position
-          ]"
+            :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
             :component-data.sync="item.data"
             :is="components[item.type]">
           </component>
@@ -108,7 +101,6 @@
         background: url("../assets/img/phone-footer.png") no-repeat 0 0;
       }
     }
-
   }
 </style>
 

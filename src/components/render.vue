@@ -1,9 +1,8 @@
 <template>
   <div @click="blurRenderItem" class="render-container">
-    <input type="text" v-model="title">
+    <input type="text" v-model="render.title">
 
-    <div
-      class="phone">
+    <div class="phone">
       <div class="head"></div>
       <div drag-tag="modules"
            :class="{active: activeModules}"
@@ -134,7 +133,7 @@
 
     vuex: {
       getters: {
-        title        : ({render}) => render.title,
+        render       : ({render}) => render,
         items        : ({render}) => render.items,
         activeModules: ({render}) => render.dragInfo.dragTag === 'modules',
         activeModule : ({render}) => render.dragInfo,

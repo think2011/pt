@@ -38,7 +38,7 @@
 
     .phone {
       width: 363px;
-      margin: 20px auto 50px auto;
+      margin: 20px auto 30px auto;
       user-select: none;
 
       .head {

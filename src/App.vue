@@ -50,7 +50,7 @@
     }
 
     .render-container {
-      min-width: 335px;
+      min-width: 500px;
       flex: 1;
       background: #E5E5E5;
     }
@@ -83,7 +83,7 @@
 
     ready (){
       // TODO ZH 16/7/6
-      this.addRenderItem('goods-hot-sale')
+      this.addRenderItem('goods-singe')
     },
 
     vuex: {

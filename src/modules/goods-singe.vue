@@ -4,9 +4,65 @@
       v-for="item in componentData.goods.value"
       class="goods-item">
       <a :href="item.url"
-         :style="{'background-image': 'url('+ item.picUrl +'_200x200.jpg)'}"
-         class="a-img"
+         :style="{'background-image': 'url('+ item.picUrl +'_300x300.jpg)'}"
+         class="img"
       ></a>
+
+      <div class="desc">
+        <div class="titles">
+          <h4>
+            {{item.title}}
+          </h4>
+          <h5>
+            {{item.subTitle}}
+          </h5>
+        </div>
+
+        <div class="actions">
+          <div>
+            <div class="promo-price">￥{{item.promoPrice}}
+              <span class="price">￥{{item.price}} </span>
+            </div>
+            <div class="sold">
+              已售出{{item.soldQuantity}}件
+            </div>
+          </div>
+
+          <a :href="item.url" class="btn btn-red">马上抢 &gt;</a>
+        </div>
+      </div>
+    </div>
+    <div
+      v-for="item in componentData.goods.value"
+      class="goods-item">
+      <a :href="item.url"
+         :style="{'background-image': 'url('+ item.picUrl +'_300x300.jpg)'}"
+         class="img"
+      ></a>
+
+      <div class="desc">
+        <div class="titles">
+          <h4>
+            {{item.title}}
+          </h4>
+          <h5>
+            {{item.subTitle}}
+          </h5>
+        </div>
+
+        <div class="actions">
+          <div>
+            <div class="promo-price">￥{{item.promoPrice}}
+              <span class="price">￥{{item.price}} </span>
+            </div>
+            <div class="sold">
+              已售出{{item.soldQuantity}}件
+            </div>
+          </div>
+
+          <a :href="item.url" class="btn btn-red">马上抢 &gt;</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -16,11 +72,6 @@
   /* !!因为移动端,必须使用 rem 单位!! */
   /* !!因为移动端,必须使用 rem 单位!! */
   @import "../assets/lib/hotcss.scss";
-
-  .a-img {
-    width: px2rem(325);
-    height: px2rem(325);
-  }
 
 </style>
 
@@ -33,6 +84,8 @@
     props: ['componentData'],
 
     created() {
+      goods.subTitle = '4月20日发 ML正常售卖 包邮'
+
       let defaults = {
         title: {
           type : 'text',

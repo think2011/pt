@@ -9,7 +9,7 @@
            :class="{active: activeModules}"
            class="body">
         <div
-          transition="zoom"
+          transition="fadeIn"
           stagger="1000"
           class="animated item"
           :class="{
@@ -41,8 +41,6 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
-  @import "../assets/lib/hotcss";
-
   .render-container {
     overflow-y: auto;
 
@@ -119,7 +117,7 @@
   import {components, modules} from '../modules'
   import {editRenderItem} from '../vuex/actions'
 
-  Vue.transition('zoom', {
+  Vue.transition('fadeIn', {
     enterClass: 'fadeInLeft',
     leaveClass: 'fadeOutLeft'
   })

@@ -21,6 +21,7 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+  /* !!因为移动端,必须使用rem单位!! */
   @import "../assets/lib/hotcss.scss";
 
   .swipe {

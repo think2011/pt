@@ -65,9 +65,12 @@
 
 <script type="text/ecmascript-6">
   import store from './vuex/store'
-  import moduleBox from './components/Module-box.vue'
-  import render from './components/Render.vue'
-  import propertyEditor from './components/Property-editor.vue'
+  import render from './components/render.vue'
+  import moduleBox from './components/module-box.vue'
+  import propertyEditor from './components/property-editor.vue'
+  import {
+    addRenderItem,
+  } from './vuex/actions'
 
   export default {
     store,
@@ -78,9 +81,17 @@
       render
     },
 
+    ready (){
+      // TODO ZH 16/7/6
+      this.addRenderItem('goods-hot-sale')
+    },
+
     vuex: {
       getters: {
         renderData: ({render}) => render.items
+      },
+      actions: {
+        addRenderItem
       }
     },
 

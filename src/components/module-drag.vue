@@ -50,9 +50,6 @@
     },
 
     ready() {
-      // TODO ZH 16/7/6
-      this.addRenderItem('goods-hot-sale')
-
       this.$watch('dragModule', (newVal) => {
         _.isEmpty(this.dragModule) || this.startDrag()
       })

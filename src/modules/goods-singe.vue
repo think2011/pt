@@ -56,16 +56,17 @@
       goods.subTitle = '4月20日发 ML正常售卖 包邮'
 
       let defaults = {
-        title: {
-          type : 'text',
-          title: '标题',
-          value: '单列宝贝'
-        },
-
         goods: {
-          type : 'selectGoods',
-          title: '选择宝贝',
-          value: [goods, goods]
+          type   : 'selectGoods',
+          title  : '选择宝贝',
+          value  : [goods, goods],
+          options: {
+            labels: [
+              {
+                subTitle: '4月20日发 ML正常售卖 包邮'
+              }
+            ]
+          }
         }
       }
 

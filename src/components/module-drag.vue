@@ -12,7 +12,7 @@
     left: 0;
     top: 0;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-top: 15px;
     background: #F1F1F2;
     transform-origin: top;

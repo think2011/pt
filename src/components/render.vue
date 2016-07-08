@@ -17,7 +17,7 @@
           </div>
           <component
             drag-tag="module-{{$index}}"
-            @click="editRenderItem(item)"
+            @click.stop.prevent="editRenderItem(item)"
             index="{{$index}}"
             class="component"
             :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
@@ -126,11 +126,7 @@
       },
 
       actions: {
-        editRenderItem: (store, item) => {
-          window.event.preventDefault()
-          window.event.stopPropagation()
-          editRenderItem(store, item)
-        },
+        editRenderItem,
         blurRenderItem
       }
     },

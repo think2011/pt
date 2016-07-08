@@ -17,8 +17,6 @@
 <script type="text/ecmascript-6">
   import components from '../editors'
 
-  console.log(components)
-
   export default{
     components,
 

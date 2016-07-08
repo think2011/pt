@@ -1,6 +1,6 @@
 <template>
   <div>
-    text 组件
+    countdown
   </div>
 </template>
 
@@ -12,9 +12,7 @@
     props: ['componentData'],
 
     data(){
-      return {
-        msg: 'hello vue'
-      }
+      return {}
     }
   }
 </script>

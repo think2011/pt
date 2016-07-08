@@ -19,6 +19,8 @@ module.exports = {
   dev  : {
     env       : require('./dev.env'),
     port      : 8080,
-    proxyTable: {}
+    proxyTable: {
+      '/api': 'http://localhost:3000'
+    }
   }
 }

@@ -57,14 +57,16 @@
 
       let defaults = {
         goods: {
-          type   : 'selectGoods',
+          type   : 'goods',
           title  : '选择宝贝',
           value  : [goods, goods],
           options: {
             labels: [
-              {
-                subTitle: '4月20日发 ML正常售卖 包邮'
-              }
+              'title',
+              'subTitle',
+              'promoPrice',
+              'price',
+              'soldQuantity'
             ]
           }
         }

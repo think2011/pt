@@ -121,7 +121,7 @@
         },
 
         goods: {
-          type : 'selectGoods',
+          type : 'goods',
           title: '选择宝贝',
           value: [goods, goods, goods, goods]
         }

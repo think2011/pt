@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="goods-items">
     <div
       v-for="item in componentData.goods.value"
       track-by="$index"
-      class="goods-item">
+      class="item">
       <a :href="item.url"
          :style="{'background-image': 'url('+ item.picUrl +'_300x300.jpg)'}"
          class="img"

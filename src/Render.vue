@@ -25,7 +25,7 @@
 
     ready (){
       // TODO ZH 16/7/6
-      this.addRenderItem('goods-singe')
+      this.addRenderItem('goods-two')
     },
 
     vuex: {

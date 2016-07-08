@@ -6,12 +6,11 @@
 
 <style lang="scss" rel="stylesheet/scss">
   .drag-module {
-    width: 329px;
+    width: 375px;
     display: inline-block;
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 9999;
     cursor: pointer;
     opacity: 0.7;
     margin-top: 15px;
@@ -19,6 +18,7 @@
     transform-origin: top;
     transform: scale(0.5);
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
+    z-index: 99999999;
   }
 </style>
 

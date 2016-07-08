@@ -8,6 +8,11 @@ export const modules = [
     alias    : '单列宝贝模块',
     type     : 'goods-singe',
     component: (resolve) => require(['./goods-singe.vue'], resolve)
+  },
+  {
+    alias    : '双列宝贝模块',
+    type     : 'goods-two',
+    component: (resolve) => require(['./goods-two.vue'], resolve)
   }
 ]
 

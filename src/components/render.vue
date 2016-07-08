@@ -35,7 +35,7 @@
     overflow-y: auto;
 
     .body {
-      width: 403px;
+      width: 375px;
       min-height: 200px;
       background: #fff;
       margin: 20px auto 30px auto;
@@ -112,7 +112,7 @@
       window.addEventListener("resize", setFontSize)
 
       function setFontSize() {
-        document.documentElement.style.fontSize = `${(document.querySelector('[drag-tag="modules"]').clientWidth - 28) * 20 / 320}px`
+        document.documentElement.style.fontSize = `${(document.querySelector('[drag-tag="modules"]').clientWidth) * 20 / 320}px`
       }
     },
 

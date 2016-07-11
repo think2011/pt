@@ -4,7 +4,8 @@
     <button @click="save">save</button>
   </header>
 
-  <div class="container">
+  <div v-if="loaded"
+       class="container">
     <module-box></module-box>
 
     <render></render>
@@ -64,6 +65,7 @@
 </style>
 
 <script type="text/ecmascript-6">
+  import api from './api'
   import store from './vuex/store'
   import render from './components/render.vue'
   import moduleBox from './components/module-box.vue'
@@ -82,9 +84,10 @@
     },
 
     ready (){
+      api.goods.list().then(() => this.loaded = true)
+
       // TODO ZH 16/7/6
       this.addRenderItem('goods-singe')
-
     },
 
     vuex: {
@@ -99,6 +102,12 @@
     methods: {
       save() {
         console.log(JSON.stringify(this.renderData))
+      }
+    },
+
+    data: () => {
+      return {
+        loaded: false
       }
     }
   }

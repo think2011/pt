@@ -47,34 +47,34 @@
 <script type="text/ecmascript-6">
   import api from '../api'
   import {
-    goods
+    fetchGoods
   } from '../assets/tools'
 
   export default {
     props: ['componentData'],
 
     created() {
-      goods.subTitle = '4月20日发 ML正常售卖 包邮'
-
-      let defaults = {
-        goods: {
-          type   : 'goods',
-          title  : '选择宝贝',
-          value  : [goods, goods],
-          options: {
-            labels: [
-              'title',
-              'subTitle',
-              'promoPrice',
-              'price',
-              'soldQuantity'
-            ]
+      if (_.isEmpty(this.componentData)) {
+        this.componentData = {
+          goods: {
+            type   : 'goods',
+            title  : '选择宝贝',
+            value  : [],
+            options: {
+              labels: [
+                'title',
+                'subTitle',
+                'soldQuantity'
+              ],
+              maxLen: 10
+            }
           }
         }
-      }
 
-      if (_.isEmpty(this.componentData)) {
-        this.componentData = defaults
+        fetchGoods(2, {subTitle: '子标题子标题子标题'})
+          .then((items) => {
+            this.componentData.goods.value = items
+          })
       }
     },
 

@@ -2,57 +2,116 @@
   <div>
     <tabs>
       <tab head="宝贝">
-        <ul>
+        <ul class="goods-items">
           <li
             class="item"
             track-by="$index"
             v-for="item in componentData.value">
-            <a
-              href="javascript:"
-              :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
-              class="img"
+            <a href="javascript:"
+               :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
+               class="img"
             ></a>
 
             <div class="desc">
-              <div class="price">￥{{item.promoPrice}}</div>
-              <div class="title">{{item.title}}</div>
+              <div class="titles">
+                <h4>
+                  {{item.title}}
+                </h4>
+              </div>
+
+              <div class="actions">
+                <div>
+                  <div class="promo-price">￥{{item.promoPrice}}
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
         </ul>
       </tab>
 
       <tab head="属性">
+        <ul class="goods-items">
+          <li
+            class="item"
+            track-by="$index"
+            v-for="item in componentData.value">
+            <a href="javascript:"
+               :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
+               class="img"
+            ></a>
 
+            <div class="desc">
+              <form>
+                <label v-for="labelItem in componentData.options.labels">
+                  <span class="label">{{labelMap[labelItem]}}</span>
+                  <input type="text" v-model="item[labelItem]">
+                </label>
+              </form>
+            </div>
+          </li>
+        </ul>
       </tab>
     </tabs>
+
+    <button>添加宝贝 {{componentData.value.length}}/{{componentData.options.maxLen}}</button>
   </div>
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .item {
-    display: flex;
-    margin: 10px 0;
+  .goods-items {
+    .item {
+      margin: 0 0 15px 0;
+      border: none;
 
-    .img {
-      width: 80px;
-      height: 80px;
-      margin-right: 10px;
-      background-size: contain;
-      background: no-repeat center;
-    }
-
-    .desc {
-      flex: 1;
-
-      .price {
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 5px;
+      .img {
+        width: 80px;
+        height: 80px;
+        flex: 0 0 80px;
+        margin-right: 15px;
       }
 
-      .title {
-        font-size: 14px;
+      .desc {
+        flex: 1;
+        margin: 0;
+
+        form {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            font-size: 14px;
+
+            .label {
+              width: 60px;
+              display: inline-block;
+            }
+          }
+        }
       }
+
+      .titles {
+
+        h4 {
+        }
+
+        h5 {
+        }
+      }
+
+      .actions {
+        .promo-price {
+          .price {
+          }
+        }
+
+        .sold {
+        }
+
+        .btn {
+        }
+      }
+
     }
   }
 
@@ -75,7 +134,13 @@
     },
 
     data(){
-      return {}
+      return {
+        labelMap: {
+          title       : '标题',
+          subTitle    : '子标题',
+          soldQuantity: '销量'
+        }
+      }
     }
   }
 </script>

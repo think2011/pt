@@ -2,7 +2,9 @@
   <div>
     <tabs>
       <tab head="宝贝">
-        <ul class="goods-items">
+        <ul
+          v-sortable="{onUpdate: onUpdate}"
+          class="goods-items">
           <li
             class="item"
             track-by="$index"
@@ -133,12 +135,15 @@
     },
 
     methods: {
-      del: function (item) {
+      del     : function (item) {
         if (this.componentValue.value.length <= this.componentValue.options.minLen) {
           return alert(`至少要留${this.componentValue.options.minLen}个宝贝`)
         }
 
         this.componentValue.value.$remove(item)
+      },
+      onUpdate: function (event) {
+        this.componentValue.value.splice(event.newIndex, 0, this.componentValue.value.splice(event.oldIndex, 1)[0])
       }
     },
 

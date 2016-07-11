@@ -45,6 +45,7 @@
 </style>
 
 <script type="text/ecmascript-6">
+  import api from '../api'
   import {
     goods
   } from '../assets/tools'
@@ -72,7 +73,9 @@
         }
       }
 
-      if (_.isEmpty(this.componentData)) this.componentData = defaults
+      if (_.isEmpty(this.componentData)) {
+        this.componentData = defaults
+      }
     },
 
     components: {},

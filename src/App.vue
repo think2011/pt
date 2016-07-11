@@ -50,13 +50,13 @@
     }
 
     .render-container {
-      min-width: 500px;
+      min-width: 470px;
       flex: 1;
       background: #E5E5E5;
     }
 
     .properties {
-      flex: 0 0 520px;
+      flex: 0 0 500px;
       background: #959595;
       border-left: 1px solid #B0B0B0;
     }
@@ -84,6 +84,7 @@
     ready (){
       // TODO ZH 16/7/6
       this.addRenderItem('goods-singe')
+
     },
 
     vuex: {

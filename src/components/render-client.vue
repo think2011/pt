@@ -2,6 +2,7 @@
   <component
     v-for="item in items"
     index="{{$index}}"
+    :component-data.sync="item.data"
     :is="components[item.type]">
   </component>
 </template>
@@ -21,17 +22,12 @@
   import '../assets/lib/hotcss'
 
   export default{
+    props: ['items'],
+
     components,
 
-    created () {
-      document.title = this.title
-    },
+    ready() {
 
-    vuex: {
-      getters: {
-        title: ({render}) => render.title,
-        items: ({render}) => render.items
-      }
     },
 
     data: () => {

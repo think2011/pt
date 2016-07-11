@@ -1,5 +1,5 @@
 <template>
-  <render-client></render-client>
+  <render-client :items="items"></render-client>
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
@@ -23,14 +23,13 @@
       renderClient
     },
 
-    ready (){
-      // TODO ZH 16/7/6
-      this.addRenderItem('goods-two')
+    init() {
+      document.title = window.DATA.title
     },
 
-    vuex: {
-      actions: {
-        addRenderItem
+    data: () => {
+      return {
+        items: window.DATA.items
       }
     }
   }

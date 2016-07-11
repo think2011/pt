@@ -6,7 +6,9 @@
           <li
             class="item"
             track-by="$index"
-            v-for="item in componentData.value">
+            v-for="item in componentValue.value">
+            <button @click="del(item)">x</button>
+
             <a href="javascript:"
                :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
                class="img"
@@ -35,7 +37,7 @@
           <li
             class="item"
             track-by="$index"
-            v-for="item in componentData.value">
+            v-for="item in componentValue.value">
             <a href="javascript:"
                :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
                class="img"
@@ -43,7 +45,7 @@
 
             <div class="desc">
               <form>
-                <label v-for="labelItem in componentData.options.labels">
+                <label v-for="labelItem in componentValue.options.labels">
                   <span class="label">{{labelMap[labelItem]}}</span>
                   <input type="text" v-model="item[labelItem]">
                 </label>
@@ -54,7 +56,7 @@
       </tab>
     </tabs>
 
-    <button>添加宝贝 {{componentData.value.length}}/{{componentData.options.maxLen}}</button>
+    <button>添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}</button>
   </div>
 </template>
 
@@ -123,14 +125,21 @@
   import tab from '../components/tab.vue'
 
   export default{
-    props: ['componentData'],
+    props: ['componentValue'],
 
     components: {
       tabs,
       tab
     },
 
-    ready() {
+    methods: {
+      del: function (item) {
+        if (this.componentValue.value.length <= this.componentValue.options.minLen) {
+          return alert(`至少要留${this.componentValue.options.minLen}个宝贝`)
+        }
+
+        this.componentValue.value.$remove(item)
+      }
     },
 
     data(){

@@ -66,6 +66,7 @@
                 'subTitle',
                 'soldQuantity'
               ],
+              minLen: 1,
               maxLen: 10
             }
           }

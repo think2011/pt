@@ -92,7 +92,7 @@
 
     vuex: {
       getters: {
-        renderData: ({render}) => render.items
+        renderData: ({render}) => render
       },
       actions: {
         addRenderItem
@@ -101,7 +101,12 @@
 
     methods: {
       save() {
-        console.log(JSON.stringify(this.renderData))
+        let {items, title} = this.renderData
+
+        console.log(JSON.stringify({
+          items,
+          title
+        }))
       }
     },
 

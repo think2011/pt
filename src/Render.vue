@@ -29,9 +29,6 @@
     },
 
     vuex: {
-      getters: {
-        renderData: ({render}) => render.items
-      },
       actions: {
         addRenderItem
       }

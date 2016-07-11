@@ -4,7 +4,7 @@
     <div v-for="(key,value) in current.data">
       <component
         index="{{$index}}"
-        :component-data.sync="value"
+        :component-value.sync="value"
         :is="value.type">
       </component>
     </div>

@@ -18,7 +18,7 @@
     transform-origin: top;
     transform: scale(0.5);
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
-    z-index: 99999999;
+    z-index: 99999;
   }
 </style>
 

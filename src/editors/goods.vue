@@ -58,7 +58,11 @@
       </tab>
     </tabs>
 
-    <button>添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}</button>
+    <select-goods :show.sync="showSelectGoods"></select-goods>
+
+    <button @click="showSelectGoods = true">
+      添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}
+    </button>
   </div>
 </template>
 
@@ -125,13 +129,15 @@
   import api from '../api'
   import tabs from '../components/tabs.vue'
   import tab from '../components/tab.vue'
+  import selectGoods from '../components/select-goods.vue'
 
   export default{
     props: ['componentValue'],
 
     components: {
       tabs,
-      tab
+      tab,
+      selectGoods
     },
 
     methods: {
@@ -149,11 +155,12 @@
 
     data(){
       return {
-        labelMap: {
+        labelMap       : {
           title       : '标题',
           subTitle    : '子标题',
           soldQuantity: '销量'
-        }
+        },
+        showSelectGoods: false
       }
     }
   }

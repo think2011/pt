@@ -52,7 +52,7 @@
 
         &.current {
           outline: 2px solid seagreen;
-          z-index: 999999;
+          z-index: 9998;
 
           .actions {
             position: absolute;

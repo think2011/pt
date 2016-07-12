@@ -12,7 +12,9 @@
         <div class="modal-body">
           <ul class="list">
             <li v-for="item in data.items">
-              <img :src="item.picUrl + '_120x120.jpg'" alt="">
+              <div class="img">
+                <img :src="item.picUrl + '_120x120.jpg'" alt="">
+              </div>
               <div class="desc">
                 <div class="title">
                   {{item.title}}
@@ -74,25 +76,50 @@
     margin: 20px 0;
     max-height: 500px;
     overflow-y: auto;
-    background: seagreen;
 
     .list {
       display: flex;
-      flex-wrap: wrap;
+      flex-flow: row wrap;
       font-size: 13px;
 
       li {
+        $gap: (940 - (122 * 7)) / (2 * 7 - 2) + px;
+
         border: 1px solid #ccc;
-        margin: 0 0 10px 0;
+        margin: 0 $gap 10px $gap;
+
+        &:nth-child(7n) {
+          margin-right: 0;
+        }
+        &:nth-child(7n+1) {
+          margin-left: 0;
+        }
+      }
+
+      .img {
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        margin-bottom: 5px;
+
+        img {
+          height: 120px;
+        }
       }
 
       .desc {
         .title {
           width: 120px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          margin-bottom: 5px;
         }
 
         .price {
           font-weight: bold;
+          margin-bottom: 5px;
         }
       }
     }

@@ -58,10 +58,12 @@
             </tab>
         </tabs>
 
-        <select-goods :init-items="componentValue.value"
-                      :max-len="componentValue.options.maxLen"
-                      :min-len="componentValue.options.minLen"
-                      :show.sync="showSelectGoods">
+        <select-goods
+                @on:ok="selectGoodsOk"
+                :init-items="componentValue.value"
+                :max-len="componentValue.options.maxLen"
+                :min-len="componentValue.options.minLen"
+                :show.sync="showSelectGoods">
         </select-goods>
 
         <button @click="showSelectGoods = true">
@@ -136,7 +138,11 @@
     import selectGoods from '../components/select-goods.vue'
 
     export default{
-        props: ['componentValue'],
+        props: {
+            componentValue: {
+                type: Object
+            }
+        },
 
         components: {
             tabs,
@@ -145,15 +151,18 @@
         },
 
         methods: {
-            del     : function (item) {
+            del (item) {
                 if (this.componentValue.value.length <= this.componentValue.options.minLen) {
                     return alert(`至少要留${this.componentValue.options.minLen}个宝贝`)
                 }
 
                 this.componentValue.value.$remove(item)
             },
-            onUpdate: function (event) {
+            onUpdate (event) {
                 this.componentValue.value.splice(event.newIndex, 0, this.componentValue.value.splice(event.oldIndex, 1)[0])
+            },
+            selectGoodsOk(items) {
+                this.componentValue.value = items
             }
         },
 

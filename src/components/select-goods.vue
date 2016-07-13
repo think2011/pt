@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-mask" v-show="show" transition="modal">
+    <div class="modal-mask" v-if="show" transition="modal">
         <div class="modal-wrapper">
             <div class="modal-container">
 
@@ -62,7 +62,7 @@
     }
 
     .modal-container {
-        width: 1000px;
+        width: 940px;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;
@@ -79,7 +79,6 @@
 
     .modal-body {
         margin: 20px 0;
-        max-height: 500px;
         overflow-y: auto;
 
         .list {
@@ -88,15 +87,16 @@
             font-size: 13px;
 
             li {
-                $gap: (940 - (122 * 7)) / (2 * 7 - 2) + px;
+                $gap: (880 - (122 * 6)) / (2 * 6 - 2) /  880 * 100%;
 
+                width: 122 / 880 * 100%;
                 border: 1px solid #ccc;
                 margin: 0 $gap 10px $gap;
 
-                &:nth-child(7n) {
+                &:nth-child(6n) {
                     margin-right: 0;
                 }
-                &:nth-child(7n+1) {
+                &:nth-child(6n+1) {
                     margin-left: 0;
                 }
             }
@@ -134,15 +134,6 @@
         float: right;
     }
 
-    /*
-     * the following styles are auto-applied to elements with
-     * v-transition="modal" when their visiblity is toggled
-     * by Vue.js.
-     *
-     * You can easily play with the modal transition by editing
-     * these styles.
-     */
-
     .modal-enter, .modal-leave {
         opacity: 0;
     }
@@ -174,20 +165,11 @@
         watch: {
             show: function (newVal) {
                 if (newVal) {
-                    this.fetch()
                 }
             }
         },
 
-        methods: {
-            fetch(params){
-                api.goods
-                        .list(params)
-                        .then((data) => {
-                            this.data = data
-                        })
-            }
-        },
+        methods: {},
 
         data(){
             return {
@@ -195,7 +177,7 @@
                 pagingParams: {
                     type: 'Keyword',
                     q   : '',
-                    size: 10
+                    size: 18
                 },
                 showModal   : false
             }

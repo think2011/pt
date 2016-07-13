@@ -10,26 +10,27 @@ let Cache = {
     }
 }
 
+window.Cache = Cache
+
 // cache
-/*
- Vue.http.interceptors.push((request, next) => {
- if (request.method.toLowerCase() === 'get') {
- let _cache = Cache.get(request.url);
+Vue.http.interceptors.push((request, next) => {
+    let url = `${request.url}?${toUrlParams(request.params)}`
+    if (request.method.toLowerCase() === 'get') {
+        let _cache = Cache.get(url);
 
- if (_cache) {
- request.client = function () {
- return _cache;
- };
- }
- }
+        if (_cache) {
+            request.client = function () {
+                return _cache;
+            };
+        }
+    }
 
- next((response) => {
- if (response.status === 200 && request.method.toLowerCase() === 'get') {
- Cache.set(request.url, response);
- }
- });
- });
- */
+    next((response) => {
+        if (response.status === 200 && request.method.toLowerCase() === 'get') {
+            Cache.set(url, response);
+        }
+    });
+});
 
 
 // goods interceptors
@@ -56,3 +57,14 @@ Vue.http.interceptors.push((req, next) => {
         }
     })
 })
+
+
+/**
+ * toUrlParams
+ * @param obj
+ */
+function toUrlParams(obj) {
+    return Object.keys(obj).map(function (key) {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
+}

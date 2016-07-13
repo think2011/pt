@@ -1,12 +1,12 @@
 <template>
-    <div v-if="data">
+    <div v-if="!empty">
         <button
                 :disabled="page <= 1 || loading"
-                @click="doPage(page--)">上一页
+                @click="doPage(--page)">上一页
         </button>
         <button
                 :disabled="page >= pageCount || loading"
-                @click="doPage(page++)">下一页
+                @click="doPage(++page)">下一页
         </button>
         <span>
         {{page}} / {{pageCount}}
@@ -41,20 +41,23 @@
             }
         },
 
+        computed: {
+            pageCount() {
+                return Math.ceil(this.getFields('total') / this.getFields('size'))
+            },
+            empty() {
+                return _.isEmpty(this.data)
+            }
+        },
+
         ready() {
             this.doPage(1)
         },
 
-        computed: {
-            pageCount() {
-                return Math.ceil(this.getFields('total') / this.getFields('size'))
-            }
-        },
-
         methods: {
-            doPage(page) {
+            doPage(page = this.page) {
                 this.loading     = true
-                this.params.page = this.page
+                this.params.page = page
 
                 this.$http
                         .get(this.url, {params: this.params})

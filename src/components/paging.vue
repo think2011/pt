@@ -63,6 +63,7 @@
                         .get(this.url, {params: this.params})
                         .then((res) => {
                             this.data = res.json().data
+                            this.$dispatch('on:done', this.data)
                         })
                         .finally(() => {
                             this.loading = false

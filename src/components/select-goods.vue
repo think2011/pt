@@ -11,7 +11,9 @@
 
                 <div class="modal-body">
                     <ul class="list">
-                        <li v-for="item in data.items">
+                        <li :class="{checked:item.checked}"
+                            @click="pick(item)"
+                            v-for="item in data.items">
                             <div class="img">
                                 <img :src="item.picUrl + '_120x120.jpg'" alt="">
                             </div>
@@ -25,6 +27,7 @@
                     </ul>
 
                     <paging url="/api/taobao/items"
+                            @on:done="pageDone"
                             :params="pagingParams"
                             :data.sync="data">
                     </paging>
@@ -33,7 +36,7 @@
                 <div class="modal-footer">
                     <slot name="footer">
                         <button class="modal-default-button"
-                                @click="show = false">
+                                @click="ok">
                             确定
                         </button>
                     </slot>
@@ -92,12 +95,17 @@
                 width: 122 / 880 * 100%;
                 border: 1px solid #ccc;
                 margin: 0 $gap 10px $gap;
+                cursor: pointer;
 
                 &:nth-child(6n) {
                     margin-right: 0;
                 }
                 &:nth-child(6n+1) {
                     margin-left: 0;
+                }
+
+                &.checked {
+                    outline: 2px solid slateblue;
                 }
             }
 
@@ -155,31 +163,77 @@
         },
 
         props: {
-            show: {
+            show     : {
                 type    : Boolean,
                 required: true,
                 twoWay  : true
-            }
-        },
-
-        watch: {
-            show: function (newVal) {
-                if (newVal) {
+            },
+            maxLen   : {
+                type: Number
+            },
+            minLen   : {
+                type: Number
+            },
+            initItems: {
+                type: Array,
+                default() {
+                    return []
                 }
             }
         },
 
-        methods: {},
+        methods: {
+            pageDone(data){
+                // 每次初始化选中
+                _.each(data.items, (item, index) => {
+                    this.$set(`data.items[${index}].checked`, !!this.checkedItemsMap[item.numIid])
+                })
+            },
+            pick(item) {
+                let checkedItemsLen = _.size(this.checkedItemsMap)
+
+                if (item.checked) {
+                    if (this.minLen && this.minLen > checkedItemsLen - 1) {
+                        return false
+                    }
+
+                    delete this.checkedItemsMap[item.numIid]
+                    item.checked = false
+                } else {
+                    if (this.maxLen && this.maxLen < checkedItemsLen + 1) {
+                        return false
+                    }
+
+                    this.checkedItemsMap[item.numIid] = item
+                    item.checked                      = true
+                }
+            },
+            ok(){
+                this.$dispatch('on:ok', _.values(this.checkedItemsMap))
+                this.show = false
+            }
+        },
+
+        watch: {
+            show(newVal) {
+                if (newVal) {
+                    _.each(this.initItems, (item) => this.checkedItemsMap[item.numIid] = item)
+                } else {
+                    this.checkedItemsMap = {}
+                }
+            }
+        },
 
         data(){
             return {
-                data        : {},
-                pagingParams: {
+                checkedItemsMap: {},
+                data           : {},
+                pagingParams   : {
                     type: 'Keyword',
                     q   : '',
                     size: 18
                 },
-                showModal   : false
+                showModal      : false
             }
         }
     }

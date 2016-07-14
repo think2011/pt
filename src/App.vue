@@ -1,7 +1,15 @@
 <template>
     <header>
         <div class="title">T</div>
-        <button @click="save">save</button>
+
+        <div>
+            <ui-button
+                    color="primary"
+                    icon="save"
+                    @click="save">
+                保存
+            </ui-button>
+        </div>
     </header>
 
     <div v-if="loaded"
@@ -23,15 +31,22 @@
 
     header {
         width: 100%;
+        height: 55px;
+        line-height: 55px;
         color: #fff;
-        background: #444;
         padding: 0 30px;
         position: absolute;
         display: flex;
         justify-content: space-between;
+        border-bottom: 1px solid #E7E8E7;
 
         .title {
-            font-size: 32px;
+            font-size: 36px;
+            color: #9B9B9B;
+        }
+
+        button {
+            margin-top: 6px;
         }
     }
 
@@ -39,12 +54,11 @@
         display: flex;
         max-height: 100%;
         min-height: 100%;
-        padding-top: 38px;
+        padding-top: 55px;
 
         .module-box {
             flex: 0 0 240px;
-            background: #959595;
-            border-right: 1px solid #B0B0B0;
+            border-right: 1px solid #E7E8E7;
 
             li {
                 margin: 30px;
@@ -54,13 +68,13 @@
         .render-container {
             min-width: 470px;
             flex: 1;
-            background: #E5E5E5;
+            background: #F7F7F7;
         }
 
         .properties {
             flex: 0 0 500px;
-            background: #959595;
-            border-left: 1px solid #B0B0B0;
+            position: relative;
+            border-left: 1px solid #E7E8E7;
         }
     }
 </style>

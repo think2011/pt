@@ -1,19 +1,17 @@
 <template>
     <div>
-        <tabs>
-            <tab head="宝贝">
+        <ui-tabs>
+            <ui-tab header="宝贝">
                 <ul
                         v-sortable="{onUpdate: onUpdate}"
-                        class="goods-items">
+                        class="goods-items list">
                     <li
                             class="item"
-                            track-by="$index"
                             v-for="item in componentValue.value">
-                        <button @click="del(item)">x</button>
 
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
-                           class="img"
+                           class="img drag"
                         ></a>
 
                         <div class="desc">
@@ -23,23 +21,45 @@
                                 </h4>
                             </div>
 
-                            <div class="actions">
-                                <div>
-                                    <div class="promo-price">￥{{item.promoPrice}}
-                                    </div>
+                            <div>
+                                <div class="promo-price">￥{{item.promoPrice}}
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="actions">
+                            <ui-icon-button
+                                    class="btn-sm"
+                                    color="default"
+                                    type="flat"
+                                    icon="expand_less">
+                            </ui-icon-button>
+                            <ui-icon-button
+                                    class="btn-sm"
+                                    color="default"
+                                    type="flat"
+                                    icon="expand_more">
+                            </ui-icon-button>
+                            <ui-icon-button
+                                    class="btn-sm"
+                                    color="default"
+                                    type="flat"
+                                    @click="del(item)"
+                                    icon="delete">
+                            </ui-icon-button>
+                        </div>
                     </li>
                 </ul>
-            </tab>
+            </ui-tab>
 
-            <tab head="属性">
-                <ul class="goods-items">
+            <ui-tab header="属性">
+                <ul class="goods-items property">
                     <li
                             class="item"
                             track-by="$index"
                             v-for="item in componentValue.value">
+
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
                            class="img"
@@ -55,8 +75,9 @@
                         </div>
                     </li>
                 </ul>
-            </tab>
-        </tabs>
+            </ui-tab>
+        </ui-tabs>
+
 
         <select-goods
                 @on:ok="selectGoodsOk"
@@ -66,16 +87,22 @@
                 :show.sync="showSelectGoods">
         </select-goods>
 
-        <button @click="showSelectGoods = true">
-            添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}
-        </button>
+
+        <div class="text-center">
+            <ui-button
+                    color="primary"
+                    icon="add"
+                    @click="showSelectGoods = true">
+                添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}
+            </ui-button>
+        </div>
     </div>
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
     .goods-items {
         .item {
-            margin: 0 0 15px 0;
+            margin: 0 0 5px 0;
             border: none;
 
             .img {
@@ -129,6 +156,65 @@
         }
     }
 
+    .goods-items.list {
+        .item {
+            position: relative;
+            transition: .3s;
+
+            &:not(:last-child) {
+                border-bottom: 1px dashed #eee;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+            }
+
+            .actions {
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                align-items: flex-end;
+                justify-content: flex-end;
+                background: rgba(0, 0, 0, 0.1);
+                padding: 5px;
+
+                button {
+                    margin: 0 3px;
+                }
+            }
+
+            &:hover {
+                .actions {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    .goods-items.property {
+        .item {
+            &:not(:last-child) {
+                border-bottom: 1px dashed #eee;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+            }
+
+        }
+        form {
+            label {
+                margin-bottom: 5px;
+                display: flex;
+
+                .label {
+                    align-self: center;
+                }
+
+                input {
+                    flex: 1;
+                }
+            }
+        }
+    }
 </style>
 
 <script type="text/ecmascript-6">

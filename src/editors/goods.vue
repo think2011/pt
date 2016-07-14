@@ -158,8 +158,8 @@
 
     .goods-items.list {
         .item {
+            cursor: move;
             position: relative;
-            transition: .3s;
 
             &:not(:last-child) {
                 border-bottom: 1px dashed #eee;

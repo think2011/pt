@@ -37,3 +37,13 @@ input {
   border: 1px solid #ddd;
   padding: 3px 5px;
 }
+
+.ui-modal {
+  &.ui-modal-mask {
+    z-index: 10000;
+  }
+}
+
+.ui-progress-circular {
+  display: inline-block;
+}

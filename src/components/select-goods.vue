@@ -1,86 +1,45 @@
 <template>
-    <div class="modal-mask" v-if="show" transition="modal">
-        <div class="modal-wrapper">
-            <div class="modal-container">
+    <ui-modal
+            type="large"
+            :show.sync="show"
+            header="添加宝贝"
+            transition="ui-modal-fade"
+    >
+        <slot>
+            <ul class="list">
+                <li :class="{checked:item.checked}"
+                    @click="pick(item)"
+                    v-for="item in data.items">
+                    <div class="img">
+                        <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                    </div>
+                    <div class="desc">
+                        <div class="title">
+                            {{item.title}}
+                        </div>
+                        <div class="price">{{item.promoPrice}}</div>
+                    </div>
+                </li>
+            </ul>
 
-                <div class="modal-header">
-                    <slot name="header">
-                        添加宝贝
-                    </slot>
-                </div>
-
-                <div class="modal-body">
-                    <ul class="list">
-                        <li :class="{checked:item.checked}"
-                            @click="pick(item)"
-                            v-for="item in data.items">
-                            <div class="img">
-                                <img :src="item.picUrl + '_120x120.jpg'" alt="">
-                            </div>
-                            <div class="desc">
-                                <div class="title">
-                                    {{item.title}}
-                                </div>
-                                <div class="price">{{item.promoPrice}}</div>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <paging url="/api/taobao/items"
-                            @on:done="pageDone"
-                            :params="pagingParams"
-                            :data.sync="data">
-                    </paging>
-                </div>
-
-                <div class="modal-footer">
-                    <slot name="footer">
-                        <button class="modal-default-button"
-                                @click="ok">
-                            确定
-                        </button>
-                    </slot>
-                </div>
-            </div>
+            <paging url="/api/taobao/items"
+                    @on:done="pageDone"
+                    :params="pagingParams"
+                    :data.sync="data">
+            </paging>
+        </slot>
+        <div slot="footer">
+            <ui-button
+                    @click="ok"
+                    color="primary">
+                确定 {{checkedItemsLen}}/{{maxLen}}
+            </ui-button>
         </div>
-    </div>
+    </ui-modal>
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-    }
-
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .modal-container {
-        width: 940px;
-        margin: 0px auto;
-        padding: 20px 30px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-        transition: all .3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-    }
-
-    .modal-header h3 {
-        margin-top: 0;
-        color: #42b983;
-    }
-
-    .modal-body {
+    .ui-modal-body {
         margin: 20px 0;
         overflow-y: auto;
 
@@ -90,9 +49,9 @@
             font-size: 13px;
 
             li {
-                $gap: (880 - (122 * 6)) / (2 * 6 - 2) /  880 * 100%;
+                $gap: (800 - (122 * 6)) / (2 * 6 - 2) /  800 * 100%;
 
-                width: 122 / 880 * 100%;
+                width: 122 / 800 * 100%;
                 border: 1px solid #ccc;
                 margin: 0 $gap 10px $gap;
                 cursor: pointer;
@@ -137,23 +96,10 @@
             }
         }
     }
-
-    .modal-default-button {
-        float: right;
-    }
-
-    .modal-enter, .modal-leave {
-        opacity: 0;
-    }
-
-    .modal-enter .modal-container,
-    .modal-leave .modal-container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
 </style>
 
 <script type="text/ecmascript-6">
+    import Vue from 'vue'
     import api from '../api'
     import paging from './paging.vue'
 
@@ -186,47 +132,63 @@
             pageDone(data){
                 // 每次初始化选中
                 _.each(data.items, (item, index) => {
-                    this.$set(`data.items[${index}].checked`, !!this.checkedItemsMap[item.numIid])
+                    let isMath = this.checkedItemsMap[item.numIid]
+
+                    this.$set(`data.items[${index}].checked`, !!isMath)
+                    if (isMath) {
+                        this.$set(`checkedItemsMap[${item.numIid}]`, item)
+                    }
                 })
             },
             pick(item) {
-                let checkedItemsLen = _.size(this.checkedItemsMap)
+                let checkedItemsLen = this.checkedItemsLen
 
                 if (item.checked) {
                     if (this.minLen && this.minLen > checkedItemsLen - 1) {
-                        return false
+                        return this.$dispatch('ui-snackbar::create', {
+                            message : `至少需要选择${this.maxLen}个宝贝`,
+                            duration: 3000
+                        })
                     }
 
-                    delete this.checkedItemsMap[item.numIid]
+                    delete this.$data.checkedItemsMap[item.numIid]
                     item.checked = false
                 } else {
                     if (this.maxLen && this.maxLen < checkedItemsLen + 1) {
-                        return false
+                        return this.$dispatch('ui-snackbar::create', {
+                            message : `最多只能选择${this.maxLen}个宝贝`,
+                            duration: 3000
+                        })
                     }
-
-                    this.checkedItemsMap[item.numIid] = item
-                    item.checked                      = true
+                    this.$set(`checkedItemsMap[${item.numIid}]`, item)
+                    item.checked = true
                 }
+                this.updateCheckedItemsLen()
             },
             ok(){
                 this.$dispatch('on:ok', _.values(this.checkedItemsMap))
                 this.show = false
+            },
+            updateCheckedItemsLen () {
+                this.checkedItemsLen = _.size(this.checkedItemsMap)
             }
         },
 
         watch: {
             show(newVal) {
                 if (newVal) {
-                    _.each(this.initItems, (item) => this.checkedItemsMap[item.numIid] = item)
+                    _.each(this.initItems, (item) => this.$set(`checkedItemsMap[${item.numIid}]`, item))
+                    this.updateCheckedItemsLen()
                 } else {
-                    this.checkedItemsMap = {}
+                    this.$data.checkedItemsMap = {}
                 }
             }
-        },
 
+        },
         data(){
             return {
                 checkedItemsMap: {},
+                checkedItemsLen: 0,
                 data           : {},
                 pagingParams   : {
                     type: 'Keyword',

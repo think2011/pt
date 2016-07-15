@@ -1,16 +1,24 @@
 <template>
     <div v-if="!empty">
-        <button
+        <ui-button
                 :disabled="page <= 1 || loading"
                 @click="doPage(--page)">上一页
-        </button>
-        <button
+        </ui-button>
+        <ui-button
                 :disabled="page >= pageCount || loading"
                 @click="doPage(++page)">下一页
-        </button>
+        </ui-button>
         <span>
         {{page}} / {{pageCount}}
         </span>
+    </div>
+    <div v-if="empty"
+         class="text-center">
+        <ui-progress-circular
+                :show="true"
+                :size="80"
+                :stroke="2"
+        ></ui-progress-circular>
     </div>
 </template>
 

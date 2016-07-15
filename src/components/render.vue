@@ -6,7 +6,8 @@
             <div drag-tag="modules"
                  :class="{active: activeModules}"
                  class="body">
-                <input class="page-title"
+                <input autofocus
+                       class="page-title"
                        type="text"
                        v-model="render.title">
                 <div

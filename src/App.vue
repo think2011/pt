@@ -72,7 +72,7 @@
         }
 
         .properties {
-            flex: 0 0 500px;
+            flex: 0 0 470px;
             position: relative;
             border-left: 1px solid #E7E8E7;
         }

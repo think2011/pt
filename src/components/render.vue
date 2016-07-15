@@ -4,7 +4,9 @@
             <div drag-tag="modules"
                  :class="{active: activeModules}"
                  class="body">
-                <input autofocus class="page-title" type="text" v-model="render.title">
+                <input class="page-title"
+                       type="text"
+                       v-model="render.title">
                 <div
                         transition="fadeIn"
                         stagger="1000"
@@ -63,7 +65,7 @@
 
         .body {
             width: 375px;
-            min-height: 630px;
+            min-height: 667px;
             background: #fff url("../assets/img/phone-head.png") no-repeat;
             padding-top: 64px;
             margin: 20px auto 30px auto;
@@ -77,8 +79,8 @@
                 text-align: center;
                 position: absolute;
                 top: 27px;
-                left: 50px;
-                width: 230px;
+                left: 73px;
+                width: 210px;
                 background: #F9F9F9;
             }
 

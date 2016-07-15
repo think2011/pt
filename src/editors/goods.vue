@@ -33,12 +33,16 @@
                                     class="btn-sm"
                                     color="default"
                                     type="flat"
+                                    v-do-order.up
+                                    :do-order-options="{items:componentValue.value,index:$index}"
                                     icon="expand_less">
                             </ui-icon-button>
                             <ui-icon-button
                                     class="btn-sm"
                                     color="default"
                                     type="flat"
+                                    v-do-order.down
+                                    :do-order-options="{items:componentValue.value,index:$index}"
                                     icon="expand_more">
                             </ui-icon-button>
                             <ui-icon-button

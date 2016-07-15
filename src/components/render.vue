@@ -1,5 +1,7 @@
 <template>
     <div @click="blurRenderItem" class="render-container">
+        <div id="demo"></div>
+
         <div>
             <div drag-tag="modules"
                  :class="{active: activeModules}"
@@ -19,6 +21,8 @@
                                     class="btn-sm"
                                     color="default"
                                     type="flat"
+                                    v-do-order.up
+                                    :do-order-options="{items:items,index:$index}"
                                     icon="expand_less">
                             </ui-icon-button>
                         </li>
@@ -26,6 +30,8 @@
                             <ui-icon-button
                                     class="btn-sm"
                                     color="default"
+                                    v-do-order.down
+                                    :do-order-options="{items:items,index:$index}"
                                     type="flat"
                                     icon="expand_more">
                             </ui-icon-button>

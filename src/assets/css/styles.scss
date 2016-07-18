@@ -47,3 +47,18 @@ input {
 .ui-progress-circular {
   display: inline-block;
 }
+
+.drop-element.drop-after-open {
+  z-index: 10000;
+}
+
+.container ~ .ui-snackbar-container {
+  bottom: auto;
+  top: 0;
+  z-index: 10000;
+
+  .ui-snackbar-toggle-enter,
+  .ui-snackbar-toggle-leave {
+    transform: translateY(-84px);
+  }
+}

@@ -4,17 +4,26 @@
             :show.sync="show"
             header="添加宝贝"
             transition="ui-modal-fade"
+            :backdrop-dismissible="false"
+            class="select-goods"
     >
         <slot>
+            <filter-bar></filter-bar>
+
             <ul class="list">
                 <li :class="{checked:item.checked}"
                     @click="pick(item)"
                     v-for="item in data.items">
+                    <div class="shade">
+                        <i class="material-icons" aria-hidden="true">check_circle</i>
+                    </div>
+
                     <div class="img">
                         <img :src="item.picUrl + '_120x120.jpg'" alt="">
                     </div>
                     <div class="desc">
-                        <div class="title">
+                        <div :title="item.title"
+                             class="title">
                             {{item.title}}
                         </div>
                         <div class="price">{{item.promoPrice}}</div>
@@ -40,8 +49,6 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
     .ui-modal-body {
-        margin: 20px 0;
-        overflow-y: auto;
 
         .list {
             display: flex;
@@ -55,6 +62,7 @@
                 border: 1px solid #ccc;
                 margin: 0 $gap 10px $gap;
                 cursor: pointer;
+                position: relative;
 
                 &:nth-child(6n) {
                     margin-right: 0;
@@ -64,7 +72,30 @@
                 }
 
                 &.checked {
-                    outline: 2px solid slateblue;
+                    border-color: rgba(33, 150, 243, 0.4);
+
+                    .shade {
+                        display: flex;
+                        justify-content: center;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(33, 150, 243, 0.4);
+
+                        .material-icons {
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            margin: -45px 0 0 -22.5px;
+                            color: #fff;
+                            font-size: 45px;
+                            opacity: .9;
+                        }
+                    }
+                }
+
+                .shade {
+                    display: none;
                 }
             }
 
@@ -102,10 +133,13 @@
     import Vue from 'vue'
     import api from '../api'
     import paging from './paging.vue'
+    import filterBar from './filter-bar.vue'
+    import {showToast} from '../vuex/actions'
 
     export default{
         components: {
-            paging
+            paging,
+            filterBar
         },
 
         props: {
@@ -128,6 +162,13 @@
             }
         },
 
+        vuex: {
+            getters: {},
+            actions: {
+                showToast
+            }
+        },
+
         methods: {
             pageDone(data){
                 // 每次初始化选中
@@ -145,8 +186,8 @@
 
                 if (item.checked) {
                     if (this.minLen && this.minLen > checkedItemsLen - 1) {
-                        return this.$dispatch('ui-snackbar::create', {
-                            message : `至少需要选择${this.maxLen}个宝贝`,
+                        return this.showToast({
+                            message : `至少需要选择${this.minLen}个宝贝`,
                             duration: 3000
                         })
                     }
@@ -155,7 +196,7 @@
                     item.checked = false
                 } else {
                     if (this.maxLen && this.maxLen < checkedItemsLen + 1) {
-                        return this.$dispatch('ui-snackbar::create', {
+                        return this.showToast({
                             message : `最多只能选择${this.maxLen}个宝贝`,
                             duration: 3000
                         })

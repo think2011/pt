@@ -33,16 +33,12 @@
                                     class="btn-sm"
                                     color="default"
                                     type="flat"
-                                    v-do-order.up
-                                    :do-order-options="{items:componentValue.value,index:$index}"
                                     icon="expand_less">
                             </ui-icon-button>
                             <ui-icon-button
                                     class="btn-sm"
                                     color="default"
                                     type="flat"
-                                    v-do-order.down
-                                    :do-order-options="{items:componentValue.value,index:$index}"
                                     icon="expand_more">
                             </ui-icon-button>
                             <ui-icon-button
@@ -226,11 +222,18 @@
     import tabs from '../components/tabs.vue'
     import tab from '../components/tab.vue'
     import selectGoods from '../components/select-goods.vue'
+    import {showToast} from '../vuex/actions'
 
     export default{
         props: {
             componentValue: {
                 type: Object
+            }
+        },
+
+        vuex: {
+            actions: {
+                showToast
             }
         },
 
@@ -243,7 +246,10 @@
         methods: {
             del (item) {
                 if (this.componentValue.value.length <= this.componentValue.options.minLen) {
-                    return alert(`至少要留${this.componentValue.options.minLen}个宝贝`)
+                    return this.showToast({
+                        message : `至少要留${this.componentValue.options.minLen}个宝贝`,
+                        duration: 3000
+                    })
                 }
 
                 this.componentValue.value.$remove(item)

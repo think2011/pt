@@ -1,27 +1,29 @@
 import {
-  ADD_RENDER_ITEM,
-  ACTIVE_RENDER_ITEM,
-  EDIT_RENDER_ITEM,
-  BLUR_RENDER_ITEM
+    ADD_RENDER_ITEM,
+    ACTIVE_RENDER_ITEM,
+    EDIT_RENDER_ITEM,
+    BLUR_RENDER_ITEM,
+    TOAST
 } from './mutation-types'
 
 export const addRenderItem    = markAction(ADD_RENDER_ITEM)
 export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
 export const blurRenderItem   = markAction(BLUR_RENDER_ITEM)
+export const showToast            = markAction(TOAST)
 export const activeRenderItem = ({dispatch}, event) => {
-  dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
+    dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
 }
 export const dropRenderItem   = ({dispatch}, event, module) => {
-  let {dragTag, position} = getDragInfo(event)
+    let {dragTag, position} = getDragInfo(event)
 
-  if (dragTag) {
-    if (dragTag === 'modules') {
-      dispatch(ADD_RENDER_ITEM, module.type)
-    } else {
-      let index = +(dragTag.split('-')[1])
-      dispatch(ADD_RENDER_ITEM, module.type, {}, position === 'bottom' ? ++index : index)
+    if (dragTag) {
+        if (dragTag === 'modules') {
+            dispatch(ADD_RENDER_ITEM, module.type)
+        } else {
+            let index = +(dragTag.split('-')[1])
+            dispatch(ADD_RENDER_ITEM, module.type, {}, position === 'bottom' ? ++index : index)
+        }
     }
-  }
 }
 
 /**
@@ -30,7 +32,7 @@ export const dropRenderItem   = ({dispatch}, event, module) => {
  * @returns {function(): *}
  */
 function markAction(type) {
-  return ({dispatch}, ...args) => dispatch(type, ...args)
+    return ({dispatch}, ...args) => dispatch(type, ...args)
 }
 
 
@@ -40,13 +42,13 @@ function markAction(type) {
  * @returns {{dragTag: string, position: string}}
  */
 function getDragInfo(event) {
-  let dragTarget = getDragTarget(event.target)
-  let dragTag    = dragTarget && dragTarget.getAttribute('drag-tag')
-  let position   = getDragPosition(event, dragTarget)
+    let dragTarget = getDragTarget(event.target)
+    let dragTag    = dragTarget && dragTarget.getAttribute('drag-tag')
+    let position   = getDragPosition(event, dragTarget)
 
-  return {
-    dragTag, position
-  }
+    return {
+        dragTag, position
+    }
 }
 
 /**
@@ -55,15 +57,15 @@ function getDragInfo(event) {
  * @returns {string}
  */
 function getDragTarget(target) {
-  let currentNode = target
+    let currentNode = target
 
-  while (currentNode) {
-    if (currentNode.getAttribute && currentNode.getAttribute('drag-tag')) {
-      return currentNode
+    while (currentNode) {
+        if (currentNode.getAttribute && currentNode.getAttribute('drag-tag')) {
+            return currentNode
+        }
+
+        currentNode = currentNode.parentNode
     }
-
-    currentNode = currentNode.parentNode
-  }
 }
 
 /**
@@ -73,10 +75,10 @@ function getDragTarget(target) {
  * @returns {string}
  */
 function getDragPosition(event, dragTarget) {
-  if (dragTarget) {
-    let rect       = dragTarget.getBoundingClientRect()
-    let halfHeight = rect.height / 2
+    if (dragTarget) {
+        let rect       = dragTarget.getBoundingClientRect()
+        let halfHeight = rect.height / 2
 
-    return halfHeight > event.y - rect.top ? 'top' : 'bottom'
-  }
+        return halfHeight > event.y - rect.top ? 'top' : 'bottom'
+    }
 }

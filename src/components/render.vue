@@ -1,7 +1,5 @@
 <template>
     <div @click="blurRenderItem" class="render-container">
-        <div id="demo"></div>
-
         <div>
             <div drag-tag="modules"
                  :class="{active: activeModules}"

@@ -20,6 +20,10 @@
 
         <property-editor></property-editor>
     </div>
+
+
+    <ui-snackbar-container position="center">
+    </ui-snackbar-container>
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
@@ -72,7 +76,7 @@
         }
 
         .properties {
-            flex: 0 0 470px;
+            flex: 0 0 500px;
             position: relative;
             border-left: 1px solid #E7E8E7;
         }
@@ -103,11 +107,16 @@
 
             // TODO ZH 16/7/6
             this.addRenderItem('goods-singe')
+
+            this.$watch('toast', (value) => {
+                this.$broadcast('ui-snackbar::create', _.clone(value))
+            })
         },
 
         vuex: {
             getters: {
-                renderData: ({render}) => render
+                renderData: ({render}) => render,
+                toast     : ({toast}) => toast.item
             },
             actions: {
                 addRenderItem

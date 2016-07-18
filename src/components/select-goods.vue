@@ -61,10 +61,12 @@
                 font-size: 13px;
 
                 li {
+                    border: 1px solid #ccc;
+
                     $gap: (800 - (122 * 6)) / (2 * 6 - 2) /  800 * 100%;
 
                     width: 122 / 800 * 100%;
-                    border: 1px solid #ccc;
+                    /*border: 1px solid #ccc;*/
                     margin: 0 $gap 10px $gap;
                     cursor: pointer;
                     position: relative;
@@ -133,7 +135,6 @@
             }
         }
     }
-
 </style>
 
 <script type="text/ecmascript-6">

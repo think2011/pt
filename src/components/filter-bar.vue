@@ -5,6 +5,7 @@
                     class="material-icons ui-icon">arrow_drop_down</i></a>
             <ui-menu :trigger="$els.categories"
                      :options="categories"
+                     open-on="hover"
                      @option-selected="selectCategory"
                      :contain-focus="false"
             ></ui-menu>

@@ -34,9 +34,10 @@
                     name="q"
                     type="search"
                     :value.sync="q"
+                    @keyup.enter="search"
                     placeholder="请输入搜索内容">
             </ui-textbox>
-            <ui-button>搜索</ui-button>
+            <ui-button @click="search">搜索</ui-button>
         </div>
     </div>
 </template>
@@ -107,20 +108,31 @@
                 }
 
                 this.sortData = item
-            }
-        },
-
-        computed: {
-            params() {
-                if (!this.searchData) return
-
-                return {
+            },
+            updateParams() {
+                let params = {
                     type      : this.searchData.value,
                     itemState : this.isSaleData.value,
                     orderBy   : `${this.sortData.value}:${this.sortData.desc ? 'desc' : 'asc'}`,
                     sellerCids: '',
                     q         : this.q
                 }
+
+                this.$dispatch('params-change', params)
+                this.params = params
+            },
+            search() {
+                this.updateParams()
+            }
+        },
+
+        watch: {
+            'searchData+isSaleData+sortData+sortData.desc': {
+                handler: function () {
+                    if (!this.searchData) return
+
+                    this.updateParams()
+                }, deep: true
             }
         },
 

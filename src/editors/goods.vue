@@ -53,7 +53,7 @@
                 </ul>
             </ui-tab>
 
-            <ui-tab header="属性">
+            <ui-tab header="编辑内容">
                 <ul class="goods-items property">
                     <li
                             class="item"

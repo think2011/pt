@@ -14,6 +14,7 @@
         cursor: pointer;
         opacity: 0.8;
         margin-top: 15px;
+        margin-left: 100px;
         transform-origin: top;
         transform: scale(0.5);
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);

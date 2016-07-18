@@ -62,3 +62,11 @@ input {
     transform: translateY(-84px);
   }
 }
+
+.drop {
+  .drop-content {
+    .ui-menu {
+      max-height: 500px;
+    }
+  }
+}

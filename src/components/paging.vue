@@ -75,10 +75,6 @@
             }
         },
 
-        ready() {
-            this.doPage(1)
-        },
-
         methods: {
             doPage(page = this.page) {
                 this.loading     = true

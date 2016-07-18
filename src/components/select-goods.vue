@@ -229,8 +229,6 @@
         watch: {
             show(newVal) {
                 if (newVal) {
-                    this.$refs.paging.doPage(1)
-
                     _.each(this.initItems, (item) => this.$set(`checkedItemsMap[${item.numIid}]`, item))
                     this.updateCheckedItemsLen()
                 } else {

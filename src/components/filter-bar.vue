@@ -1,6 +1,16 @@
 <template>
     <div class="filter-bar">
         <div>
+            <a v-el:categories class="link-trigger">{{categoriesData.name}}<i
+                    class="material-icons ui-icon">arrow_drop_down</i></a>
+            <ui-menu :trigger="$els.categories"
+                     :options="categories"
+                     @option-selected="selectCategory"
+                     :contain-focus="false"
+            ></ui-menu>
+        </div>
+
+        <div>
             <a v-el:is-sale class="link-trigger">{{isSaleData.text}}<i
                     class="material-icons ui-icon">arrow_drop_down</i></a>
             <ui-menu :trigger="$els.isSale"
@@ -89,6 +99,8 @@
 </style>
 
 <script type="text/ecmascript-6">
+    import api from '../api'
+
     export default{
         props: {
             params: {
@@ -97,6 +109,12 @@
         },
 
         methods: {
+            selectCategory(value) {
+                this.categoriesData = value
+                this.updateParams()
+
+                return false
+            },
             selectIsSale(value) {
                 this.isSaleData = value
 
@@ -111,10 +129,10 @@
             },
             updateParams() {
                 let params = {
+                    sellerCids: this.categoriesData.cid === 0 ? '' : this.categoriesData.cid,
                     type      : this.searchData.value,
                     itemState : this.isSaleData.value,
                     orderBy   : `${this.sortData.value}:${this.sortData.desc ? 'desc' : 'asc'}`,
-                    sellerCids: '',
                     q         : this.q
                 }
 
@@ -132,11 +150,23 @@
                     if (!this.searchData) return
 
                     this.updateParams()
-                }, deep: true
+                },
+                deep   : true
             }
         },
 
         ready () {
+            api.goods.categories()
+                    .then((items) => {
+                        _.each(items, (item) => {
+                            item.text = item._level === 2 ? `　${item.name}` : item.name
+
+                            this.categories.push(item)
+                        })
+
+                        this.categoriesData = this.categories[0]
+                    })
+
             this.searchData = this.searchOpts[0]
             this.isSaleData = this.isSaleOpts[0]
             this.sortData   = this.sortOpts[0]
@@ -144,15 +174,8 @@
 
         data(){
             return {
-                categories: [
-                    {
-                        id           : 'edit',
-                        text         : 'Edit',
-                        icon         : 'edit',
-                        secondaryText: 'Ctrl+E'
-                    }
-                ],
-                sortOpts  : [
+                categories    : [],
+                sortOpts      : [
                     {
                         text : '上下架时间',
                         value: 'list_time',
@@ -169,7 +192,7 @@
                         desc : false
                     }
                 ],
-                isSaleOpts: [
+                isSaleOpts    : [
                     {
                         value: 'OnSale',
                         text : '出售中的宝贝'
@@ -179,7 +202,7 @@
                         text : '仓库中的宝贝'
                     }
                 ],
-                searchOpts: [
+                searchOpts    : [
                     {
                         value: 'Keyword',
                         text : '关键字'
@@ -193,10 +216,11 @@
                         text : '宝贝链接'
                     }
                 ],
-                searchData: {},
-                isSaleData: {},
-                sortData  : {},
-                q         : ''
+                searchData    : {},
+                isSaleData    : {},
+                sortData      : {},
+                categoriesData: {},
+                q             : ''
             }
         }
     }

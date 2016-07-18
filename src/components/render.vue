@@ -61,10 +61,6 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .xxx {
-        background: seagreen;
-    }
-
     .render-container {
         overflow-y: auto;
 
@@ -124,12 +120,16 @@
                     &:before {
                         width: 98%;
                         height: 20px;
+                        line-height: 20px;
                         margin: 0 auto;
                         font-size: 14px;
                         text-align: center;
                         display: block;
                         content: '放在这';
-                        border: 2px dashed #b5b5b5;
+                        border: 2px dashed #2196F3;
+                        background: #E4F3FE;
+                        padding: 5px 0;
+                        color: #2196F3;
                     }
                 }
                 &.active.bottom {

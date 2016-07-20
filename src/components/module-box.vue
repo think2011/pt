@@ -16,17 +16,6 @@
                 :drag-module.sync="dragModule">
         </module-drag>
     </div>
-    <!--
-        <ul class="module-box">
-            <li
-                    @mousedown="drag(item)"
-                    v-for="item in modules">
-                <button>{{item.alias}}</button>
-            </li>
-        </ul>
-    -->
-
-
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>

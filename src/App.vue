@@ -61,8 +61,9 @@
         padding-top: 55px;
 
         .module-box {
-            flex: 0 0 240px;
+            flex: 0 0 230px;
             border-right: 1px solid #E7E8E7;
+            overflow: auto;
 
             li {
                 margin: 30px;

@@ -16,7 +16,13 @@ const state = {
 
 const mutations = {
     [ADD_RENDER_ITEM](state, type, data, index = state.items.length + 1) {
-        let newItem = _.chain(modules).find({type}).pick(['type', 'alias', 'data']).cloneDeep().merge({data}).value()
+        let module = {}
+
+        _.each(modules, (moduleItem) => {
+            module = _.find(moduleItem.items, {type})
+        })
+
+        let newItem = _.chain(module).pick(['type', 'alias', 'data']).cloneDeep().merge({data}).value()
 
         state.items.splice(index, 0, newItem)
         state.current  = newItem

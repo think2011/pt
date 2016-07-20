@@ -28,7 +28,8 @@
     import {
             addRenderItem,
             activeRenderItem,
-            dropRenderItem
+            dropRenderItem,
+            blurRenderItem
     } from '../vuex/actions'
 
     export default{
@@ -46,7 +47,8 @@
             actions: {
                 addRenderItem,
                 activeRenderItem,
-                dropRenderItem
+                dropRenderItem,
+                blurRenderItem
             }
         },
 
@@ -59,6 +61,8 @@
         methods: {
             startDrag () {
                 let that = this
+
+                this.blurRenderItem()
 
                 window.addEventListener('mousemove', onMove)
                 window.addEventListener('mouseup', function upEvent(event) {

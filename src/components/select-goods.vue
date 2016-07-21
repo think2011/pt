@@ -3,7 +3,7 @@
         <ui-modal
                 type="large goods"
                 :show.sync="show"
-                header="添加宝贝"
+                header="选择宝贝"
                 transition="ui-modal-fade"
                 :backdrop-dismissible="false"
         >

@@ -1,13 +1,13 @@
 <template>
     <header>
-        <div class="title">T</div>
+        <div class="title">无线模板设计</div>
 
         <div>
             <ui-button
                     color="primary"
                     icon="save"
                     @click="save">
-                保存
+                保存设计
             </ui-button>
         </div>
     </header>
@@ -45,7 +45,7 @@
         border-bottom: 1px solid #E7E8E7;
 
         .title {
-            font-size: 36px;
+            font-size: 24px;
             color: #9B9B9B;
         }
 

@@ -246,7 +246,7 @@
                 pagingParams   : {
                     type: 'Keyword',
                     q   : '',
-                    size: 18
+                    size: 12
                 },
                 showModal      : false,
                 pagingLoading  : false

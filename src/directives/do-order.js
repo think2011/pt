@@ -5,7 +5,7 @@ Vue.directive('doOrder', {
         'do-order-options'
     ],
     paramWatchers: {
-        doOrderOptions(val){
+        doOrderOptions(){
             let that = this
             let {index, items} = that.params.doOrderOptions
 

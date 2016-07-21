@@ -1,8 +1,27 @@
 <template>
     <div>
-        <ui-tabs>
-            <ui-tab header="宝贝">
+        <div class="panel">
+            <div class="actions">
+                <ui-button
+                        :disabled="!componentValue.value.length"
+                        @click="editMode = !editMode"
+                        :color="editMode ? 'warning' : 'default'">
+                    <i class="material-icons">edit</i>
+                </ui-button>
+                <ui-button
+                        @click="showSelectGoods = true"
+                        type="flat">
+                    <i class="material-icons">add</i>
+                </ui-button>
+            </div>
+            <div class="title">宝贝</div>
+            <div class="body">
+                <div class="ph-empty-goods" v-if="!componentValue.value.length">
+                    未选择任何宝贝
+                </div>
+
                 <ul
+                        v-show="!editMode"
                         v-sortable="{onUpdate: onUpdate}"
                         class="goods-items list">
                     <li
@@ -55,10 +74,9 @@
                         </div>
                     </li>
                 </ul>
-            </ui-tab>
 
-            <ui-tab header="属性">
-                <ul class="goods-items property">
+                <ul v-show="editMode"
+                    class="goods-items property">
                     <li
                             class="item"
                             track-by="$index"
@@ -79,9 +97,8 @@
                         </div>
                     </li>
                 </ul>
-            </ui-tab>
-        </ui-tabs>
-
+            </div>
+        </div>
 
         <select-goods
                 @on:ok="selectGoodsOk"
@@ -90,16 +107,6 @@
                 :min-len="componentValue.options.minLen"
                 :show.sync="showSelectGoods">
         </select-goods>
-
-
-        <div class="text-center">
-            <ui-button
-                    color="primary"
-                    icon="add"
-                    @click="showSelectGoods = true">
-                添加宝贝 {{componentValue.value.length}}/{{componentValue.options.maxLen}}
-            </ui-button>
-        </div>
     </div>
 </template>
 
@@ -263,6 +270,7 @@
                     subTitle    : '子标题',
                     soldQuantity: '销量'
                 },
+                editMode       : false,
                 showSelectGoods: false
             }
         }

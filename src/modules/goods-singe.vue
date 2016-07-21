@@ -33,6 +33,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="ph-empty-goods dashed" v-if="!componentData.goods.value.length">
+            未选择任何宝贝
+        </div>
     </div>
 </template>
 
@@ -41,7 +45,6 @@
     /* !!因为移动端,必须使用 rem 单位!! */
     /* !!因为移动端,必须使用 rem 单位!! */
     @import "../assets/lib/hotcss.scss";
-
 </style>
 
 <script type="text/ecmascript-6">
@@ -66,7 +69,7 @@
                                 'subTitle',
                                 'soldQuantity'
                             ],
-                            minLen: 1,
+                            minLen: 0,
                             maxLen: 5
                         }
                     }

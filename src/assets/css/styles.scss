@@ -91,3 +91,35 @@ input {
     }
   }
 }
+
+.ph-empty-goods {
+  color: #aaa;
+  text-align: center;
+  padding: 10px 0;
+
+  &.dashed {
+    border: 1px dashed #ddd;
+  }
+}
+
+.panel {
+  position: relative;
+
+  .title {
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    background: #EEEEEE;
+    padding: 0 8px;
+    border-bottom: 1px solid #E7E8E7;
+  }
+
+  .actions {
+    right: 0;
+    position: absolute;
+  }
+
+  .body {
+    padding: 5px 8px;
+  }
+}

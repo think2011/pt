@@ -1,48 +1,78 @@
 <template>
     <div class="select-goods">
         <ui-modal
-                type="large"
+                type="large goods"
                 :show.sync="show"
                 header="添加宝贝"
                 transition="ui-modal-fade"
                 :backdrop-dismissible="false"
         >
             <slot v-if="show">
-                <filter-bar @params-change="filterChange"></filter-bar>
-                <ul class="list">
-                    <li :class="{checked:item.checked}"
-                        @click="pick(item)"
-                        v-for="item in data.items">
-                        <div class="shade">
-                            <i class="material-icons" aria-hidden="true">check_circle</i>
+                <ui-tabs>
+                    <ui-tab header="宝贝列表">
+                        <filter-bar @params-change="filterChange"></filter-bar>
+                        <ul class="list">
+                            <li :class="{checked:item.checked}"
+                                @click="pick(item)"
+                                v-for="item in data.items">
+                                <div class="shade">
+                                    <i class="material-icons">check_circle</i>
+                                </div>
+
+                                <div class="img">
+                                    <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                                </div>
+                                <div class="desc">
+                                    <div :title="item.title"
+                                         class="title">
+                                        {{item.title}}
+                                    </div>
+                                    <div class="price">{{item.promoPrice}}</div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <paging url="/api/taobao/items"
+                                @on:done="pageDone"
+                                :params="pagingParams"
+                                v-ref:paging
+                                :loading.sync="pagingLoading"
+                                :data.sync="data">
+                        </paging>
+                    </ui-tab>
+
+                    <ui-tab :header="'已选宝贝('+ checkedItems.length +')'">
+                        <div class="ph-empty-goods" v-if="!checkedItems.length">
+                            未选择任何宝贝
                         </div>
 
-                        <div class="img">
-                            <img :src="item.picUrl + '_120x120.jpg'" alt="">
-                        </div>
-                        <div class="desc">
-                            <div :title="item.title"
-                                 class="title">
-                                {{item.title}}
-                            </div>
-                            <div class="price">{{item.promoPrice}}</div>
-                        </div>
-                    </li>
-                </ul>
-
-                <paging url="/api/taobao/items"
-                        @on:done="pageDone"
-                        :params="pagingParams"
-                        v-ref:paging
-                        :loading.sync="pagingLoading"
-                        :data.sync="data">
-                </paging>
+                        <ul class="list">
+                            <li :class="{checked:item.checked}"
+                                @click="pick(item)"
+                                v-for="item in checkedItems">
+                                <div class="shade">
+                                    <i class="material-icons" aria-hidden="true">check_circle</i>
+                                </div>
+                                <div class="img">
+                                    <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                                </div>
+                                <div class="desc">
+                                    <div :title="item.title"
+                                         class="title">
+                                        {{item.title}}
+                                    </div>
+                                    <div class="price">{{item.promoPrice}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </ui-tab>
+                </ui-tabs>
             </slot>
             <div slot="footer">
                 <ui-button
                         @click="ok"
                         color="primary">
-                    确定 {{checkedItemsLen}}/{{maxLen}}
+                    确定 {{checkedItems.length}}/{{maxLen}}
                 </ui-button>
             </div>
         </ui-modal>
@@ -181,16 +211,11 @@
             pageDone(data){
                 // 每次初始化选中
                 _.each(data.items, (item, index) => {
-                    let isMath = this.checkedItemsMap[item.numIid]
-
-                    this.$set(`data.items[${index}].checked`, !!isMath)
-                    if (isMath) {
-                        this.$set(`checkedItemsMap[${item.numIid}]`, item)
-                    }
+                    this.$set(`data.items[${index}].checked`, _.includes(this.checkedItems, item))
                 })
             },
             pick(item) {
-                let checkedItemsLen = this.checkedItemsLen
+                let checkedItemsLen = this.checkedItems.length
 
                 if (item.checked) {
                     if (this.minLen && this.minLen > checkedItemsLen - 1) {
@@ -200,8 +225,8 @@
                         })
                     }
 
-                    delete this.$data.checkedItemsMap[item.numIid]
                     item.checked = false
+                    this.checkedItems.splice(_.findIndex(this.checkedItems, item), 1)
                 } else {
                     if (this.maxLen && this.maxLen < checkedItemsLen + 1) {
                         return this.showToast({
@@ -209,17 +234,14 @@
                             duration: 3000
                         })
                     }
-                    this.$set(`checkedItemsMap[${item.numIid}]`, item)
+
                     item.checked = true
+                    this.checkedItems.push(item)
                 }
-                this.updateCheckedItemsLen()
             },
             ok(){
-                this.$dispatch('on:ok', _.values(this.checkedItemsMap))
+                this.$dispatch('on:ok', _.values(this.checkedItems))
                 this.show = false
-            },
-            updateCheckedItemsLen () {
-                this.checkedItemsLen = _.size(this.checkedItemsMap)
             },
             filterChange(params) {
                 _.merge(this.pagingParams, params)
@@ -230,26 +252,27 @@
         watch: {
             show(newVal) {
                 if (newVal) {
-                    _.each(this.initItems, (item) => this.$set(`checkedItemsMap[${item.numIid}]`, item))
-                    this.updateCheckedItemsLen()
+                    _.each(this.initItems, (item, index) => {
+                        item.checked = true
+                        this.checkedItems.push(item)
+                    })
                 } else {
-                    this.$data.checkedItemsMap = {}
+                    this.checkedItems = []
                 }
             }
-
         },
+
         data(){
             return {
-                checkedItemsMap: {},
-                checkedItemsLen: 0,
-                data           : {},
-                pagingParams   : {
+                checkedItems : [],
+                data         : {},
+                pagingParams : {
                     type: 'Keyword',
                     q   : '',
                     size: 12
                 },
-                showModal      : false,
-                pagingLoading  : false
+                showModal    : false,
+                pagingLoading: false
             }
         }
     }

@@ -1,5 +1,9 @@
 <template>
     <div class="goods-items">
+        <div class="ph-empty-goods dashed" v-if="!componentData.goods.value.length">
+            单列宝贝
+        </div>
+
         <div
                 v-for="item in componentData.goods.value"
                 track-by="$index"
@@ -32,10 +36,6 @@
                     <a :href="item.url" class="btn btn-red">马上抢 &gt;</a>
                 </div>
             </div>
-        </div>
-
-        <div class="ph-empty-goods dashed" v-if="!componentData.goods.value.length">
-            未选择任何宝贝
         </div>
     </div>
 </template>
@@ -75,7 +75,7 @@
                     }
                 }
 
-                fetchGoods(2, {subTitle: '子标题子标题子标题'})
+                fetchGoods(1, {subTitle: '子标题子标题子标题'})
                         .then((items) => {
                             this.componentData.goods.value = items
                         })

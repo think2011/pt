@@ -16,7 +16,7 @@
         margin-top: 15px;
         margin-left: 100px;
         transform-origin: top;
-        transform: scale(0.5);
+        transform: scale(0.6);
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
         z-index: 99999;
         background: #fff;

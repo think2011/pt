@@ -252,7 +252,8 @@
                 labelMap       : {
                     title       : '标题',
                     subTitle    : '子标题',
-                    soldQuantity: '销量'
+                    soldQuantity: '销量',
+                    price       : '原价',
                 },
                 editMode       : false,
                 showSelectGoods: false

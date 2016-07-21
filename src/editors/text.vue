@@ -14,6 +14,7 @@
         display: flex;
 
         .label {
+            width: 70px;
             margin-right: 20px;
             line-height: 28px;
         }

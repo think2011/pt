@@ -18,9 +18,8 @@
                                 <div class="shade">
                                     <i class="material-icons">check_circle</i>
                                 </div>
-
                                 <div class="img">
-                                    <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                                    <img draggable="false" :src="item.picUrl + '_120x120.jpg'" alt="">
                                 </div>
                                 <div class="desc">
                                     <div :title="item.title"
@@ -211,7 +210,7 @@
             pageDone(data){
                 // 每次初始化选中
                 _.each(data.items, (item, index) => {
-                    this.$set(`data.items[${index}].checked`, _.includes(this.checkedItems, item))
+                    this.$set(`data.items[${index}].checked`, !!_.find(this.checkedItems, item))
                 })
             },
             pick(item) {

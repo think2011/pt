@@ -1,5 +1,6 @@
 <template>
     <div class="other-poster">
+
         <img draggable="false" :src="componentData.pic.value" alt="">
     </div>
 </template>
@@ -39,9 +40,6 @@
                 }
             }
         },
-
-        components: {},
-
         data() {
             return {}
         }

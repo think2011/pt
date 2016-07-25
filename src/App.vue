@@ -65,11 +65,11 @@
         max-height: 100%;
         min-height: 100%;
         padding-top: 55px;
+        overflow: auto;
 
         .module-box {
             flex: 0 0 230px;
             border-right: 1px solid #E7E8E7;
-            overflow: auto;
 
             li {
                 margin: 30px;
@@ -86,6 +86,7 @@
             flex: 0 0 450px;
             position: relative;
             border-left: 1px solid #E7E8E7;
+            overflow: auto;
         }
     }
 </style>

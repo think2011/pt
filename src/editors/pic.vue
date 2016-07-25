@@ -23,7 +23,7 @@
 </style>
 
 <script type="text/ecmascript-6">
-    import fileUpload from 'vue-file-upload-component'
+    import fileUpload from '../components/pic-upload.vue'
 
     export default{
         props: {

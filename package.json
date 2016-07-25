@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "build": "npm run build:clean && assetsDir=resources/wirelesspage node build/build.js",
+    "build:cxb": "npm run build:clean && assetsDir=assets/bower_components/mobile-marker node build/build.js",
+    "build:clean": "rm -rf ./dist",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit"
   },

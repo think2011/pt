@@ -1,13 +1,19 @@
 <template>
     <header>
-        <div class="title">无线模板设计</div>
+        <div class="title">无线模板制作</div>
 
         <div>
+            <ui-button
+                    color="default"
+                    icon="exit_to_app"
+                    @click="close">
+                退出
+            </ui-button>
             <ui-button
                     color="primary"
                     icon="save"
                     @click="save">
-                保存设计
+                {{modeName}}制作
             </ui-button>
         </div>
     </header>
@@ -77,7 +83,7 @@
         }
 
         .properties {
-            flex: 0 0 500px;
+            flex: 0 0 450px;
             position: relative;
             border-left: 1px solid #E7E8E7;
         }
@@ -106,8 +112,30 @@
         ready (){
             api.goods.list().then(() => this.loaded = true)
 
-            // TODO ZH 16/7/6
-            this.addRenderItem('goods-singe')
+            switch (window.QUERYSTRING.type) {
+                case 'create':
+                    api.base.tplById(window.QUERYSTRING.id).then((data) => {
+                        let _data = JSON.parse(data)
+
+                        this.renderData.title = _data.title
+                        this.renderData.items = _data.items
+                    })
+                    break;
+
+                case 'edit':
+                    this.modeName = '更新'
+                    api.base.editById(window.QUERYSTRING.id).then((data) => {
+                        let _data = JSON.parse(data)
+
+                        this.renderData.title = _data.title
+                        this.renderData.items = _data.items
+                    })
+                    break;
+
+                default:
+                    this.addRenderItem('goods-singe')
+            }
+
 
             this.$watch('toast', (value) => {
                 this.$broadcast('ui-snackbar::create', _.clone(value))
@@ -127,17 +155,28 @@
         methods: {
             save() {
                 let {items, title} = this.renderData
-
-                console.log(JSON.stringify({
+                let data = JSON.stringify({
                     items,
                     title
-                }))
+                })
+
+                this.postMessage({type: 'save', data})
+                console.log(data)
+            },
+
+            close() {
+                this.postMessage({type: 'close'})
+            },
+
+            postMessage(data) {
+                window.parent.postMessage(data, '*')
             }
         },
 
         data: () => {
             return {
-                loaded: false
+                modeName: '保存',
+                loaded  : false
             }
         }
     }

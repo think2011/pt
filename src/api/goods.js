@@ -192,6 +192,7 @@ module.exports = function (http) {
                 .get('/api/taobao/items', options)
                 .then((res) => res.json().data)
         },
+
         categories() {
 
             return http

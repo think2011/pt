@@ -16,10 +16,14 @@ const state = {
 
 const mutations = {
     [ADD_RENDER_ITEM](state, type, data, index = state.items.length + 1) {
-        let module = {}
+        let module = null
 
         _.each(modules, (moduleItem) => {
-            module = _.find(moduleItem.items, {type})
+            _.each(moduleItem.items, (item) => {
+                if (module) return
+
+                module = item.type === type && item
+            })
         })
 
         let newItem = _.chain(module).pick(['type', 'alias', 'data']).cloneDeep().merge({data}).value()

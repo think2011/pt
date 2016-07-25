@@ -15,6 +15,17 @@ export const modules = [
                 component: (resolve) => require(['./goods-two.vue'], resolve)
             }
         ]
+    },
+    {
+        title: '其他',
+        items: [
+            {
+                alias    : '单张海报',
+                type     : 'other-poster',
+                picUrl   : require('../assets/img/单张海报.png'),
+                component: (resolve) => require(['./other-poster.vue'], resolve)
+            }
+        ]
     }
 ]
 

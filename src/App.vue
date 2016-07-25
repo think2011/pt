@@ -134,7 +134,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('goods-singe')
+                    this.addRenderItem('other-poster')
             }
 
 

@@ -35,10 +35,9 @@
                         title    : '海报',
                         isDefault: true,
                         value    : 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg',
-                    },
+                    }
                 }
             }
-
         },
 
         components: {},

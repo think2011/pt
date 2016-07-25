@@ -1,5 +1,4 @@
 module.exports = function (http) {
-    //noinspection UnterminatedStatementJS
     return {
         list(...args) {
             let options = _.assign({

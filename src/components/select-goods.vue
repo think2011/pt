@@ -266,9 +266,10 @@
                 checkedItems : [],
                 data         : {},
                 pagingParams : {
-                    type: 'Keyword',
-                    q   : '',
-                    size: 12
+                    type          : 'Keyword',
+                    q             : '',
+                    size          : 12,
+                    showPromoPrice: true
                 },
                 showModal    : false,
                 pagingLoading: false

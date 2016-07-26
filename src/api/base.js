@@ -9,7 +9,7 @@ module.exports = function (http) {
         editById(id) {
             return http
                 .get(`/api/wirelesspages/${id}`)
-                .then((res) => _.get(res.json(), 'data.tpl.data'))
+                .then((res) => _.get(res.json(), 'data.page.data'))
         }
     }
 }

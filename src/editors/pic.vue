@@ -1,6 +1,9 @@
 <template>
     <div class="pic-module">
-        <file-upload name="anotherFile" action="upload.php"></file-upload>
+        <file-upload
+                :value.sync="componentValue.value"
+                name="anotherFile"
+                action="/api/wirelesspages/upload-image"></file-upload>
     </div>
 </template>
 

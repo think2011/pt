@@ -7,17 +7,91 @@
     </label>
         <button type="button" v-on:click="fileUpload">Upload</button>
     </div>
+
+    <ul class="pic-upload">
+        <li class="hover-modal">
+            <img :src="value" alt="">
+            <div class="actions">
+                <a href="javascript:">
+                    <i class="ui-icon material-icons">delete</i>
+                </a>
+            </div>
+        </li>
+    </ul>
+
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+    .hover-modal {
+        position: relative;
+
+        .actions {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+
+            a {
+                color: #fff;
+
+                i {
+                    font-size: 40px;
+                }
+            }
+        }
+
+        &:before {
+            content: ' ';
+            position: absolute;
+            z-index: 1;
+            background-color: gray;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        &:hover {
+            &:before {
+                opacity: .8;
+            }
+
+            .actions {
+                display: block;
+            }
+        }
+    }
+
+    .pic-upload {
+        li {
+            width: 400px;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+            padding: 8px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
 </style>
 
 <script type="text/ecmascript-6">
     export default{
-        props   : {
+        props  : {
             name    : {
                 type    : String,
                 required: true
+            },
+            value   : {
+                type : String,
+                toWay: true
             },
             id      : String,
             action  : {
@@ -28,12 +102,12 @@
             multiple: String,
             headers : Object
         },
-        data    : function () {
+        data   : function () {
             return {
                 myFiles: [] // a container for the files in our field
             };
         },
-        methods : {
+        methods: {
             fileInputClick : function () {
                 // click actually triggers after the file dialog opens
                 this.$dispatch('onFileClick', this.myFiles);

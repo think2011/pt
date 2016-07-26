@@ -1,62 +1,45 @@
 <template>
     <div @click="blurRenderItem" class="render-container">
-        <div>
-            <div drag-tag="modules"
-                 :class="{active: activeModules}"
-                 class="body">
-                <input autofocus
-                       class="page-title"
-                       type="text"
-                       v-model="render.title">
-                <div
-                        transition="fadeIn"
-                        stagger="1000"
-                        class="animated item"
-                        :class="{'current': currentModule === item}"
-                        v-for="item in items">
-                    <ul class="actions">
-                        <li>
-                            <ui-icon-button
-                                    class="btn-sm"
-                                    color="default"
-                                    type="flat"
-                                    v-do-order.up
-                                    :do-order-options="{items:items,index:$index}"
-                                    icon="expand_less">
-                            </ui-icon-button>
-                        </li>
-                        <li>
-                            <ui-icon-button
-                                    class="btn-sm"
-                                    color="default"
-                                    v-do-order.down
-                                    :do-order-options="{items:items,index:$index}"
-                                    type="flat"
-                                    icon="expand_more">
-                            </ui-icon-button>
-                        </li>
-                        <li>
-                            <ui-icon-button
-                                    class="btn-sm"
-                                    color="default"
-                                    type="flat"
-                                    @click="del(item)"
-                                    icon="delete">
-                            </ui-icon-button>
-                        </li>
-                    </ul>
-                    <component
-                            drag-tag="module-{{$index}}"
-                            @click.stop.prevent="editRenderItem(item)"
-                            index="{{$index}}"
-                            class="component"
-                            :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
-                            :component-data.sync="item.data"
-                            :is="components[item.type]">
-                    </component>
-                </div>
+        <div drag-tag="modules"
+             :class="{active: activeModules}"
+             class="body">
+            <input autofocus
+                   class="page-title"
+                   type="text"
+                   v-model="render.title">
+            <div
+                    transition="fadeIn"
+                    stagger="1000"
+                    class="animated item"
+                    :class="{'current': currentModule === item}"
+                    v-for="item in items">
+
+                <ul class="actions">
+                    <li>
+                        <ui-icon-button
+                                @mousedown="drag(item)"
+                                class="btn-sm"
+                                color="default"
+                                icon="touch_app">
+                        </ui-icon-button>
+                    </li>
+                </ul>
+
+                <component
+                        drag-tag="module-{{$index}}"
+                        @click.stop.prevent="editRenderItem(item)"
+                        index="{{$index}}"
+                        class="component"
+                        :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
+                        :component-data.sync="item.data"
+                        :is="components[item.type]">
+                </component>
             </div>
         </div>
+
+        <module-drag
+                :drag-module.sync="dragModule">
+        </module-drag>
     </div>
 </template>
 
@@ -94,19 +77,20 @@
                 position: relative;
                 animation-duration: .4s;
 
+                &.fadeOut {
+                    animation-duration: 0s;
+                }
+
                 &.current {
                     outline: 2px solid #2196F3;
                     z-index: 9998;
 
                     .actions {
                         position: absolute;
-                        right: -38px;
-                        top: 0;
-                        display: block;
-
-                        li {
-                            margin-bottom: 5px;
-                        }
+                        margin: 5px 8px;
+                        right: 0;
+                        display: flex;
+                        flex-flow: column wrap;
                     }
                 }
 
@@ -149,14 +133,15 @@
             editRenderItem,
             blurRenderItem
     } from '../vuex/actions'
+    import moduleDrag from './module-drag.vue'
 
     Vue.transition('fadeIn', {
         enterClass: 'fadeInLeft',
-        leaveClass: 'fadeOutLeft'
+        leaveClass: 'fadeOut'
     })
 
     export default{
-        components,
+        components: {...components, moduleDrag},
 
         ready () {
             // 模拟移动端rem大小环境
@@ -184,6 +169,10 @@
         },
 
         methods: {
+            drag(item) {
+                this.del(item)
+                this.dragModule = item
+            },
             del(item) {
                 this.items.$remove(item)
             }
@@ -192,7 +181,8 @@
         data: () => {
             return {
                 modules,
-                components
+                components,
+                dragModule: {}
             }
         }
     }

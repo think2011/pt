@@ -1,6 +1,8 @@
 <template>
     <div v-show="dragModule" class="drag-module">
-        <component :is="dragModule.type"></component>
+        <component v-if="!dragModule.data" :is="dragModule.type"></component>
+
+        <component v-if="dragModule.data" :component-data.sync="dragModule.data" :is="dragModule.type"></component>
     </div>
 </template>
 
@@ -24,6 +26,7 @@
 </style>
 
 <script type="text/ecmascript-6">
+    import Vue from 'vue'
     import {components, modules} from '../modules'
     import {
             addRenderItem,

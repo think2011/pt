@@ -9,7 +9,7 @@ import {
 export const addRenderItem    = markAction(ADD_RENDER_ITEM)
 export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
 export const blurRenderItem   = markAction(BLUR_RENDER_ITEM)
-export const showToast            = markAction(TOAST)
+export const showToast        = markAction(TOAST)
 export const activeRenderItem = ({dispatch}, event) => {
     dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))
 }
@@ -17,11 +17,13 @@ export const dropRenderItem   = ({dispatch}, event, module) => {
     let {dragTag, position} = getDragInfo(event)
 
     if (dragTag) {
+        let data = module.data || null
+
         if (dragTag === 'modules') {
-            dispatch(ADD_RENDER_ITEM, module.type)
+            dispatch(ADD_RENDER_ITEM, module.type, data)
         } else {
             let index = +(dragTag.split('-')[1])
-            dispatch(ADD_RENDER_ITEM, module.type, {}, position === 'bottom' ? ++index : index)
+            dispatch(ADD_RENDER_ITEM, module.type, data, position === 'bottom' ? ++index : index)
         }
     }
 }

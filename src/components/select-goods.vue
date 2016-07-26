@@ -41,7 +41,7 @@
                     </ui-tab>
 
                     <ui-tab :header="'已选宝贝('+ checkedItems.length +')'">
-                        <div class="ph-empty-goods" v-if="!checkedItems.length">
+                        <div class="ph-empty" v-if="!checkedItems.length">
                             未选择任何宝贝
                         </div>
 

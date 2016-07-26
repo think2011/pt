@@ -1,6 +1,6 @@
 <template>
     <div class="goods-items">
-        <div class="ph-empty-goods dashed" v-if="!componentData.goods.value.length">
+        <div class="ph-empty dashed" v-if="!componentData.goods.value.length">
             双列宝贝
         </div>
 

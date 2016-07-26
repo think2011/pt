@@ -17,7 +17,7 @@
             </div>
             <div class="title">宝贝</div>
             <div class="body">
-                <div class="ph-empty-goods" v-if="!componentValue.value.length">
+                <div class="ph-empty" v-if="!componentValue.value.length">
                     未选择任何宝贝, <a @click="showSelectGoods = true" href="javascript:">请添加宝贝</a>
                 </div>
 

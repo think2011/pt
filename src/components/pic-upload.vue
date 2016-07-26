@@ -1,77 +1,119 @@
 <template>
-    <div><label for="{{ name }}">
-        <input type="file" name="{{ name }}" id="{{ id || name }}"
-               accept="{{ accept }}" v-on:click="fileInputClick"
-               v-on:change="fileInputChange" multiple="{{ multiple }}">
-        <slot></slot>
-    </label>
-        <button type="button" v-on:click="fileUpload">Upload</button>
-    </div>
-
     <ul class="pic-upload">
-        <li class="hover-modal">
-            <img :src="value" alt="">
-            <div class="actions">
-                <a href="javascript:">
-                    <i class="ui-icon material-icons">delete</i>
-                </a>
+        <li :class="{empty:!value, 'hover-modal':value}">
+            <div v-if="value">
+                <img :src="value" alt="">
+                <div class="actions">
+                    <a @click="value=''" href="javascript:">
+                        <i class="ui-icon material-icons">delete</i>
+                    </a>
+                </div>
+            </div>
+
+            <div v-if="!value">
+                <input type="file"
+                       name="{{ name }}"
+                       id="{{ id || name }}"
+                       accept="{{ accept }}"
+                       @click="fileInputClick"
+                       @change="fileInputChange"
+                       multiple="{{ multiple }}">
+
+                <div class="actions">
+                    <a @click="value=''" href="javascript:">
+                        <i class="ui-icon material-icons">add_circle</i>
+                    </a>
+                </div>
             </div>
         </li>
     </ul>
-
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .hover-modal {
-        position: relative;
-
-        .actions {
-            position: absolute;
-            z-index: 2;
-            top: 0;
-
-            a {
-                color: #fff;
-
-                i {
-                    font-size: 40px;
-                }
-            }
-        }
-
-        &:before {
-            content: ' ';
-            position: absolute;
-            z-index: 1;
-            background-color: gray;
-            -webkit-transition: all .3s ease;
-            transition: all .3s ease;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        &:hover {
-            &:before {
-                opacity: .8;
-            }
-
-            .actions {
-                display: block;
-            }
-        }
-    }
-
     .pic-upload {
         li {
             width: 400px;
             border: 1px solid #ddd;
-            margin: 0 auto;
+            margin: 0 auto 10px auto;
             padding: 8px;
             cursor: pointer;
             overflow: hidden;
+            position: relative;
+
+            .actions {
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                display: flex;
+
+                a {
+                    color: #999;
+                    i {
+                        font-size: 50px;
+                    }
+                }
+            }
+
+            &.empty {
+                border-style: dashed;
+                min-height: 150px;
+                background: #fbfbfb;
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 3;
+                    opacity: 0;
+                }
+            }
+
+            &.hover-modal {
+                position: relative;
+
+                .actions {
+                    display: none;
+
+                    a {
+                        color: #fff;
+
+                        i {
+                            font-size: 40px;
+                        }
+                    }
+                }
+
+                &:before {
+                    content: ' ';
+                    position: absolute;
+                    z-index: 1;
+                    background-color: gray;
+                    -webkit-transition: all .3s ease;
+                    transition: all .3s ease;
+                    opacity: 0;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                }
+
+                &:hover {
+                    &:before {
+                        opacity: .8;
+                    }
+
+                    .actions {
+                        display: flex;
+                    }
+                }
+            }
         }
 
         img {
@@ -117,6 +159,8 @@
                 var ident    = this.id || this.name
                 this.myFiles = document.getElementById(ident).files;
                 this.$dispatch('onFileChange', this.myFiles);
+
+                this.fileUpload()
             },
             _onProgress    : function (e) {
                 // this is an internal call in XHR to update the progress
@@ -176,6 +220,8 @@
                 }.bind(this));
             },
             fileUpload     : function () {
+                this.value = 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg'
+
                 if (this.myFiles.length > 0) {
                     // a hack to push all the Promises into a new array
                     var arrayOfPromises = Array.prototype.slice.call(this.myFiles, 0).map(function (file) {

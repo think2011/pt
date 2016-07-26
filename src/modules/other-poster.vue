@@ -1,6 +1,12 @@
 <template>
     <div class="other-poster">
-        <img draggable="false" :src="componentData.pic.value" alt="">
+        <div class="ph-empty dashed" v-if="!componentData.pic.value">
+            单张海报
+        </div>
+
+        <div v-if="componentData.pic.value">
+            <img draggable="false" :src="componentData.pic.value" alt="">
+        </div>
     </div>
 </template>
 
@@ -32,7 +38,7 @@
                 this.componentData = {
                     pic: {
                         type     : 'pic',
-                        title: '海报',
+                        title    : '海报',
                         isDefault: true,
                         value    : 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg',
                     }

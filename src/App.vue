@@ -88,6 +88,25 @@
             border-left: 1px solid #E7E8E7;
             overflow: auto;
         }
+
+        .module-box,
+        .render-container {
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+
+            a, img {
+                user-select: none;
+                -webkit-user-drag: none;
+                -khtml-user-drag: none;
+                -moz-user-drag: none;
+                -o-user-drag: none;
+                user-drag: none;
+            }
+        }
     }
 </style>
 

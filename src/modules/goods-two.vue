@@ -9,7 +9,6 @@
                 track-by="$index"
                 class="item">
             <a :href="item.url"
-               draggable="false"
                :style="{'background-image': 'url('+ item.picUrl +'_360x360.jpg)'}"
                class="img"
             ></a>

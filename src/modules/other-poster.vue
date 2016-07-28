@@ -5,7 +5,7 @@
         </div>
 
         <div v-if="componentData.pic.value">
-            <img draggable="false" :src="componentData.pic.value" alt="">
+            <img  :src="componentData.pic.value" alt="">
         </div>
     </div>
 </template>

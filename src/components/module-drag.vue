@@ -1,8 +1,15 @@
 <template>
-    <div v-show="dragModule" class="drag-module">
-        <component v-if="!dragModule.data" :is="dragModule.type"></component>
-
-        <component v-if="dragModule.data" :component-data.sync="dragModule.data" :is="dragModule.type"></component>
+    <div v-show="show"
+         transition="zoom"
+         :class="{'miss-drop': hitDrop}"
+         class="drag-module animated">
+        <component v-if="!currentModule.data"
+                   :is="currentModule.type">
+        </component>
+        <component v-if="currentModule.data"
+                   :component-data.sync="currentModule.data"
+                   :is="currentModule.type">
+        </component>
     </div>
 </template>
 
@@ -23,6 +30,18 @@
         z-index: 99999;
         background: #fff;
     }
+
+    .drag-module.animated {
+        &.zoomIn {
+            animation-duration: .3s;
+        }
+        &.zoomOutDown {
+            animation-duration: .5s;
+        }
+        &.miss-drop {
+            animation-duration: 0s;
+        }
+    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -34,6 +53,11 @@
             dropRenderItem,
             blurRenderItem
     } from '../vuex/actions'
+
+    Vue.transition('zoom', {
+        enterClass: 'zoomIn',
+        leaveClass: 'zoomOutDown'
+    })
 
     export default{
         props: {
@@ -57,7 +81,13 @@
 
         ready() {
             this.$watch('dragModule', (newVal) => {
-                _.isEmpty(this.dragModule) || this.startDrag()
+                this.show = !(_.isEmpty(newVal))
+
+                if (this.show) {
+                    this.hitDrop       = false
+                    this.currentModule = newVal
+                    this.startDrag()
+                }
             })
         },
 
@@ -75,22 +105,30 @@
                 })
 
                 onMove()
-                function onMove(event) {
-                    let el = that.$el
-                    event  = event || window.event
+                function onMove(event = window.event) {
+                    setTimeout(() => {
+                        let el = that.$el
 
-                    that.activeRenderItem(event)
-
-                    el.style.left = `${event.clientX - el.clientWidth / 2}px`
-                    el.style.top  = `${event.clientY}px`
+                        that.activeRenderItem(event)
+                        el.style.left = `${event.clientX - el.clientWidth / 2}px`
+                        el.style.top  = `${event.clientY}px`
+                    })
                 }
             },
 
             stopDrag (event) {
                 setTimeout(() => {
-                    this.dropRenderItem(event, this.dragModule)
+                    this.hitDrop    = this.dropRenderItem(event, this.dragModule)
                     this.dragModule = {}
                 })
+            }
+        },
+
+        data() {
+            return {
+                show         : false,
+                hitDrop      : false,
+                currentModule: {}
             }
         }
     }

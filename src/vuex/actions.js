@@ -26,6 +26,8 @@ export const dropRenderItem   = ({dispatch}, event, module) => {
             dispatch(ADD_RENDER_ITEM, module.type, data, position === 'bottom' ? ++index : index)
         }
     }
+    
+    return dragTag
 }
 
 /**

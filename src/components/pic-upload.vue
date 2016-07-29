@@ -1,28 +1,36 @@
 <template>
     <ul class="pic-upload">
         <li :class="{empty:!value, 'hover-modal':value}">
-            <div v-if="value">
-                <img :src="value" alt="">
+            <div v-if="state === 'uploading'">
                 <div class="actions">
-                    <a @click="value=''" href="javascript:">
-                        <i class="ui-icon material-icons">delete</i>
-                    </a>
+                    正在上传 {{percent}}%
                 </div>
             </div>
 
-            <div v-if="!value">
-                <input type="file"
-                       name="{{ name }}"
-                       id="{{ id || name }}"
-                       accept="{{ accept }}"
-                       @click="fileInputClick"
-                       @change="fileInputChange"
-                       multiple="{{ multiple }}">
+            <div v-if="state === 'done'">
+                <div v-if="value">
+                    <img :src="value" alt="">
+                    <div class="actions">
+                        <a @click="value=''" href="javascript:">
+                            <i class="ui-icon material-icons">delete</i>
+                        </a>
+                    </div>
+                </div>
 
-                <div class="actions">
-                    <a @click="value=''" href="javascript:">
-                        <i class="ui-icon material-icons">add_circle</i>
-                    </a>
+                <div v-if="!value">
+                    <input type="file"
+                           name="{{ name }}"
+                           id="{{ id || name }}"
+                           accept="{{ accept }}"
+                           @click="fileInputClick"
+                           @change="fileInputChange"
+                           multiple="{{ multiple }}">
+
+                    <div class="actions">
+                        <a @click="value=''" href="javascript:">
+                            {{errorMsg}} <i class="ui-icon material-icons">add_circle</i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </li>
@@ -146,7 +154,10 @@
         },
         data   : function () {
             return {
-                myFiles: [] // a container for the files in our field
+                myFiles : [], // a container for the files in our field
+                percent : 0,
+                errorMsg: null,
+                state   : 'done'
             };
         },
         methods: {
@@ -164,10 +175,11 @@
             },
             _onProgress    : function (e) {
                 // this is an internal call in XHR to update the progress
-                e.percent = (e.loaded / e.total) * 100;
+                this.percent = e.percent = ((e.loaded / e.total) * 100).toFixed(0);
                 this.$dispatch('onFileProgress', e);
             },
             _handleUpload  : function (file) {
+                let that = this
                 this.$dispatch('beforeFileUpload', file);
                 var form = new FormData();
                 var xhr  = new XMLHttpRequest();
@@ -189,13 +201,16 @@
                             return;
                         }
                         if (xhr.status < 400) {
-                            var res = JSON.parse(xhr.responseText);
+                            var res      = JSON.parse(xhr.responseText);
+                            that.value   = res.data.url
+                            that.percent = 0
                             this.$dispatch('onFileUpload', file, res);
                             resolve(file);
                         } else {
                             var err        = JSON.parse(xhr.responseText);
                             err.status     = xhr.status;
                             err.statusText = xhr.statusText;
+                            that.errorMsg  = err.errorMsg
                             this.$dispatch('onFileError', file, err);
                             reject(err);
                         }
@@ -215,12 +230,15 @@
                             xhr.setRequestHeader(header, this.headers[header]);
                         }
                     }
+                    xhr.setRequestHeader('Accept', 'application/json,text/plain, */*');
                     xhr.send(form);
                     this.$dispatch('afterFileUpload', file);
                 }.bind(this));
             },
             fileUpload     : function () {
-                this.value = 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg'
+                let that      = this
+                that.state    = 'uploading'
+                that.errorMsg = null
 
                 if (this.myFiles.length > 0) {
                     // a hack to push all the Promises into a new array
@@ -232,7 +250,9 @@
                         this.$dispatch('onAllFilesUploaded', allFiles);
                     }.bind(this)).catch(function (err) {
                         this.$dispatch('onFileError', this.myFiles, err);
-                    }.bind(this));
+                    }.bind(this)).then(() => {
+                        that.state = 'done'
+                    })
                 } else {
                     // someone tried to upload without adding files
                     var err = new Error("No files to upload for this field");

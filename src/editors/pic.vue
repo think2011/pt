@@ -3,7 +3,8 @@
         <file-upload
                 :value.sync="componentValue.value"
                 name="anotherFile"
-                action="/api/wirelesspages/upload-image"></file-upload>
+                action="/api/wirelesspages/upload-image">
+        </file-upload>
     </div>
 </template>
 

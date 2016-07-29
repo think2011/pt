@@ -3,6 +3,7 @@ import {
     ACTIVE_RENDER_ITEM,
     EDIT_RENDER_ITEM,
     BLUR_RENDER_ITEM,
+    HOVER_RENDER_ITEM,
     TOAST
 } from './mutation-types'
 
@@ -26,7 +27,8 @@ export const dropRenderItem   = ({dispatch}, event, module) => {
             dispatch(ADD_RENDER_ITEM, module.type, data, position === 'bottom' ? ++index : index)
         }
     }
-    
+
+    dispatch(HOVER_RENDER_ITEM, dragTag)
     return dragTag
 }
 

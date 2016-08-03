@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../vuex/store'
 
 let Cache = {
     cache: {},
@@ -11,6 +12,18 @@ let Cache = {
 }
 
 window.Cache = Cache
+
+// loading bar
+Vue.http.interceptors.push((request, next) => {
+    let timer = setTimeout(() => {
+        store.dispatch('CHANGE_LOADING_BAR', true)
+    }, 500)
+
+    next((res) => {
+        clearTimeout(timer)
+        store.dispatch('CHANGE_LOADING_BAR', false)
+    });
+});
 
 // cache
 Vue.http.interceptors.push((request, next) => {

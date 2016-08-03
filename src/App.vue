@@ -1,4 +1,7 @@
 <template>
+    <loading-bar
+            :progress.sync="loadingProgress">
+    </loading-bar>
     <header>
         <div class="title">无线模板制作</div>
 
@@ -117,9 +120,12 @@
     import render from './components/render.vue'
     import moduleBox from './components/module-box.vue'
     import propertyEditor from './components/property-editor.vue'
+    import loadingBar from 'vue-loading-bar'
+    import 'vue-loading-bar/vue-loading-bar.css'
     import {
             addRenderItem,
     } from './vuex/actions'
+
 
     export default {
         store,
@@ -127,7 +133,8 @@
         components: {
             propertyEditor,
             moduleBox,
-            render
+            render,
+            loadingBar
         },
 
         ready (){
@@ -161,12 +168,32 @@
             this.$watch('toast', (value) => {
                 this.$broadcast('ui-snackbar::create', _.clone(value))
             })
+
+
+            let interVal = null
+            this.$watch('ajaxLoading', (value) => {
+                if (!value || interVal) {
+                    clearInterval(interVal)
+                    return this.loadingProgress = 100
+                }
+                this.loadingProgress = 10
+
+                interVal = setInterval(() => {
+                    if (this.loadingProgress > 95) {
+                        this.loadingProgress = 100
+                        clearInterval(interVal)
+                        return
+                    }
+                    this.loadingProgress += (Math.floor(Math.random() * (20 - 1)) + 1)
+                }, 1000)
+            })
         },
 
         vuex: {
             getters: {
-                renderData: ({render}) => render,
-                toast     : ({toast}) => toast.item
+                renderData : ({render}) => render,
+                toast      : ({toast}) => toast.item,
+                ajaxLoading: ({loadingBar}) => loadingBar.loading
             },
             actions: {
                 addRenderItem
@@ -196,8 +223,9 @@
 
         data: () => {
             return {
-                modeName: '保存',
-                loaded  : false
+                modeName       : '保存',
+                loaded         : false,
+                loadingProgress: 0,
             }
         }
     }

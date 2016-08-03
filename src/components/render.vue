@@ -14,7 +14,7 @@
                     :class="{'current': currentModule === item}"
                     v-for="item in items">
 
-                <ul class="actions">
+                <ul v-show="!activeModule.position" class="actions">
                     <li>
                         <ui-icon-button
                                 @mousedown="drag(item)"

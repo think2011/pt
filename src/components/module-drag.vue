@@ -1,7 +1,7 @@
 <template>
     <div v-show="show"
          transition="zoom"
-         :class="{'miss-drop': hitDrop}"
+         :class="{'miss-drop': hitDrop, 'can-drop': dragInfo.dragTag}"
          class="drag-module animated">
         <component v-if="!currentModule.data"
                    :is="currentModule.type">
@@ -22,9 +22,9 @@
         top: 0;
         cursor: pointer;
         opacity: 0.8;
+        transform-origin: top;
         margin-top: 15px;
         margin-left: 100px;
-        transform-origin: top;
         transform: scale(0.6);
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
         z-index: 99999;
@@ -71,6 +71,9 @@
         components: components,
 
         vuex: {
+            getters: {
+                dragInfo: ({render}) => render.dragInfo
+            },
             actions: {
                 addRenderItem,
                 activeRenderItem,

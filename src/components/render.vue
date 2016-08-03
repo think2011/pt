@@ -77,6 +77,14 @@
                 position: relative;
                 animation-duration: .4s;
 
+                &:hover {
+                    .actions {
+                        display: flex;
+                        visibility: visible;
+                        transform: scale(1);
+                    }
+                }
+
                 &.fadeOut {
                     animation-duration: 0s;
                 }
@@ -84,18 +92,16 @@
                 &.current {
                     outline: 2px solid #2196F3;
                     z-index: 9998;
-
-                    .actions {
-                        position: absolute;
-                        margin: 5px 8px;
-                        right: 0;
-                        display: flex;
-                        flex-flow: column wrap;
-                    }
                 }
 
                 .actions {
-                    display: none;
+                    position: absolute;
+                    margin: 5px 8px;
+                    right: 0;
+                    flex-flow: column wrap;
+                    visibility: hidden;
+                    transition: all .3s ease;
+                    transform: scale(0);
                 }
             }
 

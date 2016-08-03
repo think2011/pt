@@ -3,17 +3,15 @@ import {
     EDIT_RENDER_ITEM,
     ADD_RENDER_ITEM,
     BLUR_RENDER_ITEM,
-    HOVER_RENDER_ITEM
 } from '../mutation-types'
 import {modules} from '../../modules'
 
 
 const state = {
-    items    : [],
-    title    : '网页标题',
-    current  : {},
-    hoverItem: null,
-    dragInfo : {}
+    items   : [],
+    title   : '网页标题',
+    current : {},
+    dragInfo: {}
 }
 
 const mutations = {
@@ -37,10 +35,6 @@ const mutations = {
 
     [EDIT_RENDER_ITEM](state, item) {
         state.current = item
-    },
-
-    [HOVER_RENDER_ITEM](item) {
-        state.hoverItem = item
     },
 
     [ACTIVE_RENDER_ITEM](state, dragInfo) {

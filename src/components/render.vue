@@ -3,6 +3,7 @@
         <div drag-tag="modules"
              :class="{active: activeModules}"
              class="body">
+
             <input autofocus
                    class="page-title"
                    type="text"
@@ -14,8 +15,8 @@
                     :class="{'current': currentModule === item}"
                     v-for="item in items">
 
-                <ul v-show="!activeModule.position" class="actions">
-                    <li>
+                <ul class="actions">
+                    <li class="hint--top" aria-label="按住拖拽,松开丢弃">
                         <ui-icon-button
                                 @mousedown="drag(item)"
                                 class="btn-sm"
@@ -102,6 +103,7 @@
                     visibility: hidden;
                     transition: all .3s ease;
                     transform: scale(0);
+                    z-index: 10000;
                 }
             }
 
@@ -181,6 +183,10 @@
             },
             del(item) {
                 this.items.$remove(item)
+            },
+            hoverItem(item) {
+                _.forEach(this.items, (item) => item._hover = false)
+                item._hover = true
             }
         },
 

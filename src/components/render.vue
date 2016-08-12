@@ -10,13 +10,16 @@
                    v-model="render.title">
             <div
                     transition="fadeIn"
-                    stagger="1000"
                     class="animated item"
                     :class="{'current': currentModule === item}"
                     v-for="item in items">
 
-                <ul class="actions">
-                    <li class="hint--top" aria-label="按住拖拽,松开丢弃">
+                <sort-bar
+                        @on-sort="onSort"
+                        v-show="currentModule === item"
+                        :items="items"
+                        :item="item">
+                    <li class="hint--top" aria-label="拖拽" v-if="items.length > 1">
                         <ui-icon-button
                                 @mousedown="drag(item)"
                                 class="btn-sm"
@@ -24,7 +27,7 @@
                                 icon="touch_app">
                         </ui-icon-button>
                     </li>
-                </ul>
+                </sort-bar>
 
                 <component
                         drag-tag="module-{{$index}}"
@@ -78,32 +81,9 @@
                 position: relative;
                 animation-duration: .4s;
 
-                &:hover {
-                    .actions {
-                        display: flex;
-                        visibility: visible;
-                        transform: scale(1);
-                    }
-                }
-
-                &.fadeOut {
-                    animation-duration: 0s;
-                }
-
                 &.current {
                     outline: 2px solid #2196F3;
                     z-index: 9998;
-                }
-
-                .actions {
-                    position: absolute;
-                    margin: 5px 8px;
-                    right: 0;
-                    flex-flow: column wrap;
-                    visibility: hidden;
-                    transition: all .3s ease;
-                    transform: scale(0);
-                    z-index: 10000;
                 }
             }
 
@@ -142,14 +122,15 @@
             blurRenderItem
     } from '../vuex/actions'
     import moduleDrag from './module-drag.vue'
+    import sortBar from './sort-bar.vue'
 
     Vue.transition('fadeIn', {
         enterClass: 'fadeInLeft',
-        leaveClass: 'fadeOut'
+        leaveClass: 'hide'
     })
 
     export default{
-        components: {...components, moduleDrag},
+        components: {...components, moduleDrag, sortBar},
 
         ready () {
             // 模拟移动端rem大小环境
@@ -178,15 +159,17 @@
 
         methods: {
             drag(item) {
-                this.del(item)
-                this.dragModule = item
-            },
-            del(item) {
                 this.items.$remove(item)
+                this.dragModule = item
             },
             hoverItem(item) {
                 _.forEach(this.items, (item) => item._hover = false)
                 item._hover = true
+            },
+            onSort(newIndex, oldIndex){
+                setTimeout(() => {
+                    this.$store.dispatch('EDIT_RENDER_ITEM', this.items[newIndex])
+                }, 0)
             }
         },
 

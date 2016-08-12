@@ -22,9 +22,8 @@
         top: 0;
         cursor: pointer;
         opacity: 0.8;
-        transform-origin: top;
-        margin-top: 15px;
-        margin-left: 100px;
+        margin: -20px 0 0 0;
+        pointer-events: none;
         transform: scale(0.6);
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.50);
         z-index: 99999;
@@ -114,7 +113,7 @@
 
                         that.activeRenderItem(event)
                         el.style.left = `${event.clientX - el.clientWidth / 2}px`
-                        el.style.top  = `${event.clientY}px`
+                        el.style.top  = `${event.clientY - el.clientHeight / 2}px`
                     })
                 }
             },

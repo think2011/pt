@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 import 'normalize.css/normalize.css'
 import './assets/css/styles.scss'
+import './assets/css/tanstions.scss'
 import './assets/css/styles-client.scss'
 
 window.QUERYSTRING = (function () {

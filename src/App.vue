@@ -225,7 +225,7 @@
             return {
                 modeName       : '保存',
                 loaded         : false,
-                loadingProgress: 0,
+                loadingProgress: 0
             }
         }
     }

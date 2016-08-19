@@ -5,6 +5,7 @@ import 'normalize.css/normalize.css'
 import './assets/css/styles.scss'
 import './assets/css/tanstions.scss'
 import './assets/css/styles-client.scss'
+import './skins/default.scss'
 
 window.QUERYSTRING = (function () {
     var params = {},

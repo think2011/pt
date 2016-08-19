@@ -17,13 +17,19 @@ export const modules = [
         ]
     },
     {
-        title: '其他',
+        title: '海报',
         items: [
             {
                 alias    : '单张海报',
-                type     : 'other-poster',
+                type     : 'poster-singe',
                 picUrl   : require('../assets/img/单张海报.png'),
-                component: (resolve) => require(['./other-poster.vue'], resolve)
+                component: (resolve) => require(['./poster-singe.vue'], resolve)
+            },
+            {
+                alias    : '轮播海报',
+                type     : 'poster-many',
+                picUrl   : require('../assets/img/轮播海报.png'),
+                component: (resolve) => require(['./poster-many.vue'], resolve)
             }
         ]
     }

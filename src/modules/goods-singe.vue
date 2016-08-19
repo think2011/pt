@@ -1,11 +1,11 @@
 <template>
     <div class="goods-items">
-        <div class="ph-empty dashed" v-if="!componentData.goods.value.length">
+        <div class="ph-empty dashed" v-if="!data.goods.value.length">
             单列宝贝
         </div>
 
         <div
-                v-for="item in componentData.goods.value"
+                v-for="item in data.goods.value"
                 track-by="$index"
                 class="item">
             <a :href="item.url"
@@ -54,11 +54,11 @@
     } from '../assets/tools'
 
     export default {
-        props: ['componentData'],
+        props: ['data'],
 
         created() {
-            if (_.isEmpty(this.componentData)) {
-                this.componentData = {
+            if (_.isEmpty(this.data)) {
+                this.data = {
                     goods: {
                         type   : 'goods',
                         title  : '选择宝贝',
@@ -77,7 +77,7 @@
 
                 fetchGoods(1, {subTitle: '子标题子标题子标题'})
                         .then((items) => {
-                            this.componentData.goods.value = items
+                            this.data.goods.value = items
                         })
             }
         },

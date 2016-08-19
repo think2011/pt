@@ -9,7 +9,7 @@
 
 <script type="text/ecmascript-6">
   export default{
-    props: ['componentData'],
+    props: ['data'],
 
     data(){
       return {}

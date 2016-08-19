@@ -161,7 +161,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('other-poster')
+                    this.addRenderItem('poster-singe')
             }
 
 

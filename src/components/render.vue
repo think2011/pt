@@ -35,7 +35,7 @@
                         index="{{$index}}"
                         class="component"
                         :class="[{active: activeModule.dragTag === 'module-' + $index}, activeModule.position]"
-                        :component-data.sync="item.data"
+                        :data.sync="item.data"
                         :is="components[item.type]">
                 </component>
             </div>

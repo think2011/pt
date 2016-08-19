@@ -1,11 +1,11 @@
 <template>
-    <div class="other-poster">
-        <div class="ph-empty dashed" v-if="!componentData.pic.value">
+    <div class="poster-singe">
+        <div class="ph-empty dashed" v-if="!data.pic.value">
             单张海报
         </div>
 
-        <div v-if="componentData.pic.value">
-            <img  :src="componentData.pic.value" alt="">
+        <div v-if="data.pic.value">
+            <img :src="data.pic.value" alt="">
         </div>
     </div>
 </template>
@@ -16,7 +16,7 @@
     /* !!因为移动端,必须使用 rem 单位!! */
     @import "../assets/lib/hotcss.scss";
 
-    .other-poster {
+    .poster-singe {
         img {
             width: 100%;
             display: block;
@@ -27,20 +27,21 @@
 
 <script type="text/ecmascript-6">
     import {
-            fetchGoods
+            fetchGoods,
+            posterUrl
     } from '../assets/tools'
 
     export default {
-        props: ['componentData'],
+        props: ['data'],
 
         created() {
-            if (_.isEmpty(this.componentData)) {
-                this.componentData = {
+            if (_.isEmpty(this.data)) {
+                this.data = {
                     pic: {
                         type     : 'pic',
                         title    : '海报',
                         isDefault: true,
-                        value    : 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg',
+                        value    : posterUrl,
                     }
                 }
             }

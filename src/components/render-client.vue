@@ -2,7 +2,7 @@
   <component
     v-for="item in items"
     index="{{$index}}"
-    :component-data.sync="item.data"
+    :data.sync="item.data"
     :is="components[item.type]">
   </component>
 </template>

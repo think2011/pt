@@ -7,7 +7,7 @@
                    :is="currentModule.type">
         </component>
         <component v-if="currentModule.data"
-                   :component-data.sync="currentModule.data"
+                   :data.sync="currentModule.data"
                    :is="currentModule.type">
         </component>
     </div>

@@ -41,9 +41,6 @@
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-</style>
-
 <script type="text/ecmascript-6">
     import api from '../api'
     import {
@@ -67,15 +64,14 @@
                     },
                     btnTitle: {
                         type : 'text',
-                        title: '按钮文案',
+                        title: '购买按钮',
                         value: '立即购买'
                     }
                 }
 
-                fetchGoods(1, {subTitle: '子标题子标题子标题'})
-                        .then((items) => {
-                            this.data.goods.value = items
-                        })
+                fetchGoods(1, {subTitle: '子标题子标题子标题'}).then((items) => {
+                    this.data.goods.value = items
+                })
             }
         },
 

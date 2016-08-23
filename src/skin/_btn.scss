@@ -4,20 +4,25 @@
 
 .module-container {
   .btn {
-    width: px2rem(150);
-    height: px2rem(70);
-    line-height: px2rem(70);
     text-align: center;
-    font-size: px2rem(24);
+    padding: px2rem(18) px2rem(24);
+    font-size: px2rem(30);
     color: $color-default;
-    border: 2px solid $color-default;
+    border: 1px solid $color-default;
     border-radius: px2rem(5);
     position: absolute;
     right: 0;
+    background: #fff;
+    display: inline-block;
 
     &-primary {
       border-color: $color-primary;
       color: $color-primary;
+    }
+
+    &-sm {
+      font-size: px2rem(28);
+      padding: px2rem(16) px2rem(12);
     }
   }
 }

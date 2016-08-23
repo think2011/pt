@@ -3,6 +3,7 @@
 /* !!因为移动端,必须使用 rem 单位!! */
 @import "hotcss";
 @import "variable";
+@import "functions";
 @import "base";
 @import "btn";
 
@@ -17,7 +18,7 @@
     .item {
       display: flex;
       justify-content: space-between;
-      margin: px2rem(20);
+      padding: px2rem(20);
 
       .img {
         width: px2rem(205);
@@ -34,6 +35,7 @@
 
       .titles {
         margin-bottom: px2rem(20);
+        font-size: px2rem(26);
 
         h4, h5 {
           margin: 0;
@@ -41,19 +43,17 @@
         }
 
         h4 {
-          font-size: px2rem(28);
           margin-bottom: px2rem(5);
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           text-overflow: ellipsis;
           overflow: hidden;
-          color: #333;
+          color: $color-default;
           word-break: break-all;
         }
 
         h5 {
-          font-size: px2rem(22);
           height: px2rem(28);
           margin-top: px2rem(20);
           color: $color-muted;
@@ -88,7 +88,40 @@
 
   // 双列宝贝
   .goods-two {
+    @extend .goods-singe;
+    display: flex;
+    flex-wrap: wrap;
 
+    .item {
+      width: px2rem(340);
+
+      padding: px2rem(10) 0;
+      flex-direction: column;
+      margin: 0 0 0 spaceBetween(340, 2, 750);
+
+      .img {
+        width: px2rem(340);
+        height: px2rem(340);
+        flex-basis: px2rem(340);
+        margin: 0 0 px2rem(10);
+      }
+
+      .desc {
+        width: px2rem(340);
+      }
+
+      .titles {
+        h4 {
+          font-size: px2rem(22);
+        }
+      }
+
+      .actions {
+        .promo-price {
+          font-size: px2rem(30);
+        }
+      }
+    }
   }
 
   // 三列宝贝

@@ -18,7 +18,9 @@
     .item {
       display: flex;
       justify-content: space-between;
-      padding: px2rem(20);
+      border-bottom: 1px solid #eee;
+      margin-bottom: px2rem(20);
+      padding: 0 px2rem(20);
 
       .img {
         width: px2rem(205);
@@ -26,6 +28,7 @@
         flex: 0 0 px2rem(205);
         background: no-repeat center;
         background-size: contain;
+        margin-bottom: px2rem(20);
         margin-right: px2rem(20);
       }
 
@@ -94,20 +97,16 @@
 
     .item {
       width: px2rem(340);
-
-      padding: px2rem(10) 0;
+      border: none;
+      padding: 0;
       flex-direction: column;
-      margin: 0 0 0 spaceBetween(340, 2, 750);
+      margin: 0 0 px2rem(20) spaceBetween(340, 2);
 
       .img {
         width: px2rem(340);
         height: px2rem(340);
         flex-basis: px2rem(340);
         margin: 0 0 px2rem(10);
-      }
-
-      .desc {
-        width: px2rem(340);
       }
 
       .titles {
@@ -126,7 +125,40 @@
 
   // 三列宝贝
   .goods-three {
+    @extend .goods-singe;
+    display: flex;
+    flex-wrap: wrap;
 
+    .item {
+      width: px2rem(230);
+      padding: 0;
+      border: none;
+      flex-direction: column;
+      margin: 0 0 0 spaceBetween(230, 3);
+
+      .img {
+        width: px2rem(230);
+        height: px2rem(230);
+        flex-basis: px2rem(230);
+        margin: 0 0 px2rem(10);
+      }
+
+      .desc {
+        margin: 0;
+      }
+
+      .titles {
+        h4 {
+          font-size: px2rem(24);
+        }
+      }
+
+      .actions {
+        .promo-price {
+          font-size: px2rem(24);
+        }
+      }
+    }
   }
 
   // 倒计时

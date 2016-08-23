@@ -13,6 +13,12 @@ export const modules = [
                 type     : 'goods-two',
                 picUrl   : require('../assets/img/双列宝贝.png'),
                 component: (resolve) => require(['./goods-two.vue'], resolve)
+            },
+            {
+                alias    : '三列宝贝',
+                type     : 'goods-three',
+                picUrl   : require('../assets/img/三列宝贝.png'),
+                component: (resolve) => require(['./goods-three.vue'], resolve)
             }
         ]
     },

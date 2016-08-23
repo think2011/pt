@@ -5,8 +5,10 @@
 .module-container {
   .btn {
     text-align: center;
-    padding: px2rem(18) px2rem(24);
     font-size: px2rem(30);
+    height: px2rem(75);
+    line-height: px2rem(75);
+    padding: 0 px2rem(15);
     color: $color-default;
     border: 1px solid $color-default;
     border-radius: px2rem(5);
@@ -21,8 +23,10 @@
     }
 
     &-sm {
-      font-size: px2rem(28);
-      padding: px2rem(16) px2rem(12);
+      font-size: px2rem(30);
+      height: px2rem(65);
+      line-height: px2rem(65);
+      padding: 0 px2rem(8);
     }
   }
 }

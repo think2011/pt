@@ -2,9 +2,9 @@ import './main'
 import Vue from 'vue'
 import Render from './Render'
 
-import './assets/css/styles-client.scss'
+import './skin/default.scss'
 
 new Vue({
-  el        : 'body',
-  components: {Render}
+    el        : 'body',
+    components: {Render}
 })

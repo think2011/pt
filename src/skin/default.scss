@@ -1,0 +1,108 @@
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+@import "hotcss";
+@import "variable";
+@import "base";
+@import "btn";
+
+.module-container {
+  // 热卖单品
+  .goods-hot {
+
+  }
+
+  // 单列宝贝
+  .goods-singe {
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin: px2rem(20);
+
+      .img {
+        width: px2rem(205);
+        height: px2rem(205);
+        flex: 0 0 px2rem(205);
+        background: no-repeat center;
+        background-size: contain;
+        margin-right: px2rem(20);
+      }
+
+      .desc {
+        flex: 1;
+      }
+
+      .titles {
+        margin-bottom: px2rem(20);
+
+        h4, h5 {
+          margin: 0;
+          font-weight: normal;
+        }
+
+        h4 {
+          font-size: px2rem(28);
+          margin-bottom: px2rem(5);
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          color: #333;
+          word-break: break-all;
+        }
+
+        h5 {
+          font-size: px2rem(22);
+          height: px2rem(28);
+          margin-top: px2rem(20);
+          color: $color-muted;
+        }
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        .promo-price {
+          white-space: nowrap;
+          font-size: px2rem(40);
+          margin-bottom: px2rem(5);
+          color: $color-primary;
+
+          .price {
+            font-size: px2rem(20);
+            color: #999;
+            text-decoration: line-through;
+          }
+        }
+
+        .sold {
+          font-size: px2rem(22);
+          color: #666;
+        }
+      }
+    }
+  }
+
+  // 双列宝贝
+  .goods-two {
+
+  }
+
+  // 三列宝贝
+  .goods-three {
+
+  }
+
+  // 倒计时
+  .countdown {
+
+  }
+
+  // 轮播海报
+  .poster {
+
+  }
+}

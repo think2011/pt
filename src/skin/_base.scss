@@ -1,0 +1,22 @@
+.module-container {
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .color-primary {
+    color: $color-primary;
+  }
+
+  .color-default {
+    color: $color-default;
+  }
+
+  .color-muted {
+    color: $color-muted;
+  }
+}

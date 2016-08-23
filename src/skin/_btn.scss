@@ -1,0 +1,23 @@
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+
+.module-container {
+  .btn {
+    width: px2rem(150);
+    height: px2rem(70);
+    line-height: px2rem(70);
+    text-align: center;
+    font-size: px2rem(24);
+    color: $color-default;
+    border: 2px solid $color-default;
+    border-radius: px2rem(5);
+    position: absolute;
+    right: 0;
+
+    &-primary {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}

@@ -14,7 +14,6 @@ module.exports = function (http) {
         },
 
         categories() {
-
             return http
                 .get('/api/taobao/seller-cats')
                 .then((res) => res.json().data)

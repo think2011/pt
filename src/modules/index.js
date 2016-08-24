@@ -3,6 +3,12 @@ export const modules = [
         title: '宝贝模块',
         items: [
             {
+                alias    : '热卖单品',
+                type     : 'goods-hot',
+                picUrl   : require('../assets/img/热卖单品.png'),
+                component: (resolve) => require(['./goods-hot.vue'], resolve)
+            },
+            {
                 alias    : '单列宝贝',
                 type     : 'goods-singe',
                 picUrl   : require('../assets/img/单列宝贝.png'),

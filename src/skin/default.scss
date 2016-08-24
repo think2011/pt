@@ -12,7 +12,65 @@
 
   // 热卖单品
   .goods-hot {
+    width: px2rem(710);
+    margin: 0 auto;
 
+    .img {
+      width: px2rem(710);
+      height: px2rem(710);
+      background: no-repeat center;
+      background-size: contain;
+    }
+
+    .titles {
+      font-size: px2rem(25);
+      height: px2rem(55);
+      line-height: px2rem(55);
+      text-align: center;
+      position: relative;
+      margin: px2rem(-55) 0 0 0;
+      padding: 0 px2rem(20);
+      background: rgba(255, 255, 255, 0.7);
+
+      h4 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0;
+      }
+    }
+
+    .actions {
+      color: #fff;
+      height: px2rem(100);
+      font-size: px2rem(12);
+      background: #F61B4F;
+      display: flex;
+      align-items: center;
+
+      .promo-price {
+        font-size: px2rem(52);
+        margin-right: px2rem(10);
+      }
+
+      .price {
+        text-decoration: line-through;
+        margin-bottom: px2rem(5);
+      }
+
+      .sold {
+        background: #E31E4E;
+        padding: px2rem(5) px2rem(24);
+        box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .countdown-container {
+        height: 100%;
+        margin-left: auto;
+        background-image: linear-gradient(0deg, orange, green);
+      }
+    }
   }
 
   // 单列宝贝

@@ -73,8 +73,9 @@ module.exports = {
     },
     plugins      : [
         new webpack.ProvidePlugin({
-            '_': 'lodash',
-            'Vue': 'vue',
+            '_'     : 'lodash',
+            'Vue'   : 'vue',
+            'moment': 'moment'
         })
     ]
 }

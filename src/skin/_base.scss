@@ -20,4 +20,20 @@
   .color-muted {
     color: $color-muted;
   }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .ph-empty {
+    width: 100%;
+    color: #aaa;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 10px;
+
+    &.dashed {
+      border: 1px dashed #ddd;
+    }
+  }
 }

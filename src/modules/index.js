@@ -38,6 +38,17 @@ export const modules = [
                 component: (resolve) => require(['./poster-many.vue'], resolve)
             }
         ]
+    },
+    {
+        title: '其他',
+        items: [
+            {
+                alias    : '倒计时',
+                type     : 'countdown',
+                picUrl   : require('../assets/img/倒计时.png'),
+                component: (resolve) => require(['./countdown.vue'], resolve)
+            }
+        ]
     }
 ]
 

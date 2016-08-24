@@ -1,11 +1,13 @@
 <template>
-    <div class="poster-singe">
-        <div class="ph-empty dashed" v-if="!data.pic.value">
-            单张海报
-        </div>
+    <div class="module-container">
+        <div class="poster poster-singe">
+            <div class="ph-empty dashed" v-if="!data.pic.value">
+                单张海报
+            </div>
 
-        <div v-if="data.pic.value">
-            <img :src="data.pic.value" alt="">
+            <div v-if="data.pic.value">
+                <img :src="data.pic.value" alt="">
+            </div>
         </div>
     </div>
 </template>
@@ -22,7 +24,6 @@
             display: block;
         }
     }
-
 </style>
 
 <script type="text/ecmascript-6">

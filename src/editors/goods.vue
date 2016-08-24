@@ -3,7 +3,7 @@
         <div class="panel">
             <div class="actions">
                 <ui-button
-                        v-show="componentValue.value.length"
+                        v-show="data.value.length"
                         @click="editMode = !editMode"
                         :color="editMode ? 'warning' : 'default'">
                     <i class="material-icons">edit</i>
@@ -17,7 +17,7 @@
             </div>
             <div class="title">宝贝</div>
             <div class="body">
-                <div class="ph-empty" v-if="!componentValue.value.length">
+                <div class="ph-empty" v-if="!data.value.length">
                     未选择任何宝贝, <a @click="showSelectGoods = true" href="javascript:">请添加宝贝</a>
                 </div>
 
@@ -27,7 +27,7 @@
                         class="goods-items list">
                     <li
                             class="item"
-                            v-for="item in componentValue.value">
+                            v-for="item in data.value">
 
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
@@ -64,7 +64,7 @@
                     <li
                             class="item"
                             track-by="$index"
-                            v-for="item in componentValue.value">
+                            v-for="item in data.value">
 
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
@@ -73,7 +73,7 @@
 
                         <div class="desc">
                             <form>
-                                <label v-for="labelItem in componentValue.options.labels">
+                                <label v-for="labelItem in data.options.labels">
                                     <span class="label">{{labelMap[labelItem]}}</span>
                                     <input type="text" v-model="item[labelItem]">
                                 </label>
@@ -86,9 +86,9 @@
 
         <select-goods
                 @on:ok="selectGoodsOk"
-                :init-items="componentValue.value"
-                :max-len="componentValue.options.maxLen"
-                :min-len="componentValue.options.minLen"
+                :init-items="data.value"
+                :max-len="data.options.maxLen"
+                :min-len="data.options.minLen"
                 :show.sync="showSelectGoods">
         </select-goods>
     </div>
@@ -220,7 +220,7 @@
 
     export default{
         props: {
-            componentValue: {
+            data: {
                 type: Object
             }
         },
@@ -233,17 +233,17 @@
 
         methods: {
             del (item) {
-                if (this.componentValue.value.length <= this.componentValue.options.minLen) {
-                    return alert(`至少要留${this.componentValue.options.minLen}个宝贝`)
+                if (this.data.value.length <= this.data.options.minLen) {
+                    return alert(`至少要留${this.data.options.minLen}个宝贝`)
                 }
 
-                this.componentValue.value.$remove(item)
+                this.data.value.$remove(item)
             },
             onUpdate (event) {
-                this.componentValue.value.splice(event.newIndex, 0, this.componentValue.value.splice(event.oldIndex, 1)[0])
+                this.data.value.splice(event.newIndex, 0, this.data.value.splice(event.oldIndex, 1)[0])
             },
             selectGoodsOk(items) {
-                this.componentValue.value = items
+                this.data.value = items
             }
         },
 

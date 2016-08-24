@@ -8,6 +8,8 @@
 @import "btn";
 
 .module-container {
+  margin-bottom: px2rem(20);
+
   // 热卖单品
   .goods-hot {
 
@@ -19,7 +21,6 @@
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid #eee;
-      margin-bottom: px2rem(20);
       padding: 0 px2rem(20);
 
       .img {
@@ -167,7 +168,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: px2rem(20);
 
     .state {
       font-size: px2rem(28);
@@ -199,8 +199,18 @@
     }
   }
 
+  // 单张海报
+  .poster-single {
+    text-align: center;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
   // 轮播海报
-  .poster {
-    margin-bottom: px2rem(20);
+  .poster-many {
+    @extend .poster-single;
   }
 }

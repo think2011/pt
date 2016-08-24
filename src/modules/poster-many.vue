@@ -1,31 +1,25 @@
 <template>
-    <div class="poster-singe">
-        <div class="ph-empty dashed" v-if="!data.pic.value">
-            单张海报
-        </div>
+    <div class="module-container">
+        <div class="poster-many">
+            <div class="ph-empty dashed" v-if="!data.pic.value.length">
+                轮播海报
+            </div>
 
-        <div v-if="data.pic.value">
-            <img :src="data.pic.value" alt="">
+            <div v-if="data.pic.value.length">
+                <carousel :indicators="true">
+                    <carousel-item v-for="item in data.pic.value"
+                                   track-by="$index"
+                                   class="item">
+                        <img :src="item" alt="">
+                    </carousel-item>
+                </carousel>
+            </div>
         </div>
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-    /* !!因为移动端,必须使用 rem 单位!! */
-    /* !!因为移动端,必须使用 rem 单位!! */
-    /* !!因为移动端,必须使用 rem 单位!! */
-    @import "../assets/lib/hotcss.scss";
-
-    .poster-singe {
-        img {
-            width: 100%;
-            display: block;
-        }
-    }
-
-</style>
-
 <script type="text/ecmascript-6">
+    import {Carousel, CarouselItem} from 'vue-m-carousel'
     import {
             fetchGoods,
             posterUrl
@@ -34,6 +28,11 @@
     export default {
         props: ['data'],
 
+        components: {
+            Carousel,
+            CarouselItem
+        },
+
         created() {
             if (_.isEmpty(this.data)) {
                 this.data = {
@@ -41,7 +40,7 @@
                         type     : 'pic',
                         title    : '海报',
                         isDefault: true,
-                        value    : posterUrl,
+                        value    : [posterUrl, posterUrl],
                     }
                 }
             }

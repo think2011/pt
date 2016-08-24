@@ -3,5 +3,6 @@ export default {
     goods    : (resolve) => require(['./goods.vue'], resolve),
     countdown: (resolve) => require(['./goods.vue'], resolve),
     pic      : (resolve) => require(['./pic.vue'], resolve),
+    time     : (resolve) => require(['./time.vue'], resolve),
     color    : (resolve) => require(['./goods.vue'], resolve)
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="pic-module">
         <file-upload
-                :value.sync="componentValue.value"
+                :value.sync="data.value"
                 name="anotherFile"
                 action="/api/wirelesspages/upload-image">
         </file-upload>
@@ -31,7 +31,7 @@
 
     export default{
         props: {
-            componentValue: {
+            data: {
                 type: Object
             }
         },

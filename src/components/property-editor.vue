@@ -6,7 +6,7 @@
              v-for="(key,value) in current.data">
             <component
                     index="{{$index}}"
-                    :component-value.sync="value"
+                    :data.sync="value"
                     :is="value.type">
             </component>
         </div>

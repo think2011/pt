@@ -6,10 +6,16 @@
             </div>
 
             <div v-if="data.goods.value.length" class="data.goods.value[0]">
-                <a :href="data.goods.value[0].url"
-                   :style="{'background-image': 'url('+ data.goods.value[0].picUrl +'_640x640q50.jpg)'}"
-                   class="img"
-                ></a>
+                <carousel :responsive="100" :indicators="true">
+                    <carousel-item v-for="item in data.goods.value[0].itemImgs">
+                        <a :href="data.goods.value[0].url"
+                           :style="{'background-image': 'url('+ item.url +'_640x640q50.jpg)'}"
+                           class="img"
+                        ></a>
+                    </carousel-item>
+                </carousel>
+
+
                 <div class="desc">
                     <div class="titles">
                         <h4>
@@ -45,6 +51,7 @@
 
 <script type="text/ecmascript-6">
     import api from '../api'
+    import {Carousel, CarouselItem} from 'vue-m-carousel'
     import countdown from '../components/countdown.vue'
     import {
             fetchGoods
@@ -52,7 +59,11 @@
 
     export default {
         props     : ['data'],
-        components: {countdown},
+        components: {
+            countdown,
+            Carousel,
+            CarouselItem
+        },
 
         created() {
             if (_.isEmpty(this.data)) {
@@ -81,6 +92,15 @@
                     this.data.goods.value = items
                 })
             }
+
+            this.$watch('data.goods.value[0]', (newVal) => {
+                if (!newVal || newVal.itemImgs) return
+
+                // 获取主图
+                api.goods.fetchMainPic([newVal.numIid]).then((res) => {
+                    this.data.goods.value = res.items
+                })
+            })
         },
 
         data() {

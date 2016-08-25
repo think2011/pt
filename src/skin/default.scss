@@ -23,13 +23,21 @@
       background-size: contain;
     }
 
+    .carousel-item {
+      width: px2rem(710) !important;
+    }
+
+    .carousel-indicators {
+      bottom: 12%;
+    }
+
     .titles {
       font-size: px2rem(25);
       height: px2rem(55);
       line-height: px2rem(55);
       text-align: center;
       position: relative;
-      margin: px2rem(-61) 0 0 0;
+      margin: px2rem(-55) 0 0 0;
       padding: 0 px2rem(20);
       background: rgba(255, 255, 255, 0.7);
 
@@ -95,7 +103,8 @@
 
         .countdown {
           margin-top: px2rem(5);
-          transform: scale(0.68);
+          transform: scale(.75);
+          margin-left: px2rem(-33);
 
           .milliseconds, .seconds:after, .state {
             display: none;
@@ -251,45 +260,6 @@
       }
     }
   }
-
-  // 倒计时
-  .countdown {
-    white-space: nowrap;
-    color: $color-primary;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .state {
-      font-size: px2rem(28);
-      margin-right: px2rem(5);
-    }
-
-    .num {
-      font-size: px2rem(30);
-      color: #fff;
-      margin: px2rem(1);
-      padding: px2rem(3) px2rem(8);
-      border-radius: px2rem(5);
-      background: lighten($color-primary, 15);
-    }
-
-    .days {
-      &:after {
-        @extend .num;
-        font-size: px2rem(20);
-        border-radius: 50%;
-        content: '天';
-      }
-    }
-
-    .hours, .minutes, .seconds {
-      &:after {
-        content: ':';
-      }
-    }
-  }
-
   // 单张海报
   .poster-single {
     text-align: center;
@@ -304,4 +274,57 @@
   .poster-many {
     @extend .poster-single;
   }
+
+  // 倒计时
+  .countdown {
+    white-space: nowrap;
+    color: $color-primary;
+    text-align: center;
+
+    .state {
+      font-size: px2rem(28);
+      margin-right: px2rem(5);
+    }
+
+    .num {
+      font-size: px2rem(30);
+      color: #fff;
+      margin-right: 1px;
+      padding: px2rem(3) px2rem(8);
+      border-radius: px2rem(5);
+      background: lighten($color-primary, 15);
+    }
+
+    .days, .hours, .minutes, .seconds, .milliseconds {
+      position: relative;
+      display: inline-block;
+    }
+
+    .days {
+      margin-right: px2rem(25);
+
+      &:after {
+        @extend .num;
+
+        position: absolute;
+        right: -44%;
+        font-size: px2rem(20);
+        padding: px2rem(3);
+        border-radius: 50%;
+        content: '天';
+      }
+    }
+
+    .hours, .minutes, .seconds {
+      margin-right: px2rem(5);
+
+      &:after {
+
+        position: absolute;
+        right: -14%;
+        content: ':';
+      }
+    }
+  }
+
 }

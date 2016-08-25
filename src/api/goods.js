@@ -1,5 +1,10 @@
 module.exports = function (http) {
     return {
+        /**
+         * 获取宝贝列表
+         * @param args
+         * @returns {*}
+         */
         list(...args) {
             let options = _.assign({
                 params: {
@@ -136,6 +141,24 @@ module.exports = function (http) {
                 .then((res) => res.json().data)
         },
 
+
+        /**
+         * 获取主图
+         * @param ids
+         */
+        fetchMainPic(ids) {
+            return http
+                .get('/api/taobao/multi-items', {
+                    params: {
+                        itemIds: ids.join(',')
+                    }
+                })
+                .then((res) => res.json().data)
+        },
+
+        /**
+         * 获取分类
+         */
         categories() {
             return http
                 .get('/api/taobao/seller-cats')

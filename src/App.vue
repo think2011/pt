@@ -161,7 +161,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('poster-singe')
+                    this.addRenderItem('goods-hot')
             }
 
 

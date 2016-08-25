@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="time.days && state !== 'end'" class="countdown" :class="[state]">
-            <span class="state">距离{{stateMap[state]}} : </span>
+            <span class="state">距离{{stateMap[state]}}: </span>
 
             <div class="days">
                 <span v-for="item in time.days" track-by="$index" class="num">{{item}}</span>

@@ -1,6 +1,7 @@
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
+/*  TIPS: 最小字体为22,低于在机型显示不一致 */
 @import "hotcss";
 @import "variable";
 @import "functions";
@@ -43,7 +44,7 @@
     .actions {
       color: #fff;
       height: px2rem(100);
-      font-size: px2rem(12);
+      font-size: px2rem(22);
       background-image: linear-gradient(to bottom, #F72155, #F6134B);
       display: flex;
       align-items: center;

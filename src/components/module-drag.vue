@@ -106,15 +106,13 @@
                     that.stopDrag(event)
                 })
 
-                onMove()
+                setTimeout(onMove)
                 function onMove(event = window.event) {
-                    setTimeout(() => {
-                        let el = that.$el
+                    let el = that.$el
 
-                        that.activeRenderItem(event)
-                        el.style.left = `${event.clientX - el.clientWidth / 2}px`
-                        el.style.top  = `${event.clientY - el.clientHeight / 2}px`
-                    })
+                    that.activeRenderItem(event)
+                    el.style.left = `${event.clientX - el.clientWidth / 2}px`
+                    el.style.top  = `${event.clientY - el.clientHeight / 2}px`
                 }
             },
 

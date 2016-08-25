@@ -54,6 +54,10 @@
                         title  : '选择宝贝',
                         value  : [],
                         options: {
+                            labels: [
+                                'title',
+                                'soldQuantity'
+                            ],
                             minLen: 0,
                             maxLen: 6
                         }

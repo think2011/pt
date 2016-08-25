@@ -73,6 +73,10 @@
                         title  : '选择宝贝',
                         value  : [],
                         options: {
+                            labels: [
+                                'title',
+                                'soldQuantity'
+                            ],
                             minLen: 0,
                             maxLen: 1
                         }
@@ -98,7 +102,7 @@
 
                 // 获取主图
                 api.goods.fetchMainPic([newVal.numIid]).then((res) => {
-                    this.data.goods.value = res.items
+                    this.data.goods.value = _.merge([], this.data.goods.value, res.items)
                 })
             })
         },

@@ -1,26 +1,28 @@
 <template>
-    <div v-if="time.days && state !== 'end'" class="countdown" :class="[state]">
-        <span class="state">距离{{stateMap[state]}} : </span>
+    <div>
+        <div v-if="time.days && state !== 'end'" class="countdown" :class="[state]">
+            <span class="state">距离{{stateMap[state]}} : </span>
 
-        <div class="days">
-            <span v-for="item in time.days" track-by="$index" class="num">{{item}}</span>
+            <div class="days">
+                <span v-for="item in time.days" track-by="$index" class="num">{{item}}</span>
+            </div>
+            <div class="hours">
+                <span v-for="item in time.hours" track-by="$index" class="num">{{item}}</span>
+            </div>
+            <div class="minutes">
+                <span v-for="item in time.minutes" track-by="$index" class="num">{{item}}</span>
+            </div>
+            <div class="seconds">
+                <span v-for="item in time.seconds" track-by="$index" class="num">{{item}}</span>
+            </div>
+            <div class="milliseconds">
+                <span v-for="item in time.milliseconds" track-by="$index" class="num">{{item}}</span>
+            </div>
         </div>
-        <div class="hours">
-            <span v-for="item in time.hours" track-by="$index" class="num">{{item}}</span>
-        </div>
-        <div class="minutes">
-            <span v-for="item in time.minutes" track-by="$index" class="num">{{item}}</span>
-        </div>
-        <div class="seconds">
-            <span v-for="item in time.seconds" track-by="$index" class="num">{{item}}</span>
-        </div>
-        <div class="milliseconds">
-            <span v-for="item in time.milliseconds" track-by="$index" class="num">{{item}}</span>
-        </div>
-    </div>
 
-    <div class="state-end text-muted text-center" v-if="state === 'end'">
-        活动{{stateMap[state]}}
+        <div class="state-end text-muted text-center" v-if="state === 'end'">
+            活动{{stateMap[state]}}
+        </div>
     </div>
 </template>
 

@@ -28,7 +28,7 @@
       line-height: px2rem(55);
       text-align: center;
       position: relative;
-      margin: px2rem(-55) 0 0 0;
+      margin: px2rem(-61) 0 0 0;
       padding: 0 px2rem(20);
       background: rgba(255, 255, 255, 0.7);
 
@@ -44,9 +44,10 @@
       color: #fff;
       height: px2rem(100);
       font-size: px2rem(12);
-      background: #F61B4F;
+      background-image: linear-gradient(to bottom, #F72155, #F6134B);
       display: flex;
       align-items: center;
+      overflow: hidden;
 
       .promo-price {
         font-size: px2rem(52);
@@ -66,9 +67,39 @@
       }
 
       .countdown-container {
+        width: px2rem(280);
         height: 100%;
+        color: $color-primary;
         margin-left: auto;
-        background-image: linear-gradient(0deg, orange, green);
+        padding-left: px2rem(20);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: px2rem(25);
+        background-image: linear-gradient(to bottom, #FFF58F, #FFE950);
+        position: relative;
+
+        &:before {
+          width: 0;
+          height: 0;
+          content: '';
+          border-top: px2rem(50) solid #F72155;
+          border-right: px2rem(30) solid transparent;
+          border-bottom: px2rem(52) solid #F72155;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        .countdown {
+          margin-top: px2rem(5);
+          transform: scale(0.68);
+
+          .milliseconds, .seconds:after, .state {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -222,6 +253,7 @@
 
   // 倒计时
   .countdown {
+    white-space: nowrap;
     color: $color-primary;
     display: flex;
     align-items: center;

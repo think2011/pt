@@ -29,7 +29,12 @@
                         </div>
 
                         <div class="countdown-container">
-                            111
+                            距离活动{{stateMap[state]}}:
+                            <countdown
+                                    :state.sync="state"
+                                    :start="data.start.value"
+                                    :end="data.end.value">
+                            </countdown>
                         </div>
                     </div>
                 </div>
@@ -40,12 +45,14 @@
 
 <script type="text/ecmascript-6">
     import api from '../api'
+    import countdown from '../components/countdown.vue'
     import {
             fetchGoods
     } from '../assets/tools'
 
     export default {
-        props: ['data'],
+        props     : ['data'],
+        components: {countdown},
 
         created() {
             if (_.isEmpty(this.data)) {
@@ -58,6 +65,16 @@
                             minLen: 0,
                             maxLen: 1
                         }
+                    },
+                    start: {
+                        type : 'time',
+                        title: '开始时间',
+                        value: Date.now(),
+                    },
+                    end  : {
+                        type : 'time',
+                        title: '结束时间',
+                        value: Date.now() + 1000 * 60 * 60 * 2,
                     }
                 }
                 fetchGoods(1).then((items) => {
@@ -66,10 +83,15 @@
             }
         },
 
-        components: {},
-
         data() {
-            return {}
+            return {
+                stateMap: {
+                    ready   : '开始',
+                    underway: '结束',
+                    end     : '结束'
+                },
+                state   : null
+            }
         }
     }
 </script>

@@ -1,7 +1,6 @@
 <template>
     <div class="module-container">
         <countdown
-                :state.sync="state"
                 :start="data.start.value"
                 :end="data.end.value">
         </countdown>

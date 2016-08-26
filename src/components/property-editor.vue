@@ -1,11 +1,14 @@
 <template>
     <div class="properties"
+         v-for="item in current"
+         track-by="_timestamp"
          :class="{active:current.data}">
-        <h2>{{current.alias}}</h2>
+
+        <h2>{{item.alias}}</h2>
         <div class="contents"
-             v-for="(key,value) in current.data">
+             v-for="(key,value) in item.data">
             <component
-                    index="{{$index}}"
+                    :index="$index"
                     :data.sync="value"
                     :is="value.type">
             </component>
@@ -39,7 +42,7 @@
 
         vuex: {
             getters: {
-                current: ({render}) => render.current
+                current: ({render}) => [render.current]
             }
         },
 

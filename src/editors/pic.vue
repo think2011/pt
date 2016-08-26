@@ -1,32 +1,18 @@
 <template>
-    <div class="pic-module">
-        <div v-for="item in items" track-by="$index">
-            <file-upload
-                    id="{{$index}}"
-                    :value.sync="item"
-                    action="/api/wirelesspages/upload-image">
-            </file-upload>
+    <div class="editor-container">
+        <div class="editor-pic">
+            <div v-for="item in items" track-by="$index">
+                <file-upload
+                        :value.sync="item"
+                        action="/api/wirelesspages/upload-image">
+                </file-upload>
+            </div>
         </div>
-
     </div>
+
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .text-module label {
-        margin: 10px 0;
-        padding: 0 5px;
-        display: flex;
-
-        .label {
-            width: 70px;
-            margin-right: 20px;
-            line-height: 28px;
-        }
-
-        input {
-            flex: 1;
-        }
-    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -43,16 +29,20 @@
             fileUpload
         },
 
-        computed: {
-            items: {
-                get: function () {
-                    return _.isArray(this.data.value) ? this.data.value : [this.data.value]
-                }
+        created() {
+            this.items = _.isArray(this.data.value) ? _.clone(this.data.value) : [this.data.value]
+        },
+
+        watch: {
+            items: function (newVal) {
+                this.data.value = _.isArray(this.data.value) ? newVal : newVal[0]
             }
         },
 
         data(){
-            return {}
+            return {
+                items: []
+            }
         }
     }
 </script>

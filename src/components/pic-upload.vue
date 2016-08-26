@@ -125,7 +125,9 @@
         }
 
         img {
-            width: 100%;
+            min-height: 150px;
+            max-height: 150px;
+            margin: 0 auto;
             display: block;
         }
     }
@@ -136,13 +138,15 @@
     export default{
         props  : {
             name    : {
-                type: String
+                type   : String,
+                default: () => {
+                    return `file-${Date.now()}`
+                }
             },
             value   : {
                 type : String,
                 toWay: true
             },
-            id      : String,
             action  : {
                 type    : String,
                 required: true

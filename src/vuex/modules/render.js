@@ -28,6 +28,7 @@ const mutations = {
 
         let newItem = _.chain(module).pick(['type', 'alias', 'data']).cloneDeep().merge({data}).value()
 
+        newItem._timestamp = newItem._timestamp || Date.now()
         state.items.splice(index, 0, newItem)
         state.current  = newItem
         state.dragInfo = {}

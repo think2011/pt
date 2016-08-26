@@ -1,0 +1,54 @@
+.editor-container {
+  a.img {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+  }
+
+  .goods-items {
+    display: flex;
+    flex-direction: column;
+
+    .item {
+      display: flex;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      position: relative;
+
+      &:hover {
+        .actions {
+          display: inline-block;
+        }
+      }
+
+      .img {
+        flex: 0 0 80px;
+        margin-right: 10px;
+      }
+
+      h4 {
+        margin: 0;
+      }
+
+      .actions {
+        width: auto;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        display: none;
+      }
+
+      .form {
+        flex: 1;
+      }
+    }
+
+    .item:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  .editor-text {
+    padding: 0 10px;
+  }
+}

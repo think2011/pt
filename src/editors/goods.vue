@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="panel">
+    <div class="editor-container">
+        <div class="panel editor-goods">
             <div class="actions">
                 <ui-button
                         v-show="data.value.length"
@@ -17,18 +17,14 @@
             </div>
             <div class="title">宝贝</div>
             <div class="body">
-                <div class="ph-empty" v-if="!data.value.length">
+                <div class="text-center text-muted m-t-20 m-b-20" v-if="!data.value.length">
                     未选择任何宝贝, <a @click="showSelectGoods = true" href="javascript:">请添加宝贝</a>
                 </div>
 
-                <ul
-                        v-show="!editMode"
-                        v-sortable="{onUpdate: onUpdate}"
-                        class="goods-items list">
-                    <li
-                            class="item"
-                            v-for="item in data.value">
-
+                <!-- 展示模式 -->
+                <ul v-if="!editMode" class="goods-items list">
+                    <li class="item"
+                        v-for="item in data.value">
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
                            class="img drag"
@@ -47,37 +43,30 @@
                             </div>
                         </div>
 
-                        <div class="actions">
-                            <ui-icon-button
-                                    class="btn-sm"
-                                    color="default"
-                                    type="flat"
-                                    @click="del(item)"
-                                    icon="delete">
-                            </ui-icon-button>
-                        </div>
+                        <sort-bar
+                                :items="data.value"
+                                :item="item">
+                        </sort-bar>
                     </li>
                 </ul>
 
-                <ul v-show="editMode"
-                    class="goods-items property">
-                    <li
-                            class="item"
-                            track-by="$index"
-                            v-for="item in data.value">
-
+                <!-- 编辑模式 -->
+                <ul v-if="editMode" class="goods-items list">
+                    <li class="item"
+                        v-for="item in data.value">
                         <a href="javascript:"
                            :style="{'background-image': 'url('+ item.picUrl +'_sum.jpg)'}"
-                           class="img"
+                           class="img drag"
                         ></a>
 
-                        <div class="desc">
-                            <form>
-                                <label v-for="labelItem in data.options.labels">
-                                    <span class="label">{{labelMap[labelItem]}}</span>
-                                    <input type="text" v-model="item[labelItem]">
-                                </label>
-                            </form>
+                        <div class="form">
+                            <ui-textbox v-for="labelItem in data.options.labels"
+                                        :value.sync="item[labelItem]"
+                                        :label="labelMap[labelItem]"
+                                        :placeholder="labelMap[labelItem]"
+                                        :name="labelItem"
+                                        type="text"
+                            ></ui-textbox>
                         </div>
                     </li>
                 </ul>
@@ -102,6 +91,7 @@
     import tabs from '../components/tabs.vue'
     import tab from '../components/tab.vue'
     import selectGoods from '../components/select-goods.vue'
+    import sortBar from '../components/sort-bar.vue'
 
     export default{
         props: {
@@ -113,7 +103,8 @@
         components: {
             tabs,
             tab,
-            selectGoods
+            selectGoods,
+            sortBar
         },
 
         methods: {

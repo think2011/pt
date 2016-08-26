@@ -1,9 +1,13 @@
 <template>
-    <div class="text-module">
-        <label>
-            <span class="label">{{data.title}}</span>
-            <input type="text" v-model="data.value">
-        </label>
+    <div class="editor-container">
+        <div class="editor-text">
+            <ui-textbox :value.sync="data.value"
+                        :label="data.title"
+                        :placeholder="data.title"
+                        :name="data.title"
+                        type="text"
+            ></ui-textbox>
+        </div>
     </div>
 </template>
 

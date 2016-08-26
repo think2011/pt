@@ -35,12 +35,18 @@
                         </div>
 
                         <div class="countdown-container">
+                            <span v-show="state !== 'end'">
                             距离活动{{stateMap[state]}}:
                             <countdown
                                     :state.sync="state"
-                                    :start="data.start.value"
-                                    :end="data.end.value">
+                                    :start="data.time.value.start"
+                                    :end="data.time.value.end">
                             </countdown>
+                            </span>
+                            <span class="active-end color-default" v-show="state === 'end'">
+                                活动已结束
+                            </span>
+
                         </div>
                     </div>
                 </div>
@@ -81,15 +87,13 @@
                             maxLen: 1
                         }
                     },
-                    start: {
+                    time : {
                         type : 'time',
-                        title: '开始时间',
-                        value: Date.now(),
-                    },
-                    end  : {
-                        type : 'time',
-                        title: '结束时间',
-                        value: Date.now() + 1000 * 60 * 60 * 2,
+                        title: '倒计时',
+                        value: {
+                            start: Date.now(),
+                            end  : Date.now() + 1000 * 60 * 60 * 2
+                        }
                     }
                 }
                 fetchGoods(1).then((items) => {

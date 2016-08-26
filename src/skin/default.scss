@@ -101,10 +101,18 @@
           left: 0;
         }
 
+        .active-end {
+          font-size: px2rem(35);
+        }
+
         .countdown {
           margin-top: px2rem(5);
           transform: scale(.75);
           margin-left: px2rem(-33);
+
+          &.ready {
+            color: $color-muted;
+          }
 
           .milliseconds, .seconds:after, .state {
             display: none;
@@ -121,6 +129,7 @@
       justify-content: space-between;
       border-bottom: 1px solid #eee;
       padding: 0 px2rem(20);
+      margin-bottom: px2rem(20);
 
       .img {
         width: px2rem(205);
@@ -280,6 +289,14 @@
     white-space: nowrap;
     color: $color-primary;
     text-align: center;
+
+    &.end, &.ready {
+      color: $color-muted;
+
+      .num {
+        background: $color-muted;
+      }
+    }
 
     .state {
       font-size: px2rem(28);

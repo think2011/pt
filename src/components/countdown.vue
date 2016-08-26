@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div v-if="time.days && state !== 'end'" class="countdown" :class="[state]">
-            <span class="state">距离{{stateMap[state]}}: </span>
+        <div v-if="time.days" class="countdown" :class="[state]">
+            <span class="state">
+                <span v-if="state !== 'end'">距离{{stateMap[state]}}: </span>
+                <span v-if="state === 'end'">活动已{{stateMap[state]}}:</span>
+            </span>
 
             <div class="days">
                 <span v-for="item in time.days" track-by="$index" class="num">{{item}}</span>
@@ -20,16 +23,13 @@
             </div>
         </div>
 
-        <div class="state-end text-muted text-center" v-if="state === 'end'">
-            活动{{stateMap[state]}}
-        </div>
     </div>
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
 </style>
 
-<script type="text/ecmascript-6">
+<script>
     import moment from 'moment'
 
     export default {
@@ -44,55 +44,66 @@
         },
 
         created() {
-            this._start = moment(this.start).valueOf()
-            this._end   = moment(this.end).valueOf()
-            let keys    = [
-                'milliseconds',
-                'seconds',
-                'minutes',
-                'hours',
-                'days',
-                'weeks',
-                'months',
-                'years'
-            ]
-
-            this.interval = setInterval(() => {
-                let now   = Date.now()
-                let state = this.state = this.getState()
-                let countdownTime = null
-
-                switch (state) {
-                    case 'ready':
-                        countdownTime = this._start - now
-                        break;
-
-                    case 'underway':
-                        countdownTime = this._end - now
-                        break;
-
-                    default:
-                        //
-                }
-
-                let duration = moment.duration(countdownTime)
-
-                _.each(keys, (key) => {
-                    let value = `${duration[key]()}`.substr(0, 2)
-                    value     = +value < 10 ? `0${value}` : `${value}`
-
-                    this.$set(`time.${key}`, value.split(''))
-                })
-
-                if (state === 'end') this.stop()
-            }, 10)
+            this.update()
         },
 
         destroyed() {
             this.stop()
         },
 
+        watch: {
+            'start+end': function () {
+                this.update()
+            }
+        },
+
         methods: {
+            update() {
+                this._start = moment(+this.start).valueOf()
+                this._end   = moment(+this.end).valueOf()
+                let keys    = [
+                    'milliseconds',
+                    'seconds',
+                    'minutes',
+                    'hours',
+                    'days',
+                    'weeks',
+                    'months',
+                    'years'
+                ]
+
+                this.stop()
+                this.interval = setInterval(() => {
+                    let now   = Date.now()
+                    let state = this.state = this.getState()
+                    let countdownTime = null
+
+                    switch (state) {
+                        case 'ready':
+                            countdownTime = this._start - now
+                            break;
+
+                        case 'underway':
+                            countdownTime = this._end - now
+                            break;
+
+                        default:
+                            //
+                    }
+
+                    let duration = moment.duration(countdownTime)
+
+                    _.each(keys, (key) => {
+                        let value = `${duration[key]()}`.substr(0, 2)
+                        value     = +value < 10 ? `0${value}` : `${value}`
+
+                        this.$set(`time.${key}`, value.split(''))
+                    })
+
+                    if (state === 'end') this.stop()
+                }, 10)
+            },
+
             getState() {
                 let now    = Date.now()
                 let start  = this._start

@@ -1,3 +1,6 @@
+@import "base";
+@import "editor";
+
 * {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   box-sizing: border-box;
@@ -33,6 +36,7 @@ body {
 
 a {
   color: #2196F3;
+  text-decoration: none;
 }
 
 .text-center {
@@ -43,6 +47,10 @@ ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.ui-textbox-label-text {
+  color: #777 !important;
 }
 
 .ui-icon-button {
@@ -124,4 +132,8 @@ input {
 
 .loading-bar {
   z-index: 100000;
+}
+
+.datepicker-overlay {
+  z-index: 9999 !important;
 }

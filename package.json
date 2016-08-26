@@ -22,6 +22,7 @@
     "moment": "^2.14.1",
     "normalize.css": "^4.2.0",
     "vue": "^1.0.21",
+    "vue-datepicker": "^1.2.2",
     "vue-dnd": "^0.1.1",
     "vue-loading-bar": "^1.0.0",
     "vue-m-carousel": "^1.0.6",

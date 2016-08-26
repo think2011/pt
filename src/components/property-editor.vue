@@ -13,10 +13,22 @@
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-    h2 {
-        margin: 12px 15px;
+<style lang="scss" rel="stylesheet/scss">
+    .properties {
+        h2 {
+            margin: 12px 15px;
+        }
+
+        .contents {
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+
+            &:not(:last-child) {
+                border-bottom: 2px dashed #eee;
+            }
+        }
     }
+
 </style>
 
 <script type="text/ecmascript-6">

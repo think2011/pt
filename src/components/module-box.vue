@@ -5,8 +5,9 @@
             <ul class="items">
                 <li @mousedown="drag(item)"
                     aria-label="按住拖拽"
+                    class="item hint--top"
                     v-for="item in moduleItem.items"
-                    class="item hint--top">
+                   >
                     <img draggable="false" :src="item.picUrl" alt="">
                     {{item.alias}}
                 </li>

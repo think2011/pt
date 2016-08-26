@@ -161,7 +161,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('goods-hot')
+                    this.addRenderItem('countdown')
             }
 
 

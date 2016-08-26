@@ -35,6 +35,124 @@
     </ui-snackbar-container>
 </template>
 
+<script type="text/ecmascript-6">
+    import api from './api'
+    import store from './vuex/store'
+    import render from './components/render.vue'
+    import moduleBox from './components/module-box.vue'
+    import propertyEditor from './components/property-editor.vue'
+    import loadingBar from 'vue-loading-bar'
+    import 'vue-loading-bar/vue-loading-bar.css'
+    import {
+            addRenderItem,
+    } from './vuex/actions'
+
+
+    export default {
+        store,
+
+        components: {
+            propertyEditor,
+            moduleBox,
+            render,
+            loadingBar
+        },
+
+        ready (){
+            api.goods.list().then(() => this.loaded = true)
+
+            switch (window.QUERYSTRING.type) {
+                case 'create':
+                    api.base.tplById(window.QUERYSTRING.id).then((data) => {
+                        let _data = JSON.parse(data)
+
+                        this.renderData.title = _data.title
+                        this.renderData.items = _data.items
+                    })
+                    break;
+
+                case 'edit':
+                    this.modeName = '更新'
+                    api.base.editById(window.QUERYSTRING.id).then((data) => {
+                        let _data = JSON.parse(data)
+
+                        this.renderData.title = _data.title
+                        this.renderData.items = _data.items
+                    })
+                    break;
+
+                default:
+                    this.addRenderItem('poster-many')
+            }
+
+
+            this.$watch('toast', (value) => {
+                this.$broadcast('ui-snackbar::create', _.clone(value))
+            })
+
+
+            let interVal = null
+            this.$watch('ajaxLoading', (value) => {
+                if (!value || interVal) {
+                    clearInterval(interVal)
+                    return this.loadingProgress = 100
+                }
+                this.loadingProgress = 10
+
+                interVal = setInterval(() => {
+                    if (this.loadingProgress > 95) {
+                        this.loadingProgress = 100
+                        clearInterval(interVal)
+                        return
+                    }
+                    this.loadingProgress += (Math.floor(Math.random() * (20 - 1)) + 1)
+                }, 1000)
+            })
+        },
+
+        vuex: {
+            getters: {
+                renderData : ({render}) => render,
+                toast      : ({toast}) => toast.item,
+                ajaxLoading: ({loadingBar}) => loadingBar.loading
+            },
+            actions: {
+                addRenderItem
+            }
+        },
+
+        methods: {
+            save() {
+                let {items, title} = this.renderData
+                let data = JSON.stringify({
+                    items,
+                    title
+                })
+
+                this.postMessage({type: 'save', data})
+                console.log(data)
+            },
+
+            close() {
+                this.postMessage({type: 'close'})
+            },
+
+            postMessage(data) {
+                window.parent.postMessage(data, '*')
+            }
+        },
+
+        data: () => {
+            return {
+                modeName       : '保存',
+                loaded         : false,
+                loadingProgress: 0
+            }
+        }
+    }
+</script>
+
+
 <style lang="scss" rel="stylesheet/scss">
     html, body {
         margin: 0;
@@ -113,121 +231,3 @@
         }
     }
 </style>
-
-<script type="text/ecmascript-6">
-    import api from './api'
-    import store from './vuex/store'
-    import render from './components/render.vue'
-    import moduleBox from './components/module-box.vue'
-    import propertyEditor from './components/property-editor.vue'
-    import loadingBar from 'vue-loading-bar'
-    import 'vue-loading-bar/vue-loading-bar.css'
-    import {
-            addRenderItem,
-    } from './vuex/actions'
-
-
-    export default {
-        store,
-
-        components: {
-            propertyEditor,
-            moduleBox,
-            render,
-            loadingBar
-        },
-
-        ready (){
-            api.goods.list().then(() => this.loaded = true)
-
-            switch (window.QUERYSTRING.type) {
-                case 'create':
-                    api.base.tplById(window.QUERYSTRING.id).then((data) => {
-                        let _data = JSON.parse(data)
-
-                        this.renderData.title = _data.title
-                        this.renderData.items = _data.items
-                    })
-                    break;
-
-                case 'edit':
-                    this.modeName = '更新'
-                    api.base.editById(window.QUERYSTRING.id).then((data) => {
-                        let _data = JSON.parse(data)
-
-                        this.renderData.title = _data.title
-                        this.renderData.items = _data.items
-                    })
-                    break;
-
-                default:
-                    this.addRenderItem('poster-single')
-            }
-
-
-            this.$watch('toast', (value) => {
-                this.$broadcast('ui-snackbar::create', _.clone(value))
-            })
-
-
-            let interVal = null
-            this.$watch('ajaxLoading', (value) => {
-                if (!value || interVal) {
-                    clearInterval(interVal)
-                    return this.loadingProgress = 100
-                }
-                this.loadingProgress = 10
-
-                interVal = setInterval(() => {
-                    if (this.loadingProgress > 95) {
-                        this.loadingProgress = 100
-                        clearInterval(interVal)
-                        return
-                    }
-                    this.loadingProgress += (Math.floor(Math.random() * (20 - 1)) + 1)
-                }, 1000)
-            })
-        },
-
-        vuex: {
-            getters: {
-                renderData : ({render}) => render,
-                toast      : ({toast}) => toast.item,
-                ajaxLoading: ({loadingBar}) => loadingBar.loading
-            },
-            actions: {
-                addRenderItem
-            }
-        },
-
-        methods: {
-            save() {
-                let {items, title} = this.renderData
-                let data = JSON.stringify({
-                    items,
-                    title
-                })
-
-                this.postMessage({type: 'save', data})
-                console.log(data)
-            },
-
-            close() {
-                this.postMessage({type: 'close'})
-            },
-
-            postMessage(data) {
-                window.parent.postMessage(data, '*')
-            }
-        },
-
-        data: () => {
-            return {
-                modeName       : '保存',
-                loaded         : false,
-                loadingProgress: 0
-            }
-        }
-    }
-</script>
-

@@ -18,7 +18,7 @@
   }
 
   .color-muted {
-    color: $color-muted!important;
+    color: $color-muted !important;
   }
 
   .text-center {
@@ -33,6 +33,14 @@
 
     &.dashed {
       border: 1px dashed #ddd;
+    }
+  }
+
+  .carousel-item {
+    width: px2rem(750) !important;
+
+    img {
+      width: 100%;
     }
   }
 

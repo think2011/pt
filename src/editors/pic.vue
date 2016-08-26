@@ -1,10 +1,13 @@
 <template>
     <div class="pic-module">
-        <file-upload
-                :value.sync="data.value"
-                name="anotherFile"
-                action="/api/wirelesspages/upload-image">
-        </file-upload>
+        <div v-for="item in items" track-by="$index">
+            <file-upload
+                    id="{{$index}}"
+                    :value.sync="item"
+                    action="/api/wirelesspages/upload-image">
+            </file-upload>
+        </div>
+
     </div>
 </template>
 
@@ -38,6 +41,14 @@
 
         components: {
             fileUpload
+        },
+
+        computed: {
+            items: {
+                get: function () {
+                    return _.isArray(this.data.value) ? this.data.value : [this.data.value]
+                }
+            }
         },
 
         data(){

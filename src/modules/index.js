@@ -33,9 +33,9 @@ export const modules = [
         items: [
             {
                 alias    : '单张海报',
-                type     : 'poster-singe',
+                type     : 'poster-single',
                 picUrl   : require('../assets/img/单张海报.png'),
-                component: (resolve) => require(['./poster-singe.vue'], resolve)
+                component: (resolve) => require(['./poster-single.vue'], resolve)
             },
             {
                 alias    : '轮播海报',

@@ -29,6 +29,9 @@
                         title    : '海报',
                         isDefault: true,
                         value    : posterUrl,
+                        options  : {
+                            max: 1
+                        }
                     }
                 }
             }

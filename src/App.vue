@@ -161,7 +161,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('countdown')
+                    this.addRenderItem('poster-single')
             }
 
 

@@ -41,6 +41,9 @@
                         title    : '海报',
                         isDefault: true,
                         value    : [posterUrl, posterUrl],
+                        options  : {
+                            max: 6
+                        }
                     }
                 }
             }

@@ -1,17 +1,11 @@
 <template>
     <div class="editor-container">
         <div class="editor-pic">
-            <div v-for="item in data.options.max" track-by="$index">
-                {{item}}
-                <file-upload
-                        :value.sync="item"
-                        action="/api/wirelesspages/upload-image">
-                </file-upload>
-            </div>
+            <ui-alert text="建议尺寸:750X300"></ui-alert>
 
-            <div v-for="item in items" track-by="$index">
+            <div v-for="item in data.options.max" track-by="$index">
                 <file-upload
-                        :value.sync="item"
+                        :value.sync="items[$index]"
                         action="/api/wirelesspages/upload-image">
                 </file-upload>
             </div>
@@ -27,35 +21,26 @@
     import fileUpload from '../components/pic-upload.vue'
 
     export default{
-        props: {
+        props     : {
             data: {
                 type: Object
             }
         },
-
         components: {
             fileUpload
         },
-
         created() {
             let valueItems = _.isArray(this.data.value) ? _.clone(this.data.value) : [this.data.value]
 
             for (let i = 0; i < this.data.options.max; i++) {
                 this.items.push(valueItems[i])
             }
-
-            // TODO ZH 16/8/26
-            console.log(this.items)
-
-//            this.items = _.isArray(this.data.value) ? _.clone(this.data.value) : [this.data.value]
         },
-
-        watch: {
+        watch     : {
             items: function (newVal) {
-//                this.data.value = _.isArray(this.data.value) ? _.filter(newVal) : newVal[0]
+                this.data.value = _.isArray(this.data.value) ? _.filter(newVal) : newVal[0]
             }
         },
-
         data(){
             return {
                 items: []

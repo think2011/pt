@@ -18,7 +18,7 @@
 </style>
 
 <script type="text/ecmascript-6">
-    import fileUpload from '../components/pic-upload.vue'
+    import fileUpload from '../components/file-upload.vue'
 
     export default{
         props     : {
@@ -30,15 +30,13 @@
             fileUpload
         },
         created() {
-            let valueItems = _.isArray(this.data.value) ? _.clone(this.data.value) : [this.data.value]
-
             for (let i = 0; i < this.data.options.max; i++) {
-                this.items.push(valueItems[i])
+                this.items.push(this.data.value[i])
             }
         },
         watch     : {
             items: function (newVal) {
-                this.data.value = _.isArray(this.data.value) ? _.filter(newVal) : newVal[0]
+                this.data.value = _.filter(newVal)
             }
         },
         data(){

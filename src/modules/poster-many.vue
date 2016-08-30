@@ -38,8 +38,7 @@
                 this.data = {
                     pic: {
                         type     : 'pic',
-                        title    : '海报',
-                        isDefault: true,
+                        title    : '轮播海报',
                         value    : [posterUrl, posterUrl],
                         options  : {
                             max: 6

@@ -1,23 +1,35 @@
 <template>
-    <div class="properties"
-         v-for="item in current"
-         track-by="_timestamp"
-         :class="{active:current.data}">
+    <div class="properties">
+        <div v-show="!currentModule.type"
+             class="ph-text text-center">
+            未选中任何模块
+        </div>
 
-        <h2>{{item.alias}}</h2>
-        <div class="contents"
-             v-for="(key,value) in item.data">
-            <component
-                    :index="$index"
-                    :data.sync="value"
-                    :is="value.type">
-            </component>
+        <div v-for="item in items"
+             track-by="_timestamp"
+             v-show="item === currentModule">
+            <h2>{{item.alias}}</h2>
+
+            <div class="contents"
+                 v-for="(key,value) in item.data">
+                <component
+                        :index="$index"
+                        :data.sync="value"
+                        :is="value.type">
+                </component>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
     .properties {
+        .ph-text {
+            font-size: 20px;
+            margin-top: 30px;
+            color: #ddd;
+        }
+
         h2 {
             margin: 12px 15px;
         }
@@ -31,7 +43,6 @@
             }
         }
     }
-
 </style>
 
 <script type="text/ecmascript-6">
@@ -42,7 +53,8 @@
 
         vuex: {
             getters: {
-                current: ({render}) => [render.current]
+                items        : ({render}) => render.items,
+                currentModule: ({render}) => render.current
             }
         },
 

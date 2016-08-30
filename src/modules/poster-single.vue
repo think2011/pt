@@ -1,12 +1,12 @@
 <template>
     <div class="module-container">
         <div class="poster-single">
-            <div class="ph-empty dashed" v-if="!data.pic.value">
+            <div class="ph-empty dashed" v-if="!data.pic.value.length">
                 单张海报
             </div>
 
             <div v-if="data.pic.value">
-                <img :src="data.pic.value" alt="">
+                <img :src="data.pic.value[0]" alt="">
             </div>
         </div>
     </div>
@@ -25,11 +25,10 @@
             if (_.isEmpty(this.data)) {
                 this.data = {
                     pic: {
-                        type     : 'pic',
-                        title    : '海报',
-                        isDefault: true,
-                        value    : posterUrl,
-                        options  : {
+                        type   : 'pic',
+                        title  : '海报',
+                        value  : [posterUrl],
+                        options: {
                             max: 1
                         }
                     }

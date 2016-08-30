@@ -1,5 +1,5 @@
 <template>
-    <ul class="pic-upload">
+    <ul class="file-upload">
         <li :class="{empty:!value, 'hover-modal':value}">
             <div v-if="state === 'uploading'">
                 <div class="actions">
@@ -38,7 +38,7 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .pic-upload {
+    .file-upload {
         li {
             width: 400px;
             border: 1px solid #ddd;
@@ -165,6 +165,7 @@
         },
         methods: {
             fileInputClick : function () {
+
                 // click actually triggers after the file dialog opens
                 this.$dispatch('onFileClick', this.myFiles);
             },

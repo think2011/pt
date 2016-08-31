@@ -7,15 +7,206 @@
     <script>
         window.DATA = {
             "items": [
-//                {type: "goods-three"},
-//                {type: "goods-singe"},
-                {type: "goods-hot"},
-//                {type: "poster-many"},
-                {type: "countdown"}
+                {
+                    "type"      : "poster-single",
+                    "alias"     : "单张海报",
+                    "data"      : {
+                        "pic": {
+                            "type"   : "pic",
+                            "title"  : "海报",
+                            "value"  : [
+                                "http://img.alicdn.com/imgextra/i3/2406822118/TB2cWc3Xai5V1BjSszcXXaDLXXa_!!2406822118.jpg"
+                            ],
+                            "options": {
+                                "max": 1
+                            }
+                        }
+                    },
+                    "_timestamp": 1472608342470
+                },
+                {
+                    "type"      : "countdown",
+                    "alias"     : "倒计时",
+                    "data"      : {
+                        "time": {
+                            "type" : "time",
+                            "title": "倒计时",
+                            "value": {}
+                        }
+                    },
+                    "_timestamp": 1472608344241
+                },
+                {
+                    "type"      : "poster-single",
+                    "alias"     : "单张海报",
+                    "data"      : {
+                        "pic": {
+                            "type"   : "pic",
+                            "title"  : "海报",
+                            "value"  : [
+                                "http://img.alicdn.com/imgextra/i4/2406822118/TB2nIE7Xai5V1BjSspmXXXlwpXa_!!2406822118.jpg"
+                            ],
+                            "options": {
+                                "max": 1
+                            }
+                        }
+                    },
+                    "_timestamp": 1472608346018
+                },
+                {
+                    "type"      : "goods-two",
+                    "alias"     : "双列宝贝",
+                    "data"      : {
+                        "goods"   : {
+                            "type"   : "goods",
+                            "title"  : "选择宝贝",
+                            "value"  : [],
+                            "options": {
+                                "labels": [
+                                    "title",
+                                    "soldQuantity"
+                                ],
+                                "minLen": 0,
+                                "maxLen": 6
+                            }
+                        },
+                        "btnTitle": {
+                            "type" : "text",
+                            "title": "购买按钮",
+                            "value": "购买"
+                        }
+                    },
+                    "_timestamp": 1472608351656
+                },
+                {
+                    "type"      : "poster-single",
+                    "alias"     : "单张海报",
+                    "data"      : {
+                        "pic": {
+                            "type"   : "pic",
+                            "title"  : "海报",
+                            "value"  : [
+                                "http://img.alicdn.com/imgextra/i1/2406822118/TB2od.5Xae5V1Bjy1zjXXa08VXa_!!2406822118.jpg"
+                            ],
+                            "options": {
+                                "max": 1
+                            }
+                        }
+                    },
+                    "_timestamp": 1472608354249
+                },
+                {
+                    "type"      : "goods-hot",
+                    "alias"     : "热卖单品",
+                    "data"      : {
+                        "goods": {
+                            "type"   : "goods",
+                            "title"  : "选择宝贝",
+                            "value"  : [],
+                            "options": {
+                                "labels": [
+                                    "title",
+                                    "soldQuantity"
+                                ],
+                                "minLen": 0,
+                                "maxLen": 1
+                            }
+                        },
+                        "time" : {
+                            "type" : "time",
+                            "title": "倒计时",
+                            "value": {}
+                        }
+                    },
+                    "_timestamp": 1472608357344
+                },
+                {
+                    "type"      : "poster-single",
+                    "alias"     : "单张海报",
+                    "data"      : {
+                        "pic": {
+                            "type"   : "pic",
+                            "title"  : "海报",
+                            "value"  : [
+                                "http://img.alicdn.com/imgextra/i1/2406822118/TB2dUI5Xai5V1BjSspaXXbrApXa_!!2406822118.jpg"
+                            ],
+                            "options": {
+                                "max": 1
+                            }
+                        }
+                    },
+                    "_timestamp": 1472608432631
+                },
+                {
+                    "type"      : "goods-three",
+                    "alias"     : "三列宝贝",
+                    "data"      : {
+                        "goods"   : {
+                            "type"   : "goods",
+                            "title"  : "选择宝贝",
+                            "value"  : [],
+                            "options": {
+                                "labels": [
+                                    "title"
+                                ],
+                                "minLen": 0,
+                                "maxLen": 6
+                            }
+                        },
+                        "btnTitle": {
+                            "type" : "text",
+                            "title": "购买按钮",
+                            "value": "购买"
+                        }
+                    },
+                    "_timestamp": 1472608428719
+                },
+                {
+                    "type"      : "poster-single",
+                    "alias"     : "单张海报",
+                    "data"      : {
+                        "pic": {
+                            "type"   : "pic",
+                            "title"  : "海报",
+                            "value"  : [
+                                "http://img.alicdn.com/imgextra/i4/2406822118/TB2pG.5Xai5V1Bjy1zdXXaRkVXa_!!2406822118.jpg"
+                            ],
+                            "options": {
+                                "max": 1
+                            }
+                        }
+                    },
+                    "_timestamp": 1472608363570
+                },
+                {
+                    "type"      : "goods-singe",
+                    "alias"     : "单列宝贝",
+                    "data"      : {
+                        "goods"   : {
+                            "type"   : "goods",
+                            "title"  : "选择宝贝",
+                            "value"  : [],
+                            "options": {
+                                "labels": [
+                                    "title",
+                                    "subTitle",
+                                    "soldQuantity"
+                                ],
+                                "minLen": 0,
+                                "maxLen": 5
+                            }
+                        },
+                        "btnTitle": {
+                            "type" : "text",
+                            "title": "购买按钮",
+                            "value": "立即购买"
+                        }
+                    },
+                    "_timestamp": 1472608368832
+                }
             ],
-            "title": "页面标题"
-        }
-    </script>
+            "title": "网页标题"
+        }    </script>
 </head>
 <body>
 <render></render>

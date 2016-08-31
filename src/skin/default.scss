@@ -1,9 +1,9 @@
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
-/*  TIPS: 最小字体为22,低于在机型显示不一致 */
-@import "hotcss";
+/*  TIPS: 最小字体低于22在机型显示会不一致 */
 @import "variable";
+@import "hotcss";
 @import "functions";
 @import "base";
 @import "btn";
@@ -265,6 +265,7 @@
       }
     }
   }
+
   // 单张海报
   .poster-single {
     text-align: center;
@@ -339,5 +340,4 @@
       }
     }
   }
-
 }

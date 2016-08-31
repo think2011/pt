@@ -9,6 +9,7 @@
     </script>
 </head>
 <body>
+<style>${STYLE}</style>
 <render></render>
 <!-- built files will be auto injected -->
 </body>

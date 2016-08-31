@@ -3,7 +3,7 @@ module.exports = function (http) {
         tplById(id) {
             return http
                 .get(`/api/wirelesspage/tpls/${id}`)
-                .then((res) => _.get(res.json(), 'data.tpl.data'))
+                .then((res) => _.get(res.json(), 'data.tpl'))
         },
 
         editById(id) {

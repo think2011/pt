@@ -27,10 +27,7 @@
                     pic: {
                         type   : 'pic',
                         title  : '海报',
-                        value  : [posterUrl],
-                        options: {
-                            max: 1
-                        }
+                        value  : [posterUrl]
                     }
                 }
             }

@@ -63,11 +63,12 @@
 
             switch (window.QUERYSTRING.type) {
                 case 'create':
-                    api.base.tplById(window.QUERYSTRING.id).then((data) => {
-                        let _data = JSON.parse(data)
+                    api.base.tplById(window.QUERYSTRING.id).then((res) => {
+                        let _data = JSON.parse(res.data)
 
                         this.renderData.title = _data.title
                         this.renderData.items = _data.items
+                        this.createStyle(res.style)
                     })
                     break;
 
@@ -123,7 +124,19 @@
 
         methods: {
             save() {
-                let {items, title} = this.renderData
+                let {items, title} = _.clone(this.renderData)
+
+                // 删除多余数据
+                _.each(items, (value) => {
+                    delete value._timestamp
+
+                    for (var p in value.data) {
+                        if (!value.data.hasOwnProperty(p)) continue;
+
+                        delete value.data[p].options
+                    }
+                })
+
                 let data = JSON.stringify({
                     items,
                     title
@@ -139,6 +152,12 @@
 
             postMessage(data) {
                 window.parent.postMessage(data, '*')
+            },
+            createStyle(str, target = 'head') {
+                let style = document.createElement('style')
+
+                style.innerHTML = str
+                document.querySelector(target).appendChild(style)
             }
         },
 

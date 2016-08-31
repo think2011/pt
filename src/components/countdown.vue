@@ -35,7 +35,7 @@
     export default {
         props: {
             start: {
-                default: new Date()
+                default: () => new Date()
             },
             end  : {
                 required: true

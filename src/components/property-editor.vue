@@ -6,7 +6,7 @@
         </div>
 
         <div v-for="item in items"
-             track-by="$index"
+             track-by="_timestamp"
              v-show="item === currentModule">
             <h2>{{item.alias}}</h2>
 

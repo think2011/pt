@@ -66,6 +66,28 @@ Vue.http.interceptors.push((req, next) => {
 
                 res.body = JSON.stringify(data)
             } catch (err) {
+                console.error('goods interceptors')
+            }
+        }
+    })
+})
+
+// modules interceptors
+Vue.http.interceptors.push((req, next) => {
+    next((res) => {
+        let data     = res.json()
+        let isZyData = _.isObject(data) && ('success' in data)
+
+        if (isZyData && data.data.tpl) {
+
+            try {
+                let moduleData = JSON.parse(data.data.tpl.data)
+
+                _.each(moduleData.items, (item,key) => item._timestamp = item._timestamp || Date.now() + key)
+                data.data.tpl.data = JSON.stringify(moduleData)
+                res.body = JSON.stringify(data)
+            } catch (err) {
+                console.error('modules interceptors')
             }
         }
     })

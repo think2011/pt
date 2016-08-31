@@ -11,6 +11,7 @@
             <div
                     transition="fadeIn"
                     class="animated item"
+                    track-by="_timestamp"
                     :class="{'current': currentModule === item}"
                     v-for="item in items">
 

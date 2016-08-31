@@ -5,7 +5,7 @@
                 单张海报
             </div>
 
-            <div v-if="data.pic.value">
+            <div v-if="data.pic.value[0]">
                 <img :src="data.pic.value[0]" alt="">
             </div>
         </div>

@@ -40,13 +40,16 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
     .file-upload {
         li {
-            width: 400px;
-            border: 1px solid #ddd;
-            margin: 0 auto 10px auto;
-            padding: 8px;
+            width: 375px;
+            height: 150px;
+            margin: 0 auto 15px auto;
+            padding: 0;
             cursor: pointer;
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
+            border-color: #ddd;
 
             .actions {
                 width: 100%;
@@ -124,12 +127,7 @@
             }
         }
 
-        img {
-            min-height: 150px;
-            max-height: 150px;
-            margin: 0 auto;
-            display: block;
-        }
+        img{ width: 100%; height: auto;max-width: 100%; display: block; }
     }
 
 </style>

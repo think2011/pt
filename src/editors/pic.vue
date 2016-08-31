@@ -3,7 +3,7 @@
         <div class="editor-pic">
             <ui-alert text="建议尺寸:750X300"></ui-alert>
 
-            <div v-for="item in data.options.max" track-by="$index">
+            <div v-for="item in max" track-by="$index">
                 <file-upload
                         :value.sync="items[$index]"
                         action="/api/wirelesspages/upload-image">
@@ -30,7 +30,9 @@
             fileUpload
         },
         created() {
-            for (let i = 0; i < this.data.options.max; i++) {
+            this.max = _.get(this.data, 'options.max', 1)
+
+            for (let i = 0; i < this.max; i++) {
                 this.items.push(this.data.value[i])
             }
         },
@@ -41,6 +43,7 @@
         },
         data(){
             return {
+                max  : 1,
                 items: []
             }
         }

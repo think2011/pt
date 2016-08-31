@@ -270,9 +270,8 @@
   .poster-single {
     text-align: center;
 
-    img {
-      width: 100%;
-      display: block;
+    img{
+      max-width: 100%; height: auto;
     }
   }
 

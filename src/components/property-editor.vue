@@ -6,11 +6,12 @@
         </div>
 
         <div v-for="item in items"
-             track-by="_timestamp"
+             track-by="$index"
              v-show="item === currentModule">
             <h2>{{item.alias}}</h2>
 
             <div class="contents"
+                 track-by="$index"
                  v-for="(key,value) in item.data">
                 <component
                         :index="$index"

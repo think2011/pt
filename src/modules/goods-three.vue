@@ -12,11 +12,24 @@
                    :style="{'background-image': 'url('+ item.picUrl +'_230x230.jpg)'}"
                    class="img"
                 ></a>
+
+
                 <div class="desc">
                     <div class="titles">
                         <h4>
                             {{item.title}}
                         </h4>
+                    </div>
+
+                    <div class="actions">
+                        <a :href="item.url" class="btn btn-sm btn-primary">{{data.btnTitle.value}}</a>
+
+                        <div class="promo-price">￥{{item.promoPrice}}
+                            <span class="price">￥{{item.price}} </span>
+                        </div>
+                        <div class="sold">
+                            已售出{{item.soldQuantity}}件
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +68,7 @@
                     }
                 }
 
-                fetchGoods(3).then((items) => {
+                fetchGoods(6).then((items) => {
                     this.data.goods.value = items
                 })
             }

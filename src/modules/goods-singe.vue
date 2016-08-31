@@ -26,13 +26,12 @@
                     <div class="actions">
                         <a :href="item.url" class="btn btn-primary">{{data.btnTitle.value}}</a>
 
-                        <div>
-                            <div class="promo-price">￥{{item.promoPrice}}
-                                <span class="price">￥{{item.price}} </span>
-                            </div>
-                            <div class="sold">
-                                已售出{{item.soldQuantity}}件
-                            </div>
+                        <div class="promo-price">
+                            ￥{{item.promoPrice}}
+                            <span class="price">￥{{item.price}} </span>
+                        </div>
+                        <div class="sold">
+                            已售出{{item.soldQuantity}}件
                         </div>
                     </div>
                 </div>

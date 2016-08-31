@@ -1,0 +1,42 @@
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+/* !!因为移动端,必须使用 rem 单位!! */
+/*  TIPS: 最小字体低于22在机型显示会不一致 */
+$color-primary: #7CD0FF;
+
+@import "../../src/skin/default.scss";
+
+.module-container {
+  .goods-two {
+    .item {
+
+      .img {
+      }
+
+      .titles {
+        h4 {
+          -webkit-line-clamp: 1;
+        }
+      }
+
+      .actions {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        .btn {
+          display: none;
+        }
+
+        .promo-price {
+
+          .price {
+            display: none;
+          }
+        }
+        .sold {
+        }
+      }
+    }
+  }
+}
+

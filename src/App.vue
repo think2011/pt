@@ -47,7 +47,6 @@
             addRenderItem,
     } from './vuex/actions'
 
-
     export default {
         store,
 
@@ -74,16 +73,17 @@
 
                 case 'edit':
                     this.modeName = '更新'
-                    api.base.editById(window.QUERYSTRING.id).then((data) => {
-                        let _data = JSON.parse(data)
+                    api.base.editById(window.QUERYSTRING.id).then((res) => {
+                        let _data = JSON.parse(res.data)
 
                         this.renderData.title = _data.title
                         this.renderData.items = _data.items
+                        this.createStyle(res.style)
                     })
                     break;
 
                 default:
-                    this.addRenderItem('poster-many')
+                    this.addRenderItem('poster-single')
             }
 
 
@@ -129,12 +129,6 @@
                 // 删除多余数据
                 _.each(items, (value) => {
                     delete value._timestamp
-
-                    for (var p in value.data) {
-                        if (!value.data.hasOwnProperty(p)) continue;
-
-                        delete value.data[p].options
-                    }
                 })
 
                 let data = JSON.stringify({

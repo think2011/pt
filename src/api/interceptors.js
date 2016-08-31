@@ -78,14 +78,13 @@ Vue.http.interceptors.push((req, next) => {
         let data     = res.json()
         let isZyData = _.isObject(data) && ('success' in data)
 
-        if (isZyData && data.data.tpl) {
-
+        if (isZyData && data.data.data) {
             try {
-                let moduleData = JSON.parse(data.data.tpl.data)
+                let moduleData = JSON.parse(data.data.data.data)
 
-                _.each(moduleData.items, (item,key) => item._timestamp = item._timestamp || Date.now() + key)
-                data.data.tpl.data = JSON.stringify(moduleData)
-                res.body = JSON.stringify(data)
+                _.each(moduleData.items, (item, key) => item._timestamp = item._timestamp || Date.now() + key)
+                data.data.data.data = JSON.stringify(moduleData)
+                res.body            = JSON.stringify(data)
             } catch (err) {
                 console.error('modules interceptors')
             }

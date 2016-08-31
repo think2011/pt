@@ -68,7 +68,7 @@
                     }
                 }
 
-                fetchGoods(6).then((items) => {
+                fetchGoods(3).then((items) => {
                     this.data.goods.value = items
                 })
             }

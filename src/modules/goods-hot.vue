@@ -36,7 +36,9 @@
 
                         <div class="countdown-container">
                             <span v-show="state !== 'end'">
-                            距离活动{{stateMap[state]}}:
+                            <span class="state">
+                                距离活动{{stateMap[state]}}:
+                            </span>
                             <countdown
                                     :state.sync="state"
                                     :start="data.time.value.start"
@@ -55,7 +57,7 @@
     </div>
 </template>
 
-<script  type="text/ecmascript-6">
+<script type="text/ecmascript-6">
     import api from '../api'
     import {Carousel, CarouselItem} from 'vue-m-carousel'
     import countdown from '../components/countdown.vue'

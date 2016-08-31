@@ -174,7 +174,7 @@
 
       .actions {
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: column wrap;
         position: relative;
 
         .btn {
@@ -195,7 +195,7 @@
 
         .sold {
           white-space: nowrap;
-          align-self: center;
+          align-self: auto;
           font-size: px2rem(22);
           color: #666;
         }

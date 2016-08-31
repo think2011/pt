@@ -7,10 +7,133 @@ $color-primary: #7CD0FF;
 @import "../../src/skin/default.scss";
 
 .module-container {
+  .btn {
+    color: #fff;
+    border-radius: 0;
+    background: $color-primary;
+  }
+
+  .goods-hot {
+    .desc {
+      position: relative;
+      margin-top: px2rem(-100);
+      background: rgba(255, 255, 255, .95);
+    }
+
+    .titles {
+      width: px2rem(420);
+      position: absolute;
+      bottom: 0;
+      z-index: 2;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    .actions {
+      position: relative;
+      display: flex;
+      z-index: 1;
+      margin-top: px2rem(0);
+
+      background-image: none;
+
+      .promo-price {
+        color: $color-primary;
+        font-size: px2rem(35);
+        margin-top: px2rem(-35);
+      }
+
+      .price {
+        display: none;
+      }
+
+      .sold {
+        display: none;
+      }
+
+      .countdown-container {
+        border-left: 1px solid #ccc;
+        background-image: none;
+        text-align: left;
+
+        &:before {
+          display: none;
+        }
+
+        .active-end {
+        }
+
+        .countdown {
+          &.ready {
+          }
+
+          .milliseconds, .seconds:after, .state {
+          }
+        }
+      }
+    }
+  }
+
+  .goods-singe {
+    .item {
+
+      &:last-child {
+      }
+
+      .img {
+        width: px2rem(270);
+        height: px2rem(270);
+        flex-basis: px2rem(270);
+        border: 1px solid #eee;
+      }
+
+      .desc {
+      }
+
+      .titles {
+        h4, h5 {
+        }
+
+        h4 {
+        }
+
+        h5 {
+        }
+      }
+
+      .actions {
+
+        .btn {
+          position: static;
+          order: 1;
+          width: px2rem(200);
+          height: px2rem(55);
+          line-height: px2rem(55);
+        }
+
+        .promo-price {
+
+          .price {
+          }
+        }
+
+        .sold {
+          margin-bottom: px2rem(15);
+        }
+      }
+    }
+  }
+
   .goods-two {
     .item {
 
       .img {
+        width: px2rem(340);
+        height: px2rem(340);
+        flex-basis: px2rem(340);
+        border: 1px solid #eee;
       }
 
       .titles {
@@ -34,6 +157,39 @@ $color-primary: #7CD0FF;
           }
         }
         .sold {
+          margin: 0;
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  .goods-three {
+    .item {
+      .titles {
+        display: none;
+      }
+
+      .img {
+        width: px2rem(230);
+        height: px2rem(230);
+        flex-basis: px2rem(230);
+        border: 1px solid #eee;
+      }
+
+      .actions {
+        flex-flow: row wrap;
+        justify-content: center;
+
+        .promo-price {
+          color: #fff;
+          background: $color-primary;
+          padding: px2rem(3) px2rem(5);
+          display: inline-block;
+
+          .price {
+            display: none;
+          }
         }
       }
     }

@@ -130,7 +130,7 @@
 
                 if (title === '网页标题') {
                     this.showToast({
-                        message : `请设置合适的网页标题`,
+                        message : `请输入合适的网页标题`,
                         duration: 1000
                     })
                     return this.focusDocumentTitle(true)

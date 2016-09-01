@@ -4,6 +4,7 @@ import _ from 'lodash'
 import 'normalize.css/normalize.css'
 import './assets/css/styles.scss'
 import './assets/css/tanstions.scss'
+import './skin/default.scss'
 
 window.QUERYSTRING = (function () {
     var params = {},

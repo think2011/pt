@@ -1,1 +1,100 @@
-{ "items": [ { "type": "poster-single", "alias": "单张海报", "data": { "pic": { "type": "pic", "title": "海报", "value": [ "http://img.alicdn.com/imgextra/i2/2406822118/TB20YfYXVHzQeBjSZFmXXbcDVXa_!!2406822118.jpg"] }} }, { "type": "countdown", "alias": "倒计时", "data": { "time": { "type": "time", "title": "倒计时", "value": { "start": 1472632544482, "end": 1472639744482} }} }, { "type": "poster-single", "alias": "单张海报", "data": { "pic": { "type": "pic", "title": "海报", "value": [ "http://img.alicdn.com/imgextra/i3/2406822118/TB2IObVX1rAQeBjSZFPXXXbmXXa_!!2406822118.jpg"] }} }, { "type": "goods-two", "alias": "双列宝贝"}, { "type": "poster-single", "alias": "单张海报", "data": { "pic": { "type": "pic", "title": "海报", "value": [ "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"] }} }, { "type": "goods-hot", "alias": "热卖单品"}, { "type": "poster-single", "alias": "单张海报", "data": { "pic": { "type": "pic", "title": "海报", "value": [ "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"] }} }, { "type": "goods-three", "alias": "三列宝贝"}, { "type": "poster-single", "alias": "单张海报", "data": { "pic": { "type": "pic", "title": "海报", "value": [ "http://img.alicdn.com/imgextra/i4/2406822118/TB2DuVNXqi5V1BjSspfXXapiXXa_!!2406822118.jpg"] }} }, { "type": "goods-singe", "alias": "单列宝贝"} ], "title": "网页标题" }
+{
+  "items": [
+    {
+      "type": "poster-single",
+      "alias": "单张海报",
+      "data": {
+        "pic": {
+          "type": "pic",
+          "title": "海报",
+          "value": [
+            "http://img.alicdn.com/imgextra/i2/2406822118/TB20YfYXVHzQeBjSZFmXXbcDVXa_!!2406822118.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "type": "countdown",
+      "alias": "倒计时",
+      "data": {
+        "time": {
+          "type": "time",
+          "title": "倒计时",
+          "value": {
+            "start": 1472632544482,
+            "end": 1472639744482
+          }
+        }
+      }
+    },
+    {
+      "type": "poster-single",
+      "alias": "单张海报",
+      "data": {
+        "pic": {
+          "type": "pic",
+          "title": "海报",
+          "value": [
+            "http://img.alicdn.com/imgextra/i3/2406822118/TB2IObVX1rAQeBjSZFPXXXbmXXa_!!2406822118.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "type": "goods-two",
+      "alias": "双列宝贝"
+    },
+    {
+      "type": "poster-single",
+      "alias": "单张海报",
+      "data": {
+        "pic": {
+          "type": "pic",
+          "title": "海报",
+          "value": [
+            "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "type": "goods-hot",
+      "alias": "热卖单品"
+    },
+    {
+      "type": "poster-single",
+      "alias": "单张海报",
+      "data": {
+        "pic": {
+          "type": "pic",
+          "title": "海报",
+          "value": [
+            "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "type": "goods-three",
+      "alias": "三列宝贝"
+    },
+    {
+      "type": "poster-single",
+      "alias": "单张海报",
+      "data": {
+        "pic": {
+          "type": "pic",
+          "title": "海报",
+          "value": [
+            "http://img.alicdn.com/imgextra/i4/2406822118/TB2DuVNXqi5V1BjSspfXXapiXXa_!!2406822118.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "type": "goods-singe",
+      "alias": "单列宝贝"
+    }
+  ],
+  "title": "网页标题"
+}

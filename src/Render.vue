@@ -16,7 +16,6 @@
             addRenderItem,
     } from './vuex/actions'
 
-
     export default {
         store,
 

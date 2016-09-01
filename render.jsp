@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="hotcss" content="initial-dpr=1">
     <title></title>
     <script>
         window.SELLER_ID = ${SELLER_ID}

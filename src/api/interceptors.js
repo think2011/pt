@@ -46,6 +46,14 @@ Vue.http.interceptors.push((request, next) => {
 });
 
 
+// sellerID interceptors
+Vue.http.interceptors.push((req, next) => {
+    req.params.sellerId = window.SELLER_ID
+
+    next()
+})
+
+
 // goods interceptors
 Vue.http.interceptors.push((req, next) => {
     next((res) => {

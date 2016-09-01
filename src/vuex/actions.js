@@ -3,12 +3,14 @@ import {
     ACTIVE_RENDER_ITEM,
     EDIT_RENDER_ITEM,
     BLUR_RENDER_ITEM,
-    TOAST
+    TOAST,
+    FOCUS_DOCUMENT_TITLE
 } from './mutation-types'
 
 export const addRenderItem    = markAction(ADD_RENDER_ITEM)
 export const editRenderItem   = markAction(EDIT_RENDER_ITEM)
 export const blurRenderItem   = markAction(BLUR_RENDER_ITEM)
+export const focusDocumentTitle   = markAction(FOCUS_DOCUMENT_TITLE)
 export const showToast        = markAction(TOAST)
 export const activeRenderItem = ({dispatch}, event) => {
     dispatch(ACTIVE_RENDER_ITEM, getDragInfo(event))

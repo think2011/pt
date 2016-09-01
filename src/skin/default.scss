@@ -155,7 +155,7 @@
         }
 
         h4 {
-          margin-bottom: px2rem(5);
+          margin-bottom: px2rem(20);
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
@@ -167,7 +167,6 @@
 
         h5 {
           height: px2rem(28);
-          margin-top: px2rem(20);
           color: $color-muted;
         }
       }
@@ -228,6 +227,8 @@
       }
 
       .titles {
+        height: px2rem(40);
+
         h4 {
           font-size: px2rem(22);
         }
@@ -282,6 +283,7 @@
         margin: 0;
 
         h4 {
+          margin: 0;
           font-size: px2rem(24);
         }
       }

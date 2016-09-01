@@ -4,10 +4,12 @@
              :class="{active: activeModules}"
              class="body">
 
-            <input autofocus
-                   class="page-title"
-                   type="text"
-                   v-model="render.title">
+            <input
+                    class="page-title animated"
+                    :class="{flash:base.activeDocumentTitle}"
+                    type="text"
+                    v-el:document-title
+                    v-model="render.title">
             <div
                     transition="fadeIn"
                     class="animated item"
@@ -119,6 +121,7 @@
     import Vue from 'vue'
     import {components, modules} from '../modules'
     import {
+            showToast,
             editRenderItem,
             blurRenderItem
     } from '../vuex/actions'
@@ -145,6 +148,7 @@
 
         vuex: {
             getters: {
+                base         : ({base}) => base,
                 render       : ({render}) => render,
                 items        : ({render}) => render.items,
                 activeModules: ({render}) => render.dragInfo.dragTag === 'modules',
@@ -154,7 +158,17 @@
 
             actions: {
                 editRenderItem,
-                blurRenderItem
+                blurRenderItem,
+                showToast
+            }
+        },
+
+        watch: {
+            'base.activeDocumentTitle'(newVal) {
+                this.$els.documentTitle.focus()
+                this.$els.documentTitle.addEventListener('webkitAnimationEnd', () => {
+                    this.base.activeDocumentTitle = false
+                })
             }
         },
 

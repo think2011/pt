@@ -17,9 +17,6 @@
     } from './vuex/actions'
 
 
-
-    import '../themes/2016-08-31-2/style.scss'
-    window.DATA = require('../themes/2016-08-31-2/data.json')
     export default {
         store,
 

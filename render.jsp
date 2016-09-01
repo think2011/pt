@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title></title>
     <script>
+        window.SELLER_ID = ${SELLER_ID}
         window.DATA =${DATA}
     </script>
 </head>

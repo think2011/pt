@@ -44,7 +44,9 @@
     import loadingBar from 'vue-loading-bar'
     import 'vue-loading-bar/vue-loading-bar.css'
     import {
+            showToast,
             addRenderItem,
+            focusDocumentTitle,
     } from './vuex/actions'
 
     export default {
@@ -86,11 +88,9 @@
                     this.addRenderItem('poster-single')
             }
 
-
             this.$watch('toast', (value) => {
                 this.$broadcast('ui-snackbar::create', _.clone(value))
             })
-
 
             let interVal = null
             this.$watch('ajaxLoading', (value) => {
@@ -118,13 +118,23 @@
                 ajaxLoading: ({loadingBar}) => loadingBar.loading
             },
             actions: {
-                addRenderItem
+                addRenderItem,
+                showToast,
+                focusDocumentTitle
             }
         },
 
         methods: {
             save() {
                 let {items, title} = _.clone(this.renderData)
+
+                if (title === '网页标题') {
+                    this.showToast({
+                        message : `请设置合适的网页标题`,
+                        duration: 1000
+                    })
+                    return this.focusDocumentTitle(true)
+                }
 
                 // 删除多余数据
                 _.each(items, (value) => {
@@ -135,6 +145,7 @@
                     items,
                     title
                 })
+
 
                 this.postMessage({type: 'save', data})
                 console.log(data)

@@ -344,14 +344,14 @@
       font-size: px2rem(30);
       color: #fff;
       margin-right: 1px;
-      padding: px2rem(3) px2rem(8);
+      padding: 0 px2rem(8);
       border-radius: px2rem(5);
       background: $color-primary;
     }
 
     .days, .hours, .minutes, .seconds, .milliseconds {
       position: relative;
-      display: inline-block;
+      display: inline-table;
     }
 
     .days {

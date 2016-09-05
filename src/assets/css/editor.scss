@@ -24,6 +24,12 @@
         }
       }
 
+      .form {
+        .form-group {
+          padding: 0;
+        }
+      }
+
       .img {
         flex: 0 0 80px;
         margin-right: 10px;
@@ -49,9 +55,5 @@
     .item:not(:last-child) {
       border-bottom: 1px solid #eee;
     }
-  }
-
-  .editor-text {
-    padding: 0 10px;
   }
 }

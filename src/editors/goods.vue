@@ -60,13 +60,11 @@
                         ></a>
 
                         <div class="form">
-                            <ui-textbox v-for="labelItem in data.options.labels"
-                                        :value.sync="item[labelItem]"
-                                        :label="labelMap[labelItem]"
-                                        :placeholder="labelMap[labelItem]"
-                                        :name="labelItem"
-                                        type="text"
-                            ></ui-textbox>
+                            <div class="form-group"
+                                 v-for="labelItem in data.options.labels">
+                                <label>{{labelMap[labelItem]}}</label>
+                                <input type="text" v-model="item[labelItem]">
+                            </div>
                         </div>
                     </li>
                 </ul>

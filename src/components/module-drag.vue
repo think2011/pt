@@ -35,7 +35,7 @@
             animation-duration: .3s;
         }
         &.zoomOutDown {
-            animation-duration: .5s;
+            animation-duration: 0s;
         }
         &.miss-drop {
             animation-duration: 0s;

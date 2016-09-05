@@ -1,20 +1,36 @@
 <template>
     <div class="editor-container">
         <div class="editor-pic">
-            <ui-alert text="建议尺寸:750X300"></ui-alert>
+            <ui-alert>建议尺寸:750X150, 支持jpg、png、gif图片格式</ui-alert>
 
-            <div v-for="item in max" track-by="$index">
-                <file-upload
-                        :value.sync="items[$index]"
-                        action="/api/wirelesspages/upload-image">
-                </file-upload>
+            <div class="form" :class="{'col-2': data.value.length > 1}" v-for="item in data.value" track-by="$index">
+
+                <div class="form-group">
+                    <file-upload
+                            :value.sync="item.picUrl"
+                            action="/api/wirelesspages/upload-image">
+                    </file-upload>
+                </div>
+                <div class="form-group">
+                    <label>链接</label>
+                    <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                </div>
+
+                <div class="hr"></div>
             </div>
         </div>
     </div>
 
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
+    .form {
+        &.col-2 {
+            width: 50%;
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -30,22 +46,19 @@
             fileUpload
         },
         created() {
-            this.max = _.get(this.data, 'options.max', 1)
+            let diff = this.data.options.max - this.data.value.length
 
-            for (let i = 0; i < this.max; i++) {
-                this.items.push(this.data.value[i])
-            }
-        },
-        watch     : {
-            items: function (newVal) {
-                this.data.value = _.filter(newVal)
+            if (diff > 0) {
+                while (diff--) {
+                    this.data.value.push({
+                        url   : null,
+                        picUrl: null
+                    })
+                }
             }
         },
         data(){
-            return {
-                max  : 1,
-                items: []
-            }
+            return {}
         }
     }
 </script>

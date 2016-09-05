@@ -11,9 +11,12 @@
 
     .item {
       display: flex;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
       position: relative;
+
+      &:not(:last-child) {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
 
       &:hover {
         .actions {

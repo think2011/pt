@@ -1,5 +1,6 @@
 @import "base";
 @import "editor";
+@import "form";
 
 * {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -136,4 +137,10 @@ input {
 
 .datepicker-overlay {
   z-index: 9999 !important;
+}
+
+.hr {
+  height: 1px;
+  background: #eee;
+  margin-bottom: 15px;
 }

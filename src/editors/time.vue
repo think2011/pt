@@ -1,16 +1,15 @@
 <template>
     <div class="editor-container">
-        <div class="editor-time">
-            <div class="m-t-5">
-                开始时间:
+        <form class="form editor-time">
+            <div class="form-group">
+                <label>开始时间</label>
                 <date-picker :time.sync="start" :option="option"></date-picker>
             </div>
-
-            <div>
-                结束时间:
+            <div class="form-group">
+                <label>结束时间</label>
                 <date-picker :time.sync="end" :option="option"></date-picker>
             </div>
-        </div>
+        </form>
     </div>
 </template>
 

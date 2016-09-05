@@ -40,9 +40,9 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
     .file-upload {
         li {
-            width: 375px;
-            height: 150px;
-            margin: 0 auto 15px auto;
+            width: 100%;
+            min-height: 150px;
+            max-height: 300px;
             padding: 0;
             cursor: pointer;
             overflow: hidden;
@@ -127,7 +127,12 @@
             }
         }
 
-        img{ width: 100%; height: auto;max-width: 100%; display: block; }
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
     }
 
 </style>

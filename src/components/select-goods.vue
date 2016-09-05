@@ -82,7 +82,7 @@
     .select-goods {
         .ui-modal-body {
             transition: .3s;
-            min-height: 567px;
+            min-height: 500px;
 
             .list {
                 display: flex;

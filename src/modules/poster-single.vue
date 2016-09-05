@@ -1,12 +1,16 @@
 <template>
     <div class="module-container">
         <div class="poster-single">
-            <div class="ph-empty dashed" v-if="!data.pic.value.length">
+            <div class="ph-empty dashed" v-if="!data.pic.value[0].picUrl">
                 单张海报
             </div>
 
-            <div v-if="data.pic.value[0]">
-                <img :src="data.pic.value[0]" alt="">
+            <div v-if="data.pic.value[0].picUrl">
+                <a :href="data.pic.value[0].url"
+                   class="img">
+                    <img :src="data.pic.value[0].picUrl" alt="">
+                </a>
+
             </div>
         </div>
     </div>
@@ -27,7 +31,13 @@
                     pic: {
                         type   : 'pic',
                         title  : '海报',
-                        value  : [posterUrl]
+                        value  : [{
+                            url   : null,
+                            picUrl: posterUrl
+                        }],
+                        options: {
+                            max: 1
+                        }
                     }
                 }
             }

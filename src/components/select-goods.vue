@@ -56,37 +56,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-                <!--      <ui-tabs>
-                          <ui-tab header="宝贝列表"></ui-tab>
-
-                          <ui-tab :header="'已选宝贝('+ checkedItems.length +')'">
-                              <div class="ph-empty" v-if="!checkedItems.length">
-                                  未选择任何宝贝
-                              </div>
-
-                              <ul class="list">
-                                  <li :class="{checked:item.checked}"
-                                      @click="pick(item)"
-                                      v-for="item in checkedItems">
-                                      <div class="shade">
-                                          <i class="material-icons" aria-hidden="true">check_circle</i>
-                                      </div>
-                                      <div class="img">
-                                          <img :src="item.picUrl + '_120x120.jpg'" alt="">
-                                      </div>
-                                      <div class="desc">
-                                          <div :title="item.title"
-                                               class="title">
-                                              {{item.title}}
-                                          </div>
-                                          <div class="price">{{item.promoPrice}}</div>
-                                      </div>
-                                  </li>
-                              </ul>
-                          </ui-tab>
-                      </ui-tabs>-->
             </slot>
             <div slot="footer">
                 <ui-button
@@ -115,12 +84,13 @@
 
             .list-container {
                 width: 800px;
+                height: 420px;
                 flex: 0 0 800px;
                 margin-left: 10px;
             }
 
             .selected-container {
-                height: 462px;
+                height: 420px;
                 flex: 0 0 120px;
                 overflow: hidden;
                 overflow-y: auto;

@@ -1,5 +1,6 @@
 @import "base";
 @import "editor";
+@import "dialog";
 @import "form";
 
 * {
@@ -143,4 +144,26 @@ input {
   height: 1px;
   background: #eee;
   margin-bottom: 15px;
+}
+
+.has-del {
+  position: relative;
+
+  .del {
+    cursor: pointer;
+    padding: 0;
+    color: #fff;
+    background: #F44336;
+    border-radius: 50%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -10px;
+    border: 2px solid #fff;
+
+    i {
+      font-size: 20px;
+    }
+  }
 }

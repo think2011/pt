@@ -81,7 +81,7 @@
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
 </style>
 
 <script type="text/ecmascript-6">

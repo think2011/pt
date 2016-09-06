@@ -47,11 +47,11 @@
 
                         <ul>
                             <li :class="{checked:item.checked}"
+                                class="has-del"
                                 v-for="item in checkedItems">
-                                <div class="img">
-                                    <img :src="item.picUrl + '_120x120.jpg'" alt="">
-                                    <button @click="pick(item)" class="del"><i class="material-icons">clear</i></button>
-                                </div>
+                                <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                                <button @click="pick(item)" class="del"><i class="material-icons">clear</i>
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -69,151 +69,6 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
-    .select-goods {
-        .ui-modal-container {
-            width: 945px !important;
-        }
-
-        .ui-modal-body {
-            transition: .3s;
-
-            .body-contents {
-                display: flex;
-                margin-bottom: 20px;
-            }
-
-            .list-container {
-                width: 800px;
-                height: 420px;
-                flex: 0 0 800px;
-                margin-left: 10px;
-            }
-
-            .selected-container {
-                height: 420px;
-                flex: 0 0 120px;
-                overflow: hidden;
-                overflow-y: auto;
-                margin-left: 15px;
-                padding: 0 15px;
-                border-left: 1px solid #eee;
-
-                p {
-                    margin-top: 0;
-                }
-
-                li {
-                    margin-bottom: 10px;
-
-                    img {
-                        width: 80px;
-                        height: 80px;
-                        border: 1px solid #ccc;
-                    }
-
-                    .img {
-                        position: relative;
-                    }
-
-                    .del {
-                        cursor: pointer;
-                        padding: 0;
-                        color: #fff;
-                        background: #F44336;
-                        border-radius: 50%;
-                        display: flex;
-                        position: absolute;
-                        right: -3px;
-                        top: -10px;
-                        border: 2px solid #fff;
-
-                        i {
-                            font-size: 20px;
-                        }
-                    }
-                }
-            }
-
-            .list {
-                display: flex;
-                flex-flow: row wrap;
-                font-size: 13px;
-
-                li {
-                    border: 1px solid #ccc;
-
-                    $gap: (800 - (122 * 6)) / (2 * 6 - 2) /  800 * 100%;
-
-                    width: 122 / 800 * 100%;
-                    /*border: 1px solid #ccc;*/
-                    margin: 0 $gap 10px $gap;
-                    cursor: pointer;
-                    position: relative;
-
-                    &:nth-child(6n) {
-                        margin-right: 0;
-                    }
-                    &:nth-child(6n+1) {
-                        margin-left: 0;
-                    }
-
-                    &.checked {
-                        border-color: rgba(33, 150, 243, 0.4);
-
-                        .shade {
-                            display: flex;
-                            justify-content: center;
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(33, 150, 243, 0.4);
-
-                            .material-icons {
-                                position: absolute;
-                                left: 50%;
-                                top: 50%;
-                                margin: -45px 0 0 -22.5px;
-                                color: #fff;
-                                font-size: 45px;
-                                opacity: .9;
-                            }
-                        }
-                    }
-
-                    .shade {
-                        display: none;
-                    }
-                }
-
-                .img {
-                    width: 120px;
-                    height: 120px;
-                    text-align: center;
-                    margin-bottom: 5px;
-
-                    img {
-                        height: 120px;
-                    }
-                }
-
-                .desc {
-                    .title {
-                        width: 120px;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                        overflow: hidden;
-                        margin-bottom: 5px;
-                    }
-
-                    .price {
-                        font-weight: bold;
-                        margin-bottom: 5px;
-                    }
-                }
-            }
-        }
-    }
 </style>
 
 <script type="text/ecmascript-6">

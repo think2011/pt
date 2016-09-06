@@ -3,13 +3,24 @@
         <div class="editor-pic">
             <ui-alert>建议尺寸:750X150, 支持jpg、png、gif图片格式</ui-alert>
 
-            <div class="form" :class="{'col-2': data.value.length > 1}" v-for="item in data.value" track-by="$index">
+            <div class="form" :class="{'col-2': data.value.length > 1}"
+                 v-for="item in data.value"
+                 track-by="$index">
 
                 <div class="form-group">
-                    <file-upload
-                            :value.sync="item.picUrl"
-                            action="/api/wirelesspages/upload-image">
-                    </file-upload>
+                    <div v-if="item.picUrl" class="has-del">
+                        <img :src="item.picUrl" alt="">
+                        <button @click="item.picUrl = null" class="del"><i class="material-icons">clear</i>
+                        </button>
+                    </div>
+
+                    <div v-if="!item.picUrl"
+                         @click="showSelectPic(item)"
+                         class="upload-container">
+                        <a href="javascript:">
+                            {{errorMsg}} <i class="ui-icon material-icons">add_circle</i>
+                        </a>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>链接</label>
@@ -19,11 +30,16 @@
                 <div class="hr"></div>
             </div>
         </div>
-    </div>
 
+        <select-pic
+                @on:ok="selectOk"
+                :max-len="data.options.max"
+                :show.sync="isShowSelectPic">
+        </select-pic>
+    </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" rel="stylesheet/scss" scoped>
     .form {
         &.col-2 {
             width: 50%;
@@ -31,10 +47,31 @@
             vertical-align: top;
         }
     }
+
+    .upload-container {
+        width: 100%;
+        min-height: 78px;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        top: 0;
+        display: flex;
+        border: dashed #ddd;
+        background: #fbfbfb;
+        cursor: pointer;
+
+        a {
+            color: #999;
+            i {
+                font-size: 50px;
+            }
+        }
+    }
 </style>
 
 <script type="text/ecmascript-6">
     import fileUpload from '../components/file-upload.vue'
+    import selectPic from '../components/select-pic.vue'
 
     export default{
         props     : {
@@ -43,7 +80,8 @@
             }
         },
         components: {
-            fileUpload
+            fileUpload,
+            selectPic
         },
         created() {
             let diff = this.data.options.max - this.data.value.length
@@ -57,8 +95,23 @@
                 }
             }
         },
+
+        methods: {
+            showSelectPic(item) {
+                this.currentItem     = item
+                this.isShowSelectPic = true
+            },
+
+            selectOk(data) {
+
+            }
+        },
+
         data(){
-            return {}
+            return {
+                currentItem    : null,
+                isShowSelectPic: false
+            }
         }
     }
 </script>

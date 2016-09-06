@@ -85,7 +85,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('poster-single')
+                    this.addRenderItem('poster-many')
             }
 
             this.$watch('toast', (value) => {

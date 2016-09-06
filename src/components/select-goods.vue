@@ -8,8 +8,8 @@
                 :backdrop-dismissible="false"
         >
             <slot v-if="show">
-                <ui-tabs>
-                    <ui-tab header="宝贝列表">
+                <div class="body-contents">
+                    <div class="list-container">
                         <filter-bar @params-change="filterChange"></filter-bar>
                         <ul class="list">
                             <li :class="{checked:item.checked}"
@@ -38,34 +38,55 @@
                                 :loading.sync="pagingLoading"
                                 :data.sync="data">
                         </paging>
-                    </ui-tab>
+                    </div>
 
-                    <ui-tab :header="'已选宝贝('+ checkedItems.length +')'">
-                        <div class="ph-empty" v-if="!checkedItems.length">
-                            未选择任何宝贝
-                        </div>
+                    <div class="selected-container">
+                        <p class="text-center">
+                            已选 {{checkedItems.length}}/{{maxLen}}
+                        </p>
 
-                        <ul class="list">
+                        <ul>
                             <li :class="{checked:item.checked}"
-                                @click="pick(item)"
                                 v-for="item in checkedItems">
-                                <div class="shade">
-                                    <i class="material-icons" aria-hidden="true">check_circle</i>
-                                </div>
                                 <div class="img">
                                     <img :src="item.picUrl + '_120x120.jpg'" alt="">
-                                </div>
-                                <div class="desc">
-                                    <div :title="item.title"
-                                         class="title">
-                                        {{item.title}}
-                                    </div>
-                                    <div class="price">{{item.promoPrice}}</div>
+                                    <button @click="pick(item)" class="del"><i class="material-icons">clear</i></button>
                                 </div>
                             </li>
                         </ul>
-                    </ui-tab>
-                </ui-tabs>
+                    </div>
+                </div>
+
+
+                <!--      <ui-tabs>
+                          <ui-tab header="宝贝列表"></ui-tab>
+
+                          <ui-tab :header="'已选宝贝('+ checkedItems.length +')'">
+                              <div class="ph-empty" v-if="!checkedItems.length">
+                                  未选择任何宝贝
+                              </div>
+
+                              <ul class="list">
+                                  <li :class="{checked:item.checked}"
+                                      @click="pick(item)"
+                                      v-for="item in checkedItems">
+                                      <div class="shade">
+                                          <i class="material-icons" aria-hidden="true">check_circle</i>
+                                      </div>
+                                      <div class="img">
+                                          <img :src="item.picUrl + '_120x120.jpg'" alt="">
+                                      </div>
+                                      <div class="desc">
+                                          <div :title="item.title"
+                                               class="title">
+                                              {{item.title}}
+                                          </div>
+                                          <div class="price">{{item.promoPrice}}</div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </ui-tab>
+                      </ui-tabs>-->
             </slot>
             <div slot="footer">
                 <ui-button
@@ -78,11 +99,70 @@
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
     .select-goods {
+        .ui-modal-container {
+            width: 945px !important;
+        }
+
         .ui-modal-body {
             transition: .3s;
-            min-height: 500px;
+
+            .body-contents {
+                display: flex;
+                margin-bottom: 20px;
+            }
+
+            .list-container {
+                width: 800px;
+                flex: 0 0 800px;
+                margin-left: 10px;
+            }
+
+            .selected-container {
+                height: 462px;
+                flex: 0 0 120px;
+                overflow: hidden;
+                overflow-y: auto;
+                margin-left: 15px;
+                padding: 0 15px;
+                border-left: 1px solid #eee;
+
+                p {
+                    margin-top: 0;
+                }
+
+                li {
+                    margin-bottom: 10px;
+
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        border: 1px solid #ccc;
+                    }
+
+                    .img {
+                        position: relative;
+                    }
+
+                    .del {
+                        cursor: pointer;
+                        padding: 0;
+                        color: #fff;
+                        background: #F44336;
+                        border-radius: 50%;
+                        display: flex;
+                        position: absolute;
+                        right: -3px;
+                        top: -10px;
+                        border: 2px solid #fff;
+
+                        i {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
 
             .list {
                 display: flex;

@@ -2,6 +2,7 @@
     <loading-bar
             :progress.sync="loadingProgress">
     </loading-bar>
+
     <header>
         <div class="title">无线模板制作</div>
 
@@ -43,6 +44,7 @@
     import propertyEditor from './components/property-editor.vue'
     import loadingBar from 'vue-loading-bar'
     import 'vue-loading-bar/vue-loading-bar.css'
+    import popover from './components/popover.vue'
     import {
             showToast,
             addRenderItem,
@@ -56,7 +58,8 @@
             propertyEditor,
             moduleBox,
             render,
-            loadingBar
+            loadingBar,
+            popover
         },
 
         ready (){

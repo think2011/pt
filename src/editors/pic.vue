@@ -26,7 +26,20 @@
                 </div>
                 <div class="form-group">
                     <label>链接</label>
-                    <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                    <popover position="top right">
+                        <div slot="contents">
+                            弹出内容啦啦啦
+                            <br>
+                            asdjkaslk 弹出内容啦啦啦
+                            <br>
+                            asdjkaslk 弹出内容啦啦啦
+                            <br>
+                            asdjkaslk 弹出内容啦啦啦
+                            <br>
+                            asdjkaslk
+                        </div>
+                        <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                    </popover>
                 </div>
 
                 <div class="hr"></div>
@@ -41,12 +54,14 @@
     </div>
 </template>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
+
 </style>
 
 <script type="text/ecmascript-6">
     import fileUpload from '../components/file-upload.vue'
     import selectPic from '../components/select-pic.vue'
+    import popover from '../components/popover.vue'
 
     export default{
         props     : {
@@ -56,7 +71,8 @@
         },
         components: {
             fileUpload,
-            selectPic
+            selectPic,
+            popover
         },
         created() {
             let diff = this.data.options.max - this.data.value.length

@@ -3,15 +3,17 @@
         <div class="editor-pic">
             <ui-alert>建议尺寸:750X150, 支持jpg、png、gif图片格式</ui-alert>
 
-            <div class="form" :class="{'col-2': data.value.length > 1}"
+            <div class="form"
                  v-for="item in data.value"
                  track-by="$index">
 
                 <div class="form-group">
-                    <div v-if="item.picUrl" class="has-del">
-                        <img :src="item.picUrl" alt="">
-                        <button @click="item.picUrl = null" class="del"><i class="material-icons">clear</i>
-                        </button>
+                    <div v-if="item.picUrl" class="img has-del">
+                        <div class="middle">
+                            <img :src="item.picUrl" alt="">
+                            <button @click="item.picUrl = null" class="del"><i class="material-icons">clear</i>
+                            </button>
+                        </div>
                     </div>
 
                     <div v-if="!item.picUrl"
@@ -40,33 +42,6 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .form {
-        &.col-2 {
-            width: 50%;
-            display: inline-block;
-            vertical-align: top;
-        }
-    }
-
-    .upload-container {
-        width: 100%;
-        min-height: 78px;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-        top: 0;
-        display: flex;
-        border: dashed #ddd;
-        background: #fbfbfb;
-        cursor: pointer;
-
-        a {
-            color: #999;
-            i {
-                font-size: 50px;
-            }
-        }
-    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -102,8 +77,8 @@
                 this.isShowSelectPic = true
             },
 
-            selectOk(data) {
-
+            selectOk({picturePath}) {
+                this.currentItem.picUrl = picturePath
             }
         },
 

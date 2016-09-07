@@ -7,31 +7,18 @@
                 </div>
             </div>
 
-            <div v-if="state === 'done'">
-                <div v-if="value">
-                    <img :src="value" alt="">
-                    <div class="actions">
-                        <a @click="value=''" href="javascript:">
-                            <i class="ui-icon material-icons">delete</i>
-                        </a>
-                    </div>
-                </div>
+            <input type="file"
+                   name="{{ name }}"
+                   id="{{ id || name }}"
+                   accept="{{ accept }}"
+                   @click="fileInputClick"
+                   @change="fileInputChange"
+                   multiple="{{ multiple }}">
 
-                <div v-if="!value">
-                    <input type="file"
-                           name="{{ name }}"
-                           id="{{ id || name }}"
-                           accept="{{ accept }}"
-                           @click="fileInputClick"
-                           @change="fileInputChange"
-                           multiple="{{ multiple }}">
-
-                    <div class="actions">
-                        <a @click="value=''" href="javascript:">
-                            {{errorMsg}} <i class="ui-icon material-icons">add_circle</i>
-                        </a>
-                    </div>
-                </div>
+            <div class="actions">
+                <a @click="value=''" href="javascript:">
+                    {{errorMsg}} <i class="ui-icon material-icons">add_circle</i>
+                </a>
             </div>
         </li>
     </ul>
@@ -146,10 +133,17 @@
                     return `file-${Date.now()}`
                 }
             },
+            state   : {
+                type   : String,
+                default: () => {
+                    return 'done'
+                }
+            },
             value   : {
                 type : String,
                 toWay: true
             },
+            percent : 0,
             action  : {
                 type    : String,
                 required: true
@@ -161,9 +155,7 @@
         data   : function () {
             return {
                 myFiles : [], // a container for the files in our field
-                percent : 0,
-                errorMsg: null,
-                state   : 'done'
+                errorMsg: null
             };
         },
         methods: {

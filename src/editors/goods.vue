@@ -86,8 +86,6 @@
 
 <script type="text/ecmascript-6">
     import api from '../api'
-    import tabs from '../components/tabs.vue'
-    import tab from '../components/tab.vue'
     import selectGoods from '../components/select-goods.vue'
     import sortBar from '../components/sort-bar.vue'
 
@@ -99,8 +97,6 @@
         },
 
         components: {
-            tabs,
-            tab,
             selectGoods,
             sortBar
         },

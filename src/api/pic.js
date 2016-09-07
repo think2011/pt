@@ -4,8 +4,10 @@ module.exports = function (http) {
          * 获取分类
          */
         categories() {
-            return http
-                .get('/api/taobao/picture-cats')
+            return http({
+                method: 'GET',
+                url   : '/api/taobao/picture-cats',
+            })
                 .then((res) => res.json().data)
                 .then(function (res) {
                     res.items.unshift({

@@ -63,18 +63,15 @@
                      :contain-focus="false"
             ></ui-menu>
         </div>
-
-        <div class="sort"
-             :class="{active: sortData === item}"
-             v-for="item in sortOpts">
-            <a
-                    @click="selectSort(item)"
-                    href="javascript:">
-                {{item.text}}
-                <i class="material-icons ui-icon">
-                    {{item.desc ? 'arrow_upward' : 'arrow_downward'}}
-                </i>
-            </a>
+        <div>
+            <a v-el:sort class="link-trigger">{{picType.sortData.text}}<i
+                    class="material-icons ui-icon">arrow_drop_down</i></a>
+            <ui-menu :trigger="$els.sort"
+                     :options="picType.sortOpts"
+                     open-on="hover"
+                     @option-selected="selectSort"
+                     :contain-focus="false"
+            ></ui-menu>
         </div>
     </div>
 </template>
@@ -154,11 +151,26 @@
                 return false
             },
             selectSort(item) {
-                if (this.goodsType.sortData === item) {
-                    item.desc = !item.desc
+                switch (this.type) {
+                    case 'goods':
+                        if (this.goodsType.sortData === item) {
+                            item.desc = !item.desc
+                        }
+
+                        this.goodsType.sortData = item
+                        this.updateParams()
+                        break;
+
+                    case 'pic':
+                        this.picType.sortData = item
+                        this.updateParams()
+                        return false
+                        break;
+
+                    default:
+                        //
                 }
 
-                this.goodsType.sortData = item
             },
             updateParams() {
                 let params = {}
@@ -176,6 +188,12 @@
                         break;
 
                     case 'pic':
+                        let picType = this.picType
+
+                        params = {
+                            pictureCategoryId: picType.categoriesData.id,
+                            orderBy          : `${picType.sortData.value}:${picType.sortData.sort}`
+                        }
                         break;
 
                     default:
@@ -191,14 +209,14 @@
         },
 
         watch: {
-            'goodsType': {
+            'goodsType + picType': {
                 handler: function () {
-                    if (this.goodsType.searchData) return
+                    if (!window.event) return
 
                     this.updateParams()
                 },
                 deep   : true
-            }
+            },
         },
 
         ready () {
@@ -235,7 +253,11 @@
                                 })
 
                                 picType.categoriesData = picType.categories[0]
+                                this.updateParams()
                             })
+
+
+                    picType.sortData = picType.sortOpts[0]
                     break;
 
                 default:

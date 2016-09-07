@@ -28,7 +28,8 @@ Vue.http.interceptors.push((request, next) => {
 // cache
 Vue.http.interceptors.push((request, next) => {
     let url = `${request.url}?${toUrlParams(request.params)}`
-    if (request.method.toLowerCase() === 'get') {
+
+    if (request.method.toLowerCase() === 'get' && request.cache !== false) {
         let _cache = Cache.get(url);
 
         if (_cache) {
@@ -39,7 +40,7 @@ Vue.http.interceptors.push((request, next) => {
     }
 
     next((response) => {
-        if (response.status === 200 && request.method.toLowerCase() === 'get') {
+        if (response.status === 200 && request.method.toLowerCase() === 'get' && request.cache !== false) {
             Cache.set(url, response);
         }
     });

@@ -16,7 +16,7 @@
                     :disabled="page >= pageCount || loading"
                     @click="doPage(++page)">下一页
             </ui-button>
-        <span class="page-step">
+            <span class="page-step">
         {{page}} / {{pageCount}}
         </span>
         </div>
@@ -63,6 +63,9 @@
             },
             loading: {
                 type: Boolean
+            },
+            cache  : {
+                type: Boolean
             }
         },
 
@@ -80,8 +83,11 @@
                 this.loading     = true
                 this.params.page = this.page = page
 
-                this.$http
-                        .get(this.url, {params: this.params})
+                this.$http({
+                    url   : this.url,
+                    params: this.params,
+                    cache : this.cache
+                })
                         .then((res) => {
                             this.data = res.json().data
 

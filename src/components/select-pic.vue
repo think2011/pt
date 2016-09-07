@@ -19,20 +19,17 @@
                                     <i class="material-icons">check_circle</i>
                                 </div>
                                 <div class="img">
-                                    <img draggable="false" :src="item.picUrl + '_120x120.jpg'" alt="">
+                                    <img draggable="false" :src="item.picturePath + '_160x160.jpg'" alt="">
                                 </div>
-                                <div class="desc">
-                                    <div :title="item.title"
-                                         class="title">
-                                        {{item.title}}
-                                    </div>
-                                    <div class="price">{{item.promoPrice}}</div>
-                                </div>
+                                <p class="text-center">
+                                    {{item.pixel}}
+                                </p>
                             </li>
                         </ul>
 
                         <paging url="/api/taobao/pictures"
                                 :params="pagingParams"
+                                :cache="false"
                                 v-ref:paging
                                 :loading.sync="pagingLoading"
                                 :data.sync="data">
@@ -46,6 +43,33 @@
 
 <style lang="scss" rel="stylesheet/scss">
     .select-pic {
+        .list-container {
+            .list {
+                .img {
+                    width: 160px;
+                    height: 160px;
+                    display: table-cell;
+                    vertical-align: middle;
+
+                    & + p {
+                        margin: 0;
+                        padding: 5px 0;
+                        background: #eee;
+                        border-top: 1px solid #ccc;
+                    }
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        width: auto !important;
+                        height: auto !important;
+                        margin: 0;
+                        vertical-align: middle;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
     }
 </style>
 
@@ -104,7 +128,7 @@
                     orderBy          : null,
                     pictureCategoryId: null,
                     q                : null,
-                    size             : 10,
+                    size             : 12,
                     type             : 'PicTitle',
                 },
                 showModal    : false,

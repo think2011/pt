@@ -1,5 +1,11 @@
 module.exports = function (http) {
     return {
+        initials() {
+            return http
+                .get(`/api/homepage/initials`)
+                .then((res) => _.get(res.json(), 'data.userInfo'))
+        },
+
         tplById(id) {
             return http
                 .get(`/api/wirelesspage/tpls/${id}`)

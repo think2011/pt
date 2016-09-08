@@ -63,8 +63,6 @@
         },
 
         ready (){
-            api.goods.list().then(() => this.loaded = true)
-
             switch (window.QUERYSTRING.type) {
                 case 'create':
                     api.base.tplById(window.QUERYSTRING.id).then((res) => {
@@ -91,10 +89,12 @@
                     this.addRenderItem('meals')
             }
 
+            // toast
             this.$watch('toast', (value) => {
                 this.$broadcast('ui-snackbar::create', _.clone(value))
             })
 
+            // 顶部加载状态
             let interVal = null
             this.$watch('ajaxLoading', (value) => {
                 if (!value || interVal) {
@@ -111,6 +111,15 @@
                     }
                     this.loadingProgress += (Math.floor(Math.random() * (20 - 1)) + 1)
                 }, 1000)
+            })
+
+            // 初始化数据
+            Promise.all([
+                api.base.initials(),
+                api.goods.list(),
+            ]).then((res) => {
+                window.USER_INFO = res[0]
+                this.loaded      = true
             })
         },
 

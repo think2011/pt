@@ -6,6 +6,8 @@ import './assets/css/styles.scss'
 import './assets/css/tanstions.scss'
 import './skin/default.scss'
 
+import './filters'
+
 window.QUERYSTRING = (function () {
     var params = {},
         pair   = (window.location.search.substr(1)).split('&');

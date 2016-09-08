@@ -1,6 +1,6 @@
 export const modules = [
     {
-        title: '宝贝模块',
+        title: '宝贝',
         items: [
             {
                 alias    : '热卖单品',

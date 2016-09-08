@@ -147,6 +147,7 @@
             },
             selectIsSale(value) {
                 this.goodsType.isSaleData = value
+                this.updateParams()
 
                 return false
             },
@@ -233,6 +234,7 @@
                                 })
 
                                 goodsType.categoriesData = goodsType.categories[0]
+                                this.updateParams()
                             })
 
                     goodsType.searchData = goodsType.searchOpts[0]

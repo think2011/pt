@@ -34,6 +34,7 @@
                         <paging url="/api/taobao/items"
                                 @on:done="pageDone"
                                 :params="pagingParams"
+                                :cache="true"
                                 v-ref:paging
                                 :loading.sync="pagingLoading"
                                 :data.sync="data">
@@ -174,7 +175,10 @@
                     type          : 'Keyword',
                     q             : '',
                     size          : 12,
-                    showPromoPrice: true
+                    showPromoPrice: true,
+                    sellerCids    : '',
+                    itemState     : 'OnSale',
+                    orderBy       : 'list_time:desc'
                 },
                 showModal    : false,
                 pagingLoading: false

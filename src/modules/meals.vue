@@ -39,8 +39,6 @@
                     }
                 }
 
-                let value = this.data.meal.value
-
                 api.goods.fetchMeals()
                         .then(({items}) => {
                             this.$set('data.meal.value', items[0] || {})

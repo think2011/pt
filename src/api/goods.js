@@ -200,6 +200,31 @@ module.exports = function (http) {
                 cache : options.cache
             })
                 .then((res) => res.json().data)
+        },
+
+        /**
+         * 优惠券
+         */
+        fetchCoupons(options = {}) {
+
+            return http({
+                url   : '/api/wirelesspages/coupons',
+                params: {},
+                cache : options.cache
+            })
+                .then((res) => res.json().data)
+                .then((res) => {
+                    let items = res.items
+
+                    _.each(items, (value) => {
+                        let noLimit = value.condition - value.denominations === 1
+
+                        value._condition     = noLimit ? '无条件使用' : `满${value.condition / 100}元可用`
+                        value._denominations = value.denominations / 100
+                    })
+
+                    return res
+                })
         }
     }
 }

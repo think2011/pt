@@ -26,20 +26,32 @@
                 </div>
                 <div class="form-group">
                     <label>链接</label>
-                    <popover position="top right">
+          <!--          <popover position="top right">
                         <div slot="contents">
-                            弹出内容啦啦啦
-                            <br>
-                            asdjkaslk 弹出内容啦啦啦
-                            <br>
-                            asdjkaslk 弹出内容啦啦啦
-                            <br>
-                            asdjkaslk 弹出内容啦啦啦
-                            <br>
-                            asdjkaslk
+                            <ui-tabs type="text">
+                                <ui-tab header="Books">
+                                    My books
+
+                                    <a href="https://google.com" target="_blank" rel="noopener">Hey</a>
+                                </ui-tab>
+
+                                <ui-tab header="Authors">
+                                    Authors
+                                </ui-tab>
+
+                                <ui-tab header="Collections">
+                                    My collections
+                                </ui-tab>
+
+                                <ui-tab header="Favourites">
+                                    My favourites
+                                </ui-tab>
+                            </ui-tabs>
                         </div>
                         <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
-                    </popover>
+                    </popover>-->
+
+                    <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
                 </div>
 
                 <div class="hr"></div>

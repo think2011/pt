@@ -46,6 +46,23 @@ export const modules = [
         ]
     },
     {
+        title: '营销',
+        items: [
+            {
+                alias    : '搭配套餐',
+                type     : 'meals',
+                picUrl   : require('../assets/img/搭配套餐.png'),
+                component: (resolve) => require(['./meals.vue'], resolve)
+            },
+            {
+                alias    : '优惠券',
+                type     : 'coupon',
+                picUrl   : require('../assets/img/优惠券.png'),
+                component: (resolve) => require(['./coupon.vue'], resolve)
+            }
+        ]
+    },
+    {
         title: '其他',
         items: [
             {

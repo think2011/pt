@@ -7,7 +7,7 @@
                     aria-label="按住拖拽"
                     class="item hint--top"
                     v-for="item in moduleItem.items"
-                   >
+                >
                     <img draggable="false" :src="item.picUrl" alt="">
                     {{item.alias}}
                 </li>
@@ -52,6 +52,7 @@
                 img {
                     width: 24px;
                     margin-bottom: 10px;
+                    display: inline-block;
                 }
             }
         }

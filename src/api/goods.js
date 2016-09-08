@@ -185,6 +185,21 @@ module.exports = function (http) {
                     return items;
                 })
 
+        },
+
+        /**
+         * 搭配套餐
+         */
+        fetchMeals(options = {}) {
+
+            return http({
+                url   : '/api/taobao/seller-meals',
+                params: {
+                    isValid: true
+                },
+                cache : options.cache
+            })
+                .then((res) => res.json().data)
         }
     }
 }

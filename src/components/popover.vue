@@ -25,6 +25,7 @@
         position: relative;
 
         .contents {
+            min-width: 50px;
             position: absolute;
             bottom: 100%;
             margin-bottom: 8px;

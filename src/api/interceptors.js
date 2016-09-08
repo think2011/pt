@@ -69,7 +69,7 @@ Vue.http.interceptors.push((req, next) => {
                         item.promoPrice = item.promoPrice || item.price
 
                         // 生成url
-                        item.url = `http://item.taobao.com/item.htm?id=${item.numIid}`
+                        item.url = `http://item.taobao.com/item.htm?from=mobile_maker&id=${item.numIid}`
                     }
                 })
 

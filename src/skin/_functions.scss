@@ -12,6 +12,7 @@ $designWidth: 750;
   $scale: $px / 24;
 
   font-size: px2rem($px);
+  display: inline-block;
 
   @if $px < 24 {
     @at-root .PC & {

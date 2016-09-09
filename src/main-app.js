@@ -14,3 +14,6 @@ new Vue({
     el        : 'body',
     components: {App}
 })
+
+// 标记PC端
+document.documentElement.classList.add('PC')

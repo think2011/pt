@@ -1,3 +1,22 @@
+$designWidth: 750;
+
+@function px2rem( $px ) {
+  @return $px*320/$designWidth/20 + rem;
+}
+
 @function spaceBetween($itemPx, $itemCount, $wrapPx:750) {
   @return #{(100 - $itemPx / $wrapPx * 100  * $itemCount) / ($itemCount + 1) + "%"};
+}
+
+@mixin adapt-font-size($px) {
+  $scale: $px / 24;
+
+  font-size: px2rem($px);
+
+  @if $px < 24 {
+    @at-root .PC & {
+      transform: scale($scale);
+      transform-origin: left;
+    }
+  }
 }

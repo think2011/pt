@@ -13,6 +13,9 @@
     </div>
 </template>
 
+<style lang="scss" rel="stylesheet/scss">
+</style>
+
 <script type="text/ecmascript-6">
     import api from '../api'
     import components from '../components'

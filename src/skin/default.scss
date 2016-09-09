@@ -335,7 +335,6 @@
     }
 
     .state {
-      @include adapt-font-size(15);
       margin-right: px2rem(5);
     }
 

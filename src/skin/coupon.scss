@@ -1,11 +1,11 @@
 .coupons {
   $color-primary: #F2604B;
-  padding: 0 0 0 px2rem(20);
 
   .coupon {
     display: flex;
     flex-flow: row nowrap;
     overflow-x: auto;
+    padding: 0 px2rem(20);
     -webkit-overflow-scrolling: touch;
 
     .item {
@@ -17,6 +17,10 @@
       white-space: nowrap;
       color: $color-primary;
       border: 1px solid $color-primary;
+
+      &:last-child {
+        margin-right: 0;
+      }
 
       .denominations {
         width: px2rem(75);

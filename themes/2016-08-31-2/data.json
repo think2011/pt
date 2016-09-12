@@ -8,8 +8,14 @@
           "type": "pic",
           "title": "海报",
           "value": [
-            "http://img.alicdn.com/imgextra/i2/2406822118/TB20YfYXVHzQeBjSZFmXXbcDVXa_!!2406822118.jpg"
-          ]
+            {
+              "url": null,
+              "picUrl": "http://img.alicdn.com/imgextra/i2/2406822118/TB20YfYXVHzQeBjSZFmXXbcDVXa_!!2406822118.jpg"
+            }
+          ],
+          "options": {
+            "max": 1
+          }
         }
       }
     },
@@ -35,8 +41,14 @@
           "type": "pic",
           "title": "海报",
           "value": [
-            "http://img.alicdn.com/imgextra/i3/2406822118/TB2IObVX1rAQeBjSZFPXXXbmXXa_!!2406822118.jpg"
-          ]
+            {
+              "url": null,
+              "picUrl": "http://img.alicdn.com/imgextra/i3/2406822118/TB2IObVX1rAQeBjSZFPXXXbmXXa_!!2406822118.jpg"
+            }
+          ],
+          "options": {
+            "max": 1
+          }
         }
       }
     },
@@ -50,10 +62,15 @@
       "data": {
         "pic": {
           "type": "pic",
-          "title": "海报",
-          "value": [
-            "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"
-          ]
+          "title": "海报", "value": [
+            {
+              "url": null,
+              "picUrl":  "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"
+            }
+          ],
+          "options": {
+            "max": 1
+          }
         }
       }
     },
@@ -67,10 +84,15 @@
       "data": {
         "pic": {
           "type": "pic",
-          "title": "海报",
-          "value": [
-            "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"
-          ]
+          "title": "海报","value": [
+            {
+              "url": null,
+              "picUrl":   "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"
+            }
+          ],
+          "options": {
+            "max": 1
+          }
         }
       }
     },
@@ -86,8 +108,14 @@
           "type": "pic",
           "title": "海报",
           "value": [
-            "http://img.alicdn.com/imgextra/i4/2406822118/TB2DuVNXqi5V1BjSspfXXapiXXa_!!2406822118.jpg"
-          ]
+            {
+              "url": null,
+              "picUrl": "http://img.alicdn.com/imgextra/i4/2406822118/TB2DuVNXqi5V1BjSspfXXapiXXa_!!2406822118.jpg"
+            }
+          ],
+          "options": {
+            "max": 1
+          }
         }
       }
     },

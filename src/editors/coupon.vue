@@ -1,7 +1,7 @@
 <template>
     <div class="editor-container form">
         <loading :show="data.value.loading">
-            <ui-alert v-if="!data.value.couponId"
+            <ui-alert v-if="!items.length"
                       type="error">
                 您还没有优惠券, 请
                 <a target="_blank"
@@ -9,14 +9,12 @@
                 后 <a href="javascript:" @click="refresh">刷新数据</a>
             </ui-alert>
 
-            <div v-if="data.value.couponId" class="form-group">
-                <label>{{data.title}}</label>
-
-                <select v-model="data.value">
-                    <option :value="item" v-for="item in items">
+            <div v-if="items.length" class="form-group">
+                <box-select :value.sync="data.value">
+                    <box-select-option v-for="item in items" :option="item">
                         {{item._denominations}}元 ({{item._condition}})
-                    </option>
-                </select>
+                    </box-select-option>
+                </box-select>
             </div>
         </loading>
     </div>
@@ -34,18 +32,20 @@
         },
 
         created() {
-            this.refresh()
+            this.refresh(true)
         },
 
         components: {
-            loading: components.loading
+            sortBar        : components.sortBar,
+            boxSelect      : components.boxSelect,
+            boxSelectOption: components.boxSelectOption,
+            loading        : components.loading
         },
 
         methods: {
-            refresh() {
-                api.goods.fetchCoupons({cache: false}).then(({items}) => {
+            refresh(cache = false) {
+                api.goods.fetchCoupons({cache: cache}).then(({items}) => {
                     this.$set('items', items)
-                    this.$set('data.value', items[0] || {})
                 })
             }
         },

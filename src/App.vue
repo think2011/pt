@@ -86,7 +86,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('meals')
+                    this.addRenderItem('coupon')
             }
 
             // toast

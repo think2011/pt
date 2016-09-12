@@ -1,0 +1,58 @@
+.coupons {
+  $color-primary: #F2604B;
+  padding: 0 0 0 px2rem(20);
+
+  .coupon {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .item {
+      flex: 1 0 auto;
+      display: flex;
+      margin-right: px2rem(12);
+      margin-bottom: 1px;
+      padding: px2rem(8) px2rem(8);
+      white-space: nowrap;
+      color: $color-primary;
+      border: 1px solid $color-primary;
+
+      .denominations {
+        width: px2rem(75);
+        @include adapt-font-size(75);
+        padding-right: px2rem(10);
+        margin-right: px2rem(10);
+        border-right: 1px solid #ddd;
+
+        &:before {
+          content: '￥';
+          @include adapt-font-size(24);
+        }
+      }
+
+      .desc {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+
+        .condition {
+          color: #555;
+          margin-bottom: px2rem(5);
+          @include adapt-font-size(24);
+        }
+
+        .btn {
+          height: px2rem(40);
+          line-height: px2rem(40);
+          @include adapt-font-size(24);
+          padding: 0;
+          color: #fff;
+          background: $color-primary;
+          border: none;
+          border-radius: 30px;
+        }
+      }
+    }
+  }
+}

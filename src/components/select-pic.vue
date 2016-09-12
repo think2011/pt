@@ -16,8 +16,7 @@
 
                         <div class="upload">
                             <div v-show="uploadData.state !== 'uploading'">
-                                <ui-button type="flat"
-                                           @click="upload"
+                                <ui-button @click="upload"
                                            hide-ripple-lnk="true"
                                            icon="cloud_upload"
                                            color="primary">

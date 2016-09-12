@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="actions">
-                        <a :href="item.url" class="btn btn-sm btn-primary">{{data.btnTitle.value}}</a>
+                        <a :href="item.url" class="btn btn-sm btn-primary">{{data.text.value.btnTitle.value}}</a>
 
                         <div class="promo-price">￥{{item.promoPrice}}
                             <span class="price">￥{{item.price}} </span>
@@ -60,10 +60,14 @@
                             maxLen: 6
                         }
                     },
-                    btnTitle: {
+                    text : {
                         type : 'text',
-                        title: '购买按钮',
-                        value: '购买'
+                        value: {
+                            btnTitle: {
+                                title: '购买按钮',
+                                value: '购买'
+                            }
+                        }
                     }
                 }
 

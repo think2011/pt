@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 module.exports = function (http) {
     return {
         /**
@@ -77,6 +79,14 @@ module.exports = function (http) {
                 cache : options.cache
             })
                 .then((res) => res.json().data)
+                .then((res) => {
+                    _.each(res.items, (value) => {
+                        value._url       = Vue.filter('mealUrl')(value.mealId)
+                        value._savePrice = +value.originalPrice - +value.mealPrice
+                    })
+
+                    return res
+                })
         },
 
         /**

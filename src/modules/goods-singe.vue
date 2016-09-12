@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="actions">
-                        <a :href="item.url" class="btn btn-primary">{{data.btnTitle.value}}</a>
+                        <a :href="item.url" class="btn btn-primary">{{data.text.value.btnTitle.value}}</a>
 
                         <div class="promo-price">
                             ￥{{item.promoPrice}}
@@ -40,7 +40,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
     import api from '../api'
     import {
             fetchGoods
@@ -52,7 +52,7 @@
         created() {
             if (_.isEmpty(this.data)) {
                 this.data = {
-                    goods   : {
+                    goods: {
                         type   : 'goods',
                         title  : '选择宝贝',
                         value  : [],
@@ -66,10 +66,14 @@
                             maxLen: 5
                         }
                     },
-                    btnTitle: {
+                    text : {
                         type : 'text',
-                        title: '购买按钮',
-                        value: '立即购买'
+                        value: {
+                            btnTitle: {
+                                title: '购买按钮',
+                                value: '立即购买'
+                            }
+                        }
                     }
                 }
 

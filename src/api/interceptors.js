@@ -62,14 +62,22 @@ Vue.http.interceptors.push((req, next) => {
         let isZyData = _.isObject(data) && ('success' in data)
 
         if (isZyData) {
+            let addField = (item) => {
+                if ('numIid' in item || 'itemId' in item) {
+                    // 没有促销价用原价代替
+                    item.promoPrice = item.promoPrice || item.price
+
+                    // 生成url
+                    item.url = `http://item.taobao.com/item.htm?from=mobile_maker&id=${item.numIid}`
+                }
+            }
+
             try {
                 _.each(data.data.items, (item) => {
-                    if ('numIid' in item) {
-                        // 没有促销价用原价代替
-                        item.promoPrice = item.promoPrice || item.price
+                    addField(item)
 
-                        // 生成url
-                        item.url = `http://item.taobao.com/item.htm?from=mobile_maker&id=${item.numIid}`
+                    if (item.itemList) {
+                        item.itemList.forEach(addField)
                     }
                 })
 

@@ -1,9 +1,9 @@
 <template>
     <div class="editor-container">
         <div class="editor-text form">
-            <div class="form-group">
-                <label>{{data.title}}</label>
-                <input type="text" v-model="data.value">
+            <div v-for="(key,value) in data.value" class="form-group">
+                <label>{{value.title}}</label>
+                <input type="text" v-model="value.value">
             </div>
         </div>
     </div>

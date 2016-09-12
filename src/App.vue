@@ -121,6 +121,10 @@
                 window.USER_INFO = res[0]
                 this.loaded      = true
             })
+
+            // 预加载资源
+            api.goods.categories()
+            api.pic.categories()
         },
 
         vuex: {

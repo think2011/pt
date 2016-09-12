@@ -1,7 +1,7 @@
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
 /* !!因为移动端,必须使用 rem 单位!! */
-/*  TIPS: 最小字体低于22在机型显示会不一致 */
+/*  TIPS: 最小字体低于24在机型显示会不一致, 使用 @include adapt-font-size(num) 设置字体 */
 @import "../../src/skin/default.scss";
 
 .module-container {

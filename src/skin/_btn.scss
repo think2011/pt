@@ -12,8 +12,6 @@
     color: $color-default;
     border: 1px solid $color-default;
     border-radius: px2rem(5);
-    position: absolute;
-    right: 0;
     background: #fff;
     display: inline-block;
 
@@ -22,11 +20,26 @@
       color: $color-primary;
     }
 
+    &-s1 {
+      font-weight: bold;
+      border-radius: px2rem(30);
+      color: #F2604B;
+      background: #FFE18A;
+      border: 0;
+    }
+
     &-sm {
       font-size: px2rem(30);
       height: px2rem(65);
       line-height: px2rem(65);
       padding: 0 px2rem(8);
+    }
+
+    &-xs {
+      font-size: px2rem(30);
+      height: px2rem(45);
+      line-height: px2rem(45);
+      padding: 0 px2rem(15);
     }
   }
 }

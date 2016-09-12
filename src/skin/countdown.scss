@@ -1,0 +1,58 @@
+// 倒计时
+.countdown {
+  white-space: nowrap;
+  color: $color-primary;
+  text-align: center;
+
+  &.end, &.ready {
+    color: $color-muted;
+
+    .num {
+      background: $color-muted;
+    }
+  }
+
+  .state {
+    margin-right: px2rem(5);
+  }
+
+  .num {
+    font-size: px2rem(30);
+    color: #fff;
+    margin-right: 1px;
+    padding: 0 px2rem(8);
+    border-radius: px2rem(5);
+    background: $color-primary;
+  }
+
+  .days, .hours, .minutes, .seconds, .milliseconds {
+    position: relative;
+    display: inline-table;
+  }
+
+  .days {
+    margin-right: px2rem(25);
+
+    &:after {
+      @extend .num;
+
+      position: absolute;
+      right: -44%;
+      font-size: px2rem(20);
+      padding: px2rem(3);
+      border-radius: 50%;
+      content: '天';
+    }
+  }
+
+  .hours, .minutes, .seconds {
+    margin-right: px2rem(5);
+
+    &:after {
+
+      position: absolute;
+      right: -14%;
+      content: ':';
+    }
+  }
+}

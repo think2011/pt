@@ -2,25 +2,60 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="hotcss">
+    <meta name="hotcss" content="initial-dpr=1">
     <title></title>
     <script>
         window.DATA = {
-            "items": [
-                {
-                    "type" : "poster-many",
-                    "alias": "单张海报"
-                },
-                {
-                    "type" : "countdown",
-                    "alias": "单张海报"
-                },
-                {
-                    "type" : "meals",
-                    "alias": "单张海报"
-                },
-            ],
-            "title": "网页标题"
+            "items"    : [{
+                "type" : "meals",
+                "alias": "搭配套餐",
+                "data" : {
+                    "meal": {
+                        "type"   : "meal",
+                        "title"  : "选择套餐",
+                        "loading": false,
+                        "value"  : {
+                            "mealId"       : 359305318,
+                            "mealName"     : "2",
+                            "itemList"     : [{
+                                "picUrl"      : "https://img.alicdn.com/bao/uploaded//i4/2979432856/TB2WtjPaai5V1Bjy1zkXXcL4VXa_!!2979432856.jpg",
+                                "price"       : "786.00",
+                                "title"       : "日 2016春秋季新款范冰冰明星同款中跟小白单鞋乐福鞋厚底松糕鞋",
+                                "itemId"      : 538261324683,
+                                "itemShowName": " ",
+                                "enabled"     : true,
+                                "promoPrice"  : "786.00",
+                                "url"         : "http://item.taobao.com/item.htm?from=mobile_maker&id=undefined"
+                            }, {
+                                "picUrl"      : "https://img.alicdn.com/bao/uploaded/i4/TB1ZcOkLXXXXXatapXXXXXXXXXX_!!0-item_pic.jpg",
+                                "price"       : "486.00",
+                                "title"       : "格古力2016夏秋韩版运动板鞋真皮系带百搭透气高帮鞋白色休闲女鞋",
+                                "itemId"      : 538171654710,
+                                "itemShowName": " ",
+                                "enabled"     : true,
+                                "promoPrice"  : "486.00",
+                                "url"         : "http://item.taobao.com/item.htm?from=mobile_maker&id=undefined"
+                            }],
+                            "mealPrice"    : "1200.00",
+                            "originalPrice": "1272.00",
+                            "mealMemo"     : "123",
+                            "postageId"    : 0,
+                            "status"       : "VALID",
+                            "typePostage"  : "SELL",
+                            "_url"         : "http://meal.taobao.com/mealDetail.htm?&meal_id=359305318&seller_id=2979432856",
+                            "_savePrice"   : 72
+                        }
+                    },
+                    "text": {
+                        "type" : "text",
+                        "value": {
+                            "title"   : {"title": "主标题", "value": "超值搭配价"},
+                            "subTitle": {"title": "副标题", "value": "COLLOCATION"},
+                            "buy"     : {"title": "购买按钮", "value": "立即购买"}
+                        }
+                    }
+                }
+            }], "title": "33网页标题"
         }
     </script>
 </head>

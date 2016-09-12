@@ -15,7 +15,7 @@
                         <div class="denominations">{{item._denominations}}</div>
                         <div class="desc">
                             <div class="condition">{{item._condition}}</div>
-                            <button class="btn btn-sm">立即领取</button>
+                            <button class="_btn btn-sm">立即领取</button>
                         </div>
                     </a>
                 </div>

@@ -3,6 +3,14 @@
   padding: 0 px2rem(20);
 
   .meal {
+    ._btn {
+      font-weight: bold;
+      border-radius: px2rem(30);
+      color: #F2604B;
+      background: #FFE18A;
+      border: 0;
+    }
+
     &-2 {
       display: flex;
 

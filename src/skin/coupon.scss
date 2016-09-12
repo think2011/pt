@@ -46,7 +46,7 @@
           @include adapt-font-size(24);
         }
 
-        .btn {
+        ._btn {
           height: px2rem(40);
           line-height: px2rem(40);
           @include adapt-font-size(24);

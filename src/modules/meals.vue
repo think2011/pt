@@ -28,7 +28,7 @@
                         <div class="meal-price">{{data.meal.value.mealPrice}}</div>
                         <div class="btn-container">
                             <a :href="data.meal.value._url"
-                               class="btn btn-s1 btn-xs">
+                               class="_btn btn-xs">
                                 {{data.text.value.buy.value}}
                             </a>
                         </div>

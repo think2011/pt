@@ -59,7 +59,7 @@ Vue.http.interceptors.push((req, next) => {
 Vue.http.interceptors.push((req, next) => {
     next((res) => {
         let data     = res.json()
-        let isZyData = _.isObject(data) && ('success' in data)
+        let isZyData = _.isObject(data) && ('success' in data) && (data.success)
 
         if (isZyData) {
             let addField = (item) => {
@@ -93,7 +93,7 @@ Vue.http.interceptors.push((req, next) => {
 Vue.http.interceptors.push((req, next) => {
     next((res) => {
         let data     = res.json()
-        let isZyData = _.isObject(data) && ('success' in data)
+        let isZyData = _.isObject(data) && ('success' in data) && (data.success)
 
         if (isZyData && data.data.data) {
             try {

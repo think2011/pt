@@ -23,7 +23,7 @@
       }
 
       .denominations {
-        width: px2rem(75);
+        min-width: px2rem(75);
         @include adapt-font-size(75);
         padding-right: px2rem(10);
         margin-right: px2rem(10);

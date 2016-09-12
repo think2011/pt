@@ -52,7 +52,7 @@
 
                 api.goods.fetchCoupons()
                         .then(({items}) => {
-                            this.$set('data.coupon.value', _.take(items, 3))
+                            this.$set('data.coupon.value', _.take(items, 2))
                         })
                         .catch(() => {
                         })

@@ -21,17 +21,7 @@
     },
     {
       "type": "countdown",
-      "alias": "倒计时",
-      "data": {
-        "time": {
-          "type": "time",
-          "title": "倒计时",
-          "value": {
-            "start": 1472632544482,
-            "end": 1472639744482
-          }
-        }
-      }
+      "alias": "倒计时"
     },
     {
       "type": "poster-single",
@@ -62,10 +52,11 @@
       "data": {
         "pic": {
           "type": "pic",
-          "title": "海报", "value": [
+          "title": "海报",
+          "value": [
             {
               "url": null,
-              "picUrl":  "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"
+              "picUrl": "http://img.alicdn.com/imgextra/i4/2406822118/TB2V1dMXqi5V1Bjy1zkXXcL4VXa_!!2406822118.jpg"
             }
           ],
           "options": {
@@ -84,10 +75,11 @@
       "data": {
         "pic": {
           "type": "pic",
-          "title": "海报","value": [
+          "title": "海报",
+          "value": [
             {
               "url": null,
-              "picUrl":   "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"
+              "picUrl": "http://img.alicdn.com/imgextra/i3/2406822118/TB2ixNMXqe5V1BjSszeXXc3zXXa_!!2406822118.jpg"
             }
           ],
           "options": {

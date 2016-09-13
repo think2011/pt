@@ -86,7 +86,7 @@
                     break;
 
                 default:
-                    this.addRenderItem('poster-single')
+//                    this.addRenderItem('goods-hot')
                     setTimeout(() => {
                         this.addRenderItem('poster-many')
                     }, 0)

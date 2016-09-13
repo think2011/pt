@@ -5,10 +5,10 @@
                 轮播海报
             </div>
 
-            <div v-if="data.pic.value[0].picUrl">
+            <div v-if="items.length">
                 <carousel :indicators="true">
                     <carousel-item v-for="item in items"
-                                   track-by="$index"
+                                   track-by="picUrl"
                                    class="item">
                         <a :href="item.url"
                            class="img">
@@ -25,7 +25,7 @@
 </style>
 
 <script type="text/ecmascript-6">
-    import {Carousel, CarouselItem} from 'vue-m-carousel'
+    import components from '../components'
     import {
             fetchGoods,
             posterUrls
@@ -35,8 +35,8 @@
         props: ['data'],
 
         components: {
-            Carousel,
-            CarouselItem
+            Carousel: components.Carousel,
+            CarouselItem: components.CarouselItem
         },
 
         created() {
@@ -47,7 +47,7 @@
                         title  : '轮播海报',
                         value  : [{
                             url   : null,
-                            picUrl: posterUrls[0]
+                            picUrl: 'http://img.alicdn.com/imgextra/i2/2979432856/TB2qqtnXaLB11BjSspkXXcy9pXa_!!2979432856.jpg'
                         }],
                         options: {
                             max: 6

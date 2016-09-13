@@ -60,7 +60,6 @@
 
 <script type="text/ecmascript-6">
     import api from '../api'
-    import {Carousel, CarouselItem} from 'vue-m-carousel'
     import countdown from '../components/countdown.vue'
     import {
             fetchGoods
@@ -71,8 +70,8 @@
         props     : ['data'],
         components: {
             countdown,
-            Carousel,
-            CarouselItem,
+            Carousel: components.Carousel,
+            CarouselItem: components.CarouselItem,
             loading: components.loading
         },
 

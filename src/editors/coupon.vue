@@ -18,8 +18,7 @@
                                 <a target="_blank"
                                    href="https://smf.taobao.com/index.htm?spm=a1z5d.7629074.1998343224.1.OGHeRm&menu=yhkq&module=yhkq">
                                     开放推广
-                                    <img src="http://img.alicdn.com/imgextra/i4/2979432856/TB2lG4hXgfC11BjSszcXXc44pXa_!!2979432856.jpg"
-                                         alt="">
+                                    <img src="http://img.alicdn.com/imgextra/i4/2979432856/TB2lG4hXgfC11BjSszcXXc44pXa_!!2979432856.jpg">
                                 </a>
                                 的优惠券, 否则无法领取
                             </ui-alert>

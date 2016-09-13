@@ -13,7 +13,6 @@
             width: 100%;
             cursor: pointer;
             white-space: nowrap;
-            margin-right: 10px;
             margin-bottom: 8px;
             border: 1px solid #ddd;
             padding: 8px 12px 8px 8px;

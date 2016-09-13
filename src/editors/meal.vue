@@ -7,7 +7,7 @@
                     您还没有搭配套餐, 请
                     <a target="_blank"
                        href="https://smf.taobao.com/index.htm?spm=a1z5d.7629074.1998343221.1.u3IG1O&menu=activity&module=dptc">创建套餐</a>
-                    后 <a href="javascript:" @click="refresh">刷新数据</a>
+                    后 <a href="javascript:" @click="refresh()">刷新数据</a>
                 </ui-alert>
 
                 <div v-if="data.value.mealId" class="form">

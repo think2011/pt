@@ -28,7 +28,7 @@
     import {Carousel, CarouselItem} from 'vue-m-carousel'
     import {
             fetchGoods,
-            posterUrl
+            posterUrls
     } from '../assets/tools'
 
     export default {
@@ -47,7 +47,7 @@
                         title  : '轮播海报',
                         value  : [{
                             url   : null,
-                            picUrl: posterUrl
+                            picUrl: posterUrls[0]
                         }],
                         options: {
                             max: 6

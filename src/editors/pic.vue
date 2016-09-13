@@ -1,7 +1,7 @@
 <template>
     <div class="editor-container">
         <div class="editor-pic">
-            <ui-alert>建议尺寸:750X150, 支持jpg、png、gif图片格式</ui-alert>
+            <ui-alert>建议尺寸:750X150, jpg、png、gif的图片格式</ui-alert>
 
             <div class="form"
                  v-for="item in data.value"
@@ -26,30 +26,31 @@
                 </div>
                 <div class="form-group">
                     <label>链接</label>
-          <!--          <popover position="top right">
-                        <div slot="contents">
-                            <ui-tabs type="text">
-                                <ui-tab header="Books">
-                                    My books
 
-                                    <a href="https://google.com" target="_blank" rel="noopener">Hey</a>
-                                </ui-tab>
+                    <!--          <popover position="top right">
+                                  <div slot="contents">
+                                      <ui-tabs type="text">
+                                          <ui-tab header="Books">
+                                              My books
 
-                                <ui-tab header="Authors">
-                                    Authors
-                                </ui-tab>
+                                              <a href="https://google.com" target="_blank" rel="noopener">Hey</a>
+                                          </ui-tab>
 
-                                <ui-tab header="Collections">
-                                    My collections
-                                </ui-tab>
+                                          <ui-tab header="Authors">
+                                              Authors
+                                          </ui-tab>
 
-                                <ui-tab header="Favourites">
-                                    My favourites
-                                </ui-tab>
-                            </ui-tabs>
-                        </div>
-                        <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
-                    </popover>-->
+                                          <ui-tab header="Collections">
+                                              My collections
+                                          </ui-tab>
+
+                                          <ui-tab header="Favourites">
+                                              My favourites
+                                          </ui-tab>
+                                      </ui-tabs>
+                                  </div>
+                                  <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                              </popover>-->
 
                     <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
                 </div>
@@ -71,6 +72,8 @@
 </style>
 
 <script type="text/ecmascript-6">
+    import Vue from 'vue'
+    import components from '../components'
     import fileUpload from '../components/file-upload.vue'
     import selectPic from '../components/select-pic.vue'
     import popover from '../components/popover.vue'
@@ -82,6 +85,7 @@
             }
         },
         components: {
+            sortBar: components.sortBar,
             fileUpload,
             selectPic,
             popover
@@ -107,6 +111,12 @@
 
             selectOk({picturePath}) {
                 this.currentItem.picUrl = picturePath
+            }
+        },
+
+        computed: {
+            isEmpty(){
+                return !_.filter(this.data.value, (item) => item.picUrl).length
             }
         },
 

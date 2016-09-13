@@ -18,7 +18,10 @@ export let goods = {
 }
 
 
-export let posterUrl = 'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg'
+export let posterUrls = [
+    'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg',
+    'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg'
+]
 
 export let fetchGoods = function (num, mergeObj) {
     return api.goods

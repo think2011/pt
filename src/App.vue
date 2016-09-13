@@ -86,7 +86,10 @@
                     break;
 
                 default:
-                    this.addRenderItem('meals')
+                    this.addRenderItem('poster-single')
+                    setTimeout(() => {
+                        this.addRenderItem('poster-many')
+                    }, 0)
             }
 
             // toast

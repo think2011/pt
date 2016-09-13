@@ -19,7 +19,7 @@
 <script type="text/ecmascript-6">
     import {
             fetchGoods,
-            posterUrl
+            posterUrls
     } from '../assets/tools'
 
     export default {
@@ -30,10 +30,10 @@
                 this.data = {
                     pic: {
                         type   : 'pic',
-                        title  : '海报',
+                        title  : '单张海报',
                         value  : [{
                             url   : null,
-                            picUrl: posterUrl
+                            picUrl: posterUrls[1]
                         }],
                         options: {
                             max: 1

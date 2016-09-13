@@ -29,7 +29,6 @@
     import components from '../components'
     import {
             fetchGoods,
-            posterUrl
     } from '../assets/tools'
 
     export default {

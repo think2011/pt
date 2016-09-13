@@ -3,7 +3,7 @@
         <div class="meals">
             <loading :show="data.meal.loading">
                 <div class="ph-empty dashed" v-if="!data.meal.value.mealId">
-                    未创建搭配套餐
+                    搭配套餐
                 </div>
 
                 <div v-if="data.meal.value.mealId"

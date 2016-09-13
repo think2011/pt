@@ -96,4 +96,43 @@
       }
     }
   }
+
+  .meals {
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .goods-items {
+      .actions {
+        width: auto;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        display: inline-block;
+
+        [aria-label="删除"] {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .coupons {
+    .sort {
+      position: relative;
+      margin-bottom: 10px;
+
+      .desc {
+        background: #EEEEEE;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding: 8px 5px;
+      }
+
+      [aria-label="删除"] {
+        display: none;
+      }
+    }
+  }
 }

@@ -1,14 +1,16 @@
 <template>
     <div class="popover">
         <div v-el:contents
-             @mouseover="showContents"
-             @mouseout="blurContents"
+             class="popover-contents"
              v-show="show"
-             transition="scale"
-             class="contents">
-            <div v-el:arrow
-                 class="arrow"></div>
-            <slot name="contents"></slot>
+             transition="scale">
+            <div @mouseover="showContents"
+                 @mouseout="blurContents">
+                <div v-el:arrow
+                     class="arrow">
+                </div>
+                <slot name="contents"></slot>
+            </div>
         </div>
 
         <div v-el:triggers
@@ -21,42 +23,39 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-    .popover {
-        position: relative;
+    .popover-contents {
+        min-width: 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-bottom: 8px;
+        padding: 5px 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 5px rgba(99, 99, 99, 0.3);
+        background: #fff;
+        z-index: 20160907;
 
-        .contents {
-            min-width: 50px;
+        .arrow {
             position: absolute;
-            bottom: 100%;
-            margin-bottom: 8px;
-            left: 0;
-            padding: 5px 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0 1px 5px rgba(99, 99, 99, 0.3);
-            background: #fff;
-            z-index: 20160907;
+            top: 100%;
+            left: 50%;
 
-            .arrow {
+            &:after {
+                content: " ";
                 position: absolute;
-                top: 100%;
-                left: 50%;
+                width: 0;
+                height: 0;
+                transform: translate(-50%, 0);
+                border: 5px solid transparent;
+                border-top-color: #fff;
+            }
 
-                &:after {
-                    content: " ";
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    transform: translate(-50%, 0);
-                    border: 5px solid transparent;
-                    border-top-color: #fff;
-                }
+            &:before {
+                @extend :after;
 
-                &:before {
-                    @extend :after;
+                border-width: 6px;
+                border-top-color: #ddd;
 
-                    border-width: 6px;
-                    border-top-color: #ddd;
-                }
             }
         }
 
@@ -77,6 +76,7 @@
         },
 
         ready() {
+            document.body.appendChild(this.$els.contents)
         },
 
         watch: {},
@@ -92,25 +92,52 @@
             },
 
             blurContents() {
-                this.blurTimer = setTimeout(() => {
-                    this.show = false
-                }, 200)
+                // TODO ZH 16/9/14
+                /* this.blurTimer = setTimeout(() => {
+                 this.show = false
+                 }, 300)*/
             },
 
             updatePosition() {
+                console.log(this.$els.contents)
+
                 let elContents      = this.$els.contents
                 let elArrow         = this.$els.arrow
                 let elTriggers      = this.$els.triggers
                 let elContentsHalfW = Number.parseFloat(window.getComputedStyle(elContents).width)
+                let elContentsHalfH = Number.parseFloat(window.getComputedStyle(elContents).height)
                 let elTriggersHalfW = Number.parseFloat(window.getComputedStyle(elTriggers).width)
+                let elTriggersHalfH = Number.parseFloat(window.getComputedStyle(elTriggers).height)
+                let elTriggersRect  = elTriggers.getBoundingClientRect()
+                let [positionTop, positionLeft] = this.position.split(' ')
 
-                switch (this.position) {
-                    case 'top center':
-                        elContents.style.left = `${Math.abs(elContentsHalfW / 2 - elTriggersHalfW / 2)}px`
+                switch (positionTop) {
+                    case 'top':
+                        elContents.style.top = `${elTriggersRect.top - elContentsHalfH - 10}px`
                         break;
 
-                    case 'top right':
-                        elContents.style.left = `${Math.abs(elContentsHalfW - elTriggersHalfW)}px`
+                    case 'left':
+                        elContents.style.top = `${elTriggersRect.top + elTriggersHalfH / 2 - elContentsHalfH / 2}px`
+                        break;
+
+                    default:
+                        //
+                }
+
+                switch (positionLeft) {
+                    case 'center':
+                        elContents.style.left = `${elTriggersRect.left + elTriggersHalfW / 2 - elContentsHalfW / 2}px`
+                        break;
+
+                    case 'left':
+                        elContents.style.left   = `${elTriggersRect.left - elContentsHalfW - 10}px`
+                        elArrow.style.top       = `50%`
+                        elArrow.style.left      = `100%`
+                        elArrow.style.transform = `rotate(270deg)`
+                        break;
+
+                    case 'right':
+                        elContents.style.left = `${elTriggersRect.left + elTriggersHalfW - elContentsHalfW}px`
                         elArrow.style.left    = `90%`
                         break;
 

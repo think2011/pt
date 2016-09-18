@@ -35,7 +35,7 @@
         props: ['data'],
 
         components: {
-            Carousel: components.Carousel,
+            Carousel    : components.Carousel,
             CarouselItem: components.CarouselItem
         },
 
@@ -47,7 +47,7 @@
                         title  : '轮播海报',
                         value  : [{
                             url   : null,
-                            picUrl: 'http://img.alicdn.com/imgextra/i2/2979432856/TB2qqtnXaLB11BjSspkXXcy9pXa_!!2979432856.jpg'
+                            picUrl: posterUrls[0]
                         }],
                         options: {
                             max: 6

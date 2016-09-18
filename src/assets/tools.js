@@ -19,7 +19,7 @@ export let goods = {
 
 
 export let posterUrls = [
-    'http://img.alicdn.com/imgextra/i2/2406822118/TB20YfYXVHzQeBjSZFmXXbcDVXa_!!2406822118.jpg',
+    'http://img.alicdn.com/imgextra/i2/2406822118/TB2JeNDXqm5V1BjSspoXXa8VXXa_!!2406822118.jpg',
     'https://img.alicdn.com/imgextra/i3/92779311/TB2uGl0nXXXXXbxXpXXXXXXXXXX-92779311.jpg'
 ]
 

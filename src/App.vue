@@ -121,7 +121,8 @@
                 api.base.initials(),
                 api.goods.list(),
             ]).then((res) => {
-                window.USER_INFO = res[0]
+                window.SHOP_INFO = res[0].shopInfo
+                window.USER_INFO = res[0].userInfo
                 this.loaded      = true
             })
 

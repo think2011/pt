@@ -3,7 +3,7 @@ module.exports = function (http) {
         initials() {
             return http
                 .get(`/api/homepage/initials`)
-                .then((res) => _.get(res.json(), 'data.userInfo'))
+                .then((res) => _.get(res.json(), 'data'))
         },
 
         tplById(id) {

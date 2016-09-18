@@ -27,32 +27,9 @@
                 <div class="form-group">
                     <label>链接</label>
 
-                    <!--          <popover position="top right">
-                                  <div slot="contents">
-                                      <ui-tabs type="text">
-                                          <ui-tab header="Books">
-                                              My books
-
-                                              <a href="https://google.com" target="_blank" rel="noopener">Hey</a>
-                                          </ui-tab>
-
-                                          <ui-tab header="Authors">
-                                              Authors
-                                          </ui-tab>
-
-                                          <ui-tab header="Collections">
-                                              My collections
-                                          </ui-tab>
-
-                                          <ui-tab header="Favourites">
-                                              My favourites
-                                          </ui-tab>
-                                      </ui-tabs>
-                                  </div>
-                                  <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
-                              </popover>-->
-
-                    <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                    <shortcut-url :url.sync="item.url">
+                        <input class="form-control" v-model="item.url" type="text" placeholder="请输入跳转链接">
+                    </shortcut-url>
                 </div>
 
                 <div class="hr"></div>
@@ -68,7 +45,15 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
-
+    .shortcut-url {
+        ul {
+            li {
+                &:not(:last-child) {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
 </style>
 
 <script type="text/ecmascript-6">
@@ -85,10 +70,11 @@
             }
         },
         components: {
-            sortBar: components.sortBar,
+            sortBar    : components.sortBar,
             fileUpload,
             selectPic,
-            popover
+            popover,
+            shortcutUrl: components.shortcutUrl
         },
         created() {
             let diff = this.data.options.max - this.data.value.length

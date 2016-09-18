@@ -8,14 +8,15 @@
 </style>
 
 <script>
+    import components from './index'
 
     export default {
         props: {},
 
+        components: {},
+
         created() {
         },
-
-        components: {},
 
         watch: {},
 
